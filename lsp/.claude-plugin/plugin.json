@@ -1,0 +1,6 @@
+{
+  "name": "lsp",
+  "version": "1.0.0",
+  "description": "Language servers: Python (pyright), TypeScript, Swift. Binaries installed per machine, see SETUP.md.",
+  "author": { "name": "Yuliia Kulykivska" }
+}

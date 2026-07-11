@@ -1,0 +1,6 @@
+{
+  "name": "coach",
+  "version": "1.0.0",
+  "description": "Non-blocking coaching hooks: per-stack nudges on edit, session status banner, failure hints, uncommitted-changes reminder.",
+  "author": { "name": "Yuliia Kulykivska" }
+}
