@@ -1,0 +1,6 @@
+{
+  "name": "mcp-catalog",
+  "version": "1.0.0",
+  "description": "MCP server catalog (example): GitHub, Playwright, Postgres. Copy .mcp.json.example into a project and fill credentials.",
+  "author": { "name": "Yuliia Kulykivska" }
+}

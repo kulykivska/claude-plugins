@@ -1,0 +1,6 @@
+{
+  "name": "pre-push-review",
+  "version": "1.1.0",
+  "description": "Fix-and-verify review that fixes code smells, security, scalability, and performance issues before any git push.",
+  "author": { "name": "Yuliia Kulykivska" }
+}

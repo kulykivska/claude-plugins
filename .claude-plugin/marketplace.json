@@ -1,0 +1,61 @@
+{
+  "name": "personal",
+  "owner": {
+    "name": "Yuliia Kulykivska"
+  },
+  "metadata": {
+    "description": "Personal Claude Code tooling for all projects (RaceModel, Jarvis, Aura, GT7 Engineer, ...): skills, subagents, hooks, LSP, monitors."
+  },
+  "plugins": [
+    {
+      "name": "pre-push-review",
+      "source": "./pre-push-review",
+      "description": "Fix-and-verify review that fixes code smells, security, scalability, and performance issues before any git push."
+    },
+    {
+      "name": "morning",
+      "source": "./morning",
+      "description": "Per-project daily kickoff recap: what was done yesterday and what to continue, from git + transcripts + memory."
+    },
+    {
+      "name": "guardrails",
+      "source": "./guardrails",
+      "description": "Blocking safety hooks: destructive Fly.io/prod-DB ops, force-push to main, AI attribution in commits, secrets/PII in staged and pushed diffs."
+    },
+    {
+      "name": "coach",
+      "source": "./coach",
+      "description": "Non-blocking coaching hooks: per-stack nudges on edit (Python/TS/Swift, FEATURE_COLS sync, no em-dashes in UI text), session banner, failure hints, uncommitted reminder."
+    },
+    {
+      "name": "sdlc",
+      "source": "./sdlc",
+      "description": "Task lifecycle: requirements, plan-task, task-review, debug, qa skills + architect and debugger subagents."
+    },
+    {
+      "name": "reviewers",
+      "source": "./reviewers",
+      "description": "Per-stack reviewer subagents: Python/FastAPI, web (Vite/React/TS), SwiftUI, and ML pipeline (LORO gate, FEATURE_COLS sync, leakage)."
+    },
+    {
+      "name": "fly-ops",
+      "source": "./fly-ops",
+      "description": "Fly.io ops runbooks: deploy (with release_command gotcha), fly-logs, incident triage."
+    },
+    {
+      "name": "lsp",
+      "source": "./lsp",
+      "description": "Language servers: Python (pyright), TypeScript, Swift. Binaries installed per machine, see SETUP.md."
+    },
+    {
+      "name": "monitors",
+      "source": "./monitors",
+      "description": "Background monitors: live TypeScript build errors and local dev-server [ERROR]/[WARN], idle-safe outside matching repos."
+    },
+    {
+      "name": "mcp-catalog",
+      "source": "./mcp-catalog",
+      "description": "MCP server catalog (example): GitHub, Playwright, Postgres. Copy .mcp.json.example into a project and fill credentials."
+    }
+  ]
+}

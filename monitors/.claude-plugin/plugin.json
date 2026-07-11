@@ -1,0 +1,6 @@
+{
+  "name": "monitors",
+  "version": "1.0.0",
+  "description": "Background monitors: live TypeScript build errors and local dev-server [ERROR]/[WARN], idle-safe outside matching repos.",
+  "author": { "name": "Yuliia Kulykivska" }
+}
