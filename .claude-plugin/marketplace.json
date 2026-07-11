@@ -13,9 +13,9 @@
       "description": "Fix-and-verify review that fixes code smells, security, scalability, and performance issues before any git push."
     },
     {
-      "name": "morning",
-      "source": "./morning",
-      "description": "Per-project daily kickoff recap: what was done yesterday and what to continue, from git + transcripts + memory."
+      "name": "daily",
+      "source": "./daily",
+      "description": "Daily rhythm skills: morning (kickoff recap) and evening (wind-down with tomorrow's top 3, wellbeing and social suggestions)."
     },
     {
       "name": "guardrails",
@@ -56,6 +56,31 @@
       "name": "mcp-catalog",
       "source": "./mcp-catalog",
       "description": "MCP server catalog (example): GitHub, Playwright, Postgres. Copy .mcp.json.example into a project and fill credentials."
+    },
+    {
+      "name": "seo",
+      "source": "./seo",
+      "description": "seo-strategist subagent + seo-audit skill: keyword research through technical, programmatic, and LLM SEO (AI Overviews, ChatGPT/Perplexity citability)."
+    },
+    {
+      "name": "research",
+      "source": "./research",
+      "description": "researcher subagent: delegable multi-source research with claim verification and cited briefs."
+    },
+    {
+      "name": "content",
+      "source": "./content",
+      "description": "content-writer subagent + social-post skill: one idea into platform-native posts for LinkedIn, Threads, X, Instagram; EN/UK, owner's voice."
+    },
+    {
+      "name": "reports",
+      "source": "./reports",
+      "description": "report-builder subagent + weekly-report skill: business reports, decks, and consulting deliverables with charts."
+    },
+    {
+      "name": "biz",
+      "source": "./biz",
+      "description": "Business growth subagents: aso-optimizer (App Store), growth-analyst (funnel/conversion), outreach-writer (partnership and consulting pitches)."
     }
   ]
 }

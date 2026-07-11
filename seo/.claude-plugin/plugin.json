@@ -1,0 +1,6 @@
+{
+  "name": "seo",
+  "version": "1.0.0",
+  "description": "Modern SEO: seo-strategist subagent + seo-audit skill covering keyword research through technical, programmatic, and LLM SEO (AI Overviews, ChatGPT/Perplexity citability).",
+  "author": { "name": "Yuliia Kulykivska" }
+}

@@ -128,7 +128,7 @@
     "swift-lsp@claude-plugins-official": true,
     "figma@claude-plugins-official": true,
     "pre-push-review@personal": true,
-    "morning@personal": true,
+    "daily@personal": true,
     "guardrails@personal": true,
     "coach@personal": true,
     "sdlc@personal": true,
@@ -136,7 +136,12 @@
     "fly-ops@personal": true,
     "lsp@personal": true,
     "monitors@personal": true,
-    "mcp-catalog@personal": true
+    "mcp-catalog@personal": true,
+    "seo@personal": true,
+    "research@personal": true,
+    "content@personal": true,
+    "reports@personal": true,
+    "biz@personal": true
   },
   "spinnerTipsEnabled": false,
   "effortLevel": "medium",
