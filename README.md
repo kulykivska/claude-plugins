@@ -53,9 +53,10 @@ Claude Code config:
 - `.claude/scripts/statusline.sh`: status line script
 
 The repo copy is the source of truth: edit here, then sync to `~/.claude`
-(`cp .claude/scripts/* ~/.claude/scripts/`). On a new machine: copy
-`.claude/settings.json` + `.claude/scripts/` into `~/.claude/` and adjust the
-absolute marketplace path.
+(`cp .claude/scripts/* ~/.claude/scripts/`). All paths are `~`-based, so on a
+new machine just copy `.claude/settings.json` + `.claude/scripts/` into
+`~/.claude/` and clone this repo to `~/Documents/Work/Projects/AI/claude-plugins`
+(or update the marketplace `path` if it lives elsewhere).
 
 ## Validate
 
