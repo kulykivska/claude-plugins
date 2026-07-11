@@ -5,6 +5,64 @@ One source of truth for personal Claude Code tooling across all projects
 `personal` marketplace from this local path and enabled by default in
 `~/.claude/settings.json`, so every project picks it up automatically.
 
+## How it fits together
+
+```mermaid
+flowchart TB
+    settings["~/.claude/settings.json<br/>extraKnownMarketplaces + enabledPlugins<br/>(user scope = every project)"]
+    mp["personal marketplace<br/>.claude-plugin/marketplace.json"]
+    settings --> mp
+
+    subgraph workflow["Workflow skills"]
+        ppr["pre-push-review<br/>fix-and-verify before push"]
+        morn["morning<br/>daily kickoff recap"]
+        sdlcS["sdlc skills:<br/>requirements · plan-task ·<br/>qa · task-review · debug"]
+        flyops["fly-ops skills:<br/>deploy · fly-logs · incident"]
+    end
+
+    subgraph agents["Subagents"]
+        arch["architect<br/>(design before coding)"]
+        dbg["debugger<br/>(root cause from evidence)"]
+        pyr["python-reviewer<br/>(FastAPI, async, failure paths)"]
+        webr["web-reviewer<br/>(React/TS, i18n, gating)"]
+        swiftr["swiftui-reviewer<br/>(crashes, StoreKit, l10n)"]
+        mlr["ml-reviewer<br/>(LORO gate, leakage,<br/>FEATURE_COLS sync)"]
+    end
+
+    subgraph hooks["Hooks (automatic)"]
+        guard["guardrails · BLOCKING<br/>fly destroy / DROP·TRUNCATE /<br/>force-push main / attribution /<br/>secrets+PII scan"]
+        coachh["coach · non-blocking<br/>edit nudges · session banner ·<br/>failure hints · uncommitted reminder"]
+        gate["pre-push gate<br/>(user-level hook, versioned in<br/>.claude/scripts/)"]
+    end
+
+    subgraph infra["Infrastructure"]
+        lspP["lsp<br/>pyright · tsserver · sourcekit"]
+        mon["monitors<br/>tsc-watch · dev-log errors"]
+        mcpC["mcp-catalog<br/>(examples, opt-in)"]
+    end
+
+    mp --> workflow
+    mp --> agents
+    mp --> hooks
+    mp --> infra
+
+    sdlcS -. delegates to .-> arch
+    sdlcS -. delegates to .-> dbg
+    ppr -. can corroborate with .-> pyr
+    ppr -. can corroborate with .-> webr
+    ppr -. can corroborate with .-> swiftr
+    ppr -. can corroborate with .-> mlr
+    gate -- blocks git push until review --> ppr
+```
+
+The task lifecycle the pieces compose into:
+
+```mermaid
+flowchart LR
+    R["requirements"] --> P["plan-task<br/>(+ architect)"] --> I["implement<br/>(coach nudges,<br/>guardrails veto)"] --> Q["qa"] --> T["task-review<br/>(+ reviewers)"] --> G["pre-push gate →<br/>pre-push-review"] --> D["deploy<br/>(fly-ops)"] --> M["monitor<br/>(fly-logs, incident,<br/>debugger)"]
+    M -. bugs feed back .-> R
+```
+
 ## Plugins
 
 | Plugin | Type(s) | What it does |
