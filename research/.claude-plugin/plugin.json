@@ -1,0 +1,6 @@
+{
+  "name": "research",
+  "version": "1.0.0",
+  "description": "researcher subagent: delegable multi-source research with claim verification and cited briefs.",
+  "author": { "name": "Yuliia Kulykivska" }
+}

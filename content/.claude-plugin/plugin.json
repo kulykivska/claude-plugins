@@ -1,0 +1,6 @@
+{
+  "name": "content",
+  "version": "1.0.0",
+  "description": "content-writer subagent + social-post skill: one idea into platform-native posts for LinkedIn, Threads, X, and Instagram, EN/UK, in the owner's voice.",
+  "author": { "name": "Yuliia Kulykivska" }
+}
