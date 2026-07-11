@@ -1,0 +1,214 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 940" font-family="Menlo, SF Mono, Consolas, monospace">
+  <defs>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <radialGradient id="bgGlow" cx="50%" cy="22%" r="80%">
+      <stop offset="0%" stop-color="#0e2233"/>
+      <stop offset="100%" stop-color="#070d16"/>
+    </radialGradient>
+    <linearGradient id="panelFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0c1a2b" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#081120" stop-opacity="0.95"/>
+    </linearGradient>
+    <marker id="arrowC" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#22d3ee"/>
+    </marker>
+    <marker id="arrowG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#fbbf24"/>
+    </marker>
+  </defs>
+
+  <!-- background -->
+  <rect width="1280" height="940" fill="url(#bgGlow)"/>
+  <g stroke="#123049" stroke-width="0.5" opacity="0.35">
+    <path d="M0,120 H1280 M0,240 H1280 M0,360 H1280 M0,480 H1280 M0,600 H1280 M0,720 H1280 M0,840 H1280"/>
+    <path d="M160,0 V940 M320,0 V940 M480,0 V940 M640,0 V940 M800,0 V940 M960,0 V940 M1120,0 V940"/>
+  </g>
+
+  <!-- header -->
+  <g filter="url(#glow)">
+    <text x="640" y="52" text-anchor="middle" fill="#7ff3ff" font-size="26" letter-spacing="6">PERSONAL CLAUDE CODE MARKETPLACE</text>
+  </g>
+  <text x="640" y="76" text-anchor="middle" fill="#4a90b8" font-size="12" letter-spacing="3">ONE SOURCE OF TRUTH · EVERY PROJECT · EVERY SESSION</text>
+  <path d="M340,88 H560 M720,88 H940" stroke="#22d3ee" stroke-width="1" opacity="0.6"/>
+  <circle cx="640" cy="88" r="4" fill="none" stroke="#22d3ee"/>
+  <circle cx="640" cy="88" r="1.5" fill="#7ff3ff"/>
+
+  <!-- settings node -->
+  <g>
+    <rect x="450" y="108" width="380" height="52" rx="6" fill="url(#panelFill)" stroke="#22d3ee" stroke-width="1.2"/>
+    <path d="M450,108 h14 M450,108 v14 M830,108 h-14 M830,108 v14 M450,160 h14 M450,160 v-14 M830,160 h-14 M830,160 v-14" stroke="#7ff3ff" stroke-width="2" fill="none"/>
+    <text x="640" y="130" text-anchor="middle" fill="#e6f8ff" font-size="14">~/.claude/settings.json</text>
+    <text x="640" y="149" text-anchor="middle" fill="#4a90b8" font-size="11">extraKnownMarketplaces + enabledPlugins · user scope</text>
+  </g>
+
+  <line x1="640" y1="160" x2="640" y2="196" stroke="#22d3ee" stroke-width="1.2" marker-end="url(#arrowC)"/>
+
+  <!-- marketplace core -->
+  <g filter="url(#glow)">
+    <circle cx="640" cy="240" r="42" fill="#0c1a2b" stroke="#22d3ee" stroke-width="1.5"/>
+    <circle cx="640" cy="240" r="50" fill="none" stroke="#22d3ee" stroke-width="0.7" opacity="0.5" stroke-dasharray="4 6"/>
+    <text x="640" y="236" text-anchor="middle" fill="#7ff3ff" font-size="13">personal</text>
+    <text x="640" y="252" text-anchor="middle" fill="#4a90b8" font-size="9">marketplace</text>
+  </g>
+
+  <!-- connectors core -> panels -->
+  <path d="M600,266 C420,300 210,300 178,336" fill="none" stroke="#22d3ee" stroke-width="1" marker-end="url(#arrowC)" opacity="0.8"/>
+  <path d="M622,280 C560,310 500,310 486,336" fill="none" stroke="#fbbf24" stroke-width="1" marker-end="url(#arrowG)" opacity="0.8"/>
+  <path d="M658,280 C720,310 780,310 794,336" fill="none" stroke="#22d3ee" stroke-width="1" marker-end="url(#arrowC)" opacity="0.8"/>
+  <path d="M680,266 C860,300 1070,300 1102,336" fill="none" stroke="#22d3ee" stroke-width="1" marker-end="url(#arrowC)" opacity="0.8"/>
+
+  <!-- ===== PANEL 1 : WORKFLOW SKILLS ===== -->
+  <g>
+    <rect x="30" y="340" width="292" height="330" rx="8" fill="url(#panelFill)" stroke="#22d3ee" stroke-width="1"/>
+    <path d="M30,340 h18 M30,340 v18 M322,340 h-18 M322,340 v18 M30,670 h18 M30,670 v-18 M322,670 h-18 M322,670 v-18" stroke="#7ff3ff" stroke-width="2" fill="none"/>
+    <text x="176" y="368" text-anchor="middle" fill="#7ff3ff" font-size="14" letter-spacing="2" filter="url(#glow)">WORKFLOW SKILLS</text>
+    <line x1="60" y1="380" x2="292" y2="380" stroke="#22d3ee" stroke-width="0.8" opacity="0.6"/>
+
+    <text x="48" y="408" fill="#e6f8ff" font-size="12">▸ pre-push-review</text>
+    <text x="60" y="424" fill="#4a90b8" font-size="10">fix-and-verify before every push</text>
+    <text x="48" y="450" fill="#e6f8ff" font-size="12">▸ morning</text>
+    <text x="60" y="466" fill="#4a90b8" font-size="10">daily kickoff recap: git + memory</text>
+    <text x="48" y="492" fill="#e6f8ff" font-size="12">▸ sdlc</text>
+    <text x="60" y="508" fill="#4a90b8" font-size="10">requirements · plan-task · qa</text>
+    <text x="60" y="522" fill="#4a90b8" font-size="10">task-review · debug</text>
+    <text x="48" y="548" fill="#e6f8ff" font-size="12">▸ fly-ops</text>
+    <text x="60" y="564" fill="#4a90b8" font-size="10">deploy · fly-logs · incident</text>
+    <text x="48" y="596" fill="#22d3ee" font-size="10" opacity="0.8">triggered by intent or /command,</text>
+    <text x="48" y="610" fill="#22d3ee" font-size="10" opacity="0.8">run inline in the main context</text>
+  </g>
+
+  <!-- ===== PANEL 2 : SUBAGENTS ===== -->
+  <g>
+    <rect x="338" y="340" width="292" height="330" rx="8" fill="url(#panelFill)" stroke="#fbbf24" stroke-width="1"/>
+    <path d="M338,340 h18 M338,340 v18 M630,340 h-18 M630,340 v18 M338,670 h18 M338,670 v-18 M630,670 h-18 M630,670 v-18" stroke="#fde68a" stroke-width="2" fill="none"/>
+    <text x="484" y="368" text-anchor="middle" fill="#fde68a" font-size="14" letter-spacing="2" filter="url(#glow)">SUBAGENTS</text>
+    <line x1="368" y1="380" x2="600" y2="380" stroke="#fbbf24" stroke-width="0.8" opacity="0.6"/>
+
+    <text x="356" y="406" fill="#e6f8ff" font-size="12">⬡ architect</text>
+    <text x="368" y="420" fill="#8aa8c0" font-size="10">design + file-level plan before code</text>
+    <text x="356" y="443" fill="#e6f8ff" font-size="12">⬡ debugger</text>
+    <text x="368" y="457" fill="#8aa8c0" font-size="10">root cause from logs and evidence</text>
+    <text x="356" y="480" fill="#e6f8ff" font-size="12">⬡ python-reviewer</text>
+    <text x="368" y="494" fill="#8aa8c0" font-size="10">FastAPI · async · failure paths</text>
+    <text x="356" y="517" fill="#e6f8ff" font-size="12">⬡ web-reviewer</text>
+    <text x="368" y="531" fill="#8aa8c0" font-size="10">React/TS · i18n · access gating</text>
+    <text x="356" y="554" fill="#e6f8ff" font-size="12">⬡ swiftui-reviewer</text>
+    <text x="368" y="568" fill="#8aa8c0" font-size="10">crash risk · StoreKit · l10n</text>
+    <text x="356" y="591" fill="#e6f8ff" font-size="12">⬡ ml-reviewer</text>
+    <text x="368" y="605" fill="#8aa8c0" font-size="10">LORO gate · leakage · FEATURE_COLS</text>
+    <text x="356" y="636" fill="#fbbf24" font-size="10" opacity="0.8">fresh context each, run in parallel,</text>
+    <text x="356" y="650" fill="#fbbf24" font-size="10" opacity="0.8">report back to the main session</text>
+  </g>
+
+  <!-- ===== PANEL 3 : HOOKS ===== -->
+  <g>
+    <rect x="646" y="340" width="292" height="330" rx="8" fill="url(#panelFill)" stroke="#f87171" stroke-width="1"/>
+    <path d="M646,340 h18 M646,340 v18 M938,340 h-18 M938,340 v18 M646,670 h18 M646,670 v-18 M938,670 h-18 M938,670 v-18" stroke="#fca5a5" stroke-width="2" fill="none"/>
+    <text x="792" y="368" text-anchor="middle" fill="#fca5a5" font-size="14" letter-spacing="2" filter="url(#glow)">HOOKS · AUTOMATIC</text>
+    <line x1="676" y1="380" x2="908" y2="380" stroke="#f87171" stroke-width="0.8" opacity="0.6"/>
+
+    <text x="664" y="406" fill="#f87171" font-size="12">⛔ guardrails · BLOCKING</text>
+    <text x="676" y="421" fill="#8aa8c0" font-size="10">fly destroy / scale-0 / secrets unset</text>
+    <text x="676" y="435" fill="#8aa8c0" font-size="10">DROP·TRUNCATE via db clients</text>
+    <text x="676" y="449" fill="#8aa8c0" font-size="10">force-push to main · AI attribution</text>
+    <text x="676" y="463" fill="#8aa8c0" font-size="10">secrets + PII scan of diffs</text>
+    <text x="664" y="490" fill="#7ff3ff" font-size="12">◈ coach · non-blocking</text>
+    <text x="676" y="505" fill="#8aa8c0" font-size="10">edit nudges (py/ts/swift · no dashes)</text>
+    <text x="676" y="519" fill="#8aa8c0" font-size="10">session banner · failure hints</text>
+    <text x="676" y="533" fill="#8aa8c0" font-size="10">uncommitted-changes reminder</text>
+    <text x="664" y="560" fill="#fde68a" font-size="12">⛔ pre-push gate</text>
+    <text x="676" y="575" fill="#8aa8c0" font-size="10">user-level hook, versioned here in</text>
+    <text x="676" y="589" fill="#8aa8c0" font-size="10">.claude/scripts/ · blocks git push</text>
+    <text x="676" y="603" fill="#8aa8c0" font-size="10">until pre-push-review approves HEAD</text>
+    <text x="664" y="636" fill="#f87171" font-size="10" opacity="0.8">fire on events, no one calls them:</text>
+    <text x="664" y="650" fill="#f87171" font-size="10" opacity="0.8">exit 2 vetoes the action</text>
+  </g>
+
+  <!-- ===== PANEL 4 : INFRASTRUCTURE ===== -->
+  <g>
+    <rect x="954" y="340" width="292" height="330" rx="8" fill="url(#panelFill)" stroke="#a78bfa" stroke-width="1"/>
+    <path d="M954,340 h18 M954,340 v18 M1246,340 h-18 M1246,340 v18 M954,670 h18 M954,670 v-18 M1246,670 h-18 M1246,670 v-18" stroke="#c4b5fd" stroke-width="2" fill="none"/>
+    <text x="1100" y="368" text-anchor="middle" fill="#c4b5fd" font-size="14" letter-spacing="2" filter="url(#glow)">INFRASTRUCTURE</text>
+    <line x1="984" y1="380" x2="1216" y2="380" stroke="#a78bfa" stroke-width="0.8" opacity="0.6"/>
+
+    <text x="972" y="408" fill="#e6f8ff" font-size="12">⚙ lsp</text>
+    <text x="984" y="424" fill="#8aa8c0" font-size="10">pyright · tsserver · sourcekit-lsp</text>
+    <text x="984" y="438" fill="#8aa8c0" font-size="10">live diagnostics in py/ts/swift</text>
+    <text x="972" y="464" fill="#e6f8ff" font-size="12">⚙ monitors</text>
+    <text x="984" y="480" fill="#8aa8c0" font-size="10">tsc-watch build errors</text>
+    <text x="984" y="494" fill="#8aa8c0" font-size="10">dev-log ERROR/WARN tail</text>
+    <text x="972" y="520" fill="#e6f8ff" font-size="12">⚙ mcp-catalog</text>
+    <text x="984" y="536" fill="#8aa8c0" font-size="10">github · playwright · postgres</text>
+    <text x="984" y="550" fill="#8aa8c0" font-size="10">opt-in per project, no auto-connect</text>
+    <text x="972" y="582" fill="#e6f8ff" font-size="12">⚙ .claude/ (versioned config)</text>
+    <text x="984" y="598" fill="#8aa8c0" font-size="10">settings.json + scripts, ~-based</text>
+    <text x="984" y="612" fill="#8aa8c0" font-size="10">paths: clone + copy = new machine</text>
+    <text x="972" y="643" fill="#a78bfa" font-size="10" opacity="0.8">loaded when plugins are enabled,</text>
+    <text x="972" y="657" fill="#a78bfa" font-size="10" opacity="0.8">work transparently in background</text>
+  </g>
+
+  <!-- ===== LIFECYCLE STRIP ===== -->
+  <text x="640" y="722" text-anchor="middle" fill="#7ff3ff" font-size="13" letter-spacing="4" filter="url(#glow)">TASK LIFECYCLE</text>
+  <line x1="420" y1="732" x2="590" y2="732" stroke="#22d3ee" stroke-width="0.8" opacity="0.5"/>
+  <line x1="690" y1="732" x2="860" y2="732" stroke="#22d3ee" stroke-width="0.8" opacity="0.5"/>
+
+  <g font-size="11" text-anchor="middle">
+    <g>
+      <rect x="34" y="756" width="128" height="58" rx="6" fill="#0c1a2b" stroke="#22d3ee"/>
+      <text x="98" y="780" fill="#e6f8ff">requirements</text>
+      <text x="98" y="796" fill="#4a90b8" font-size="9">concretize + edges</text>
+    </g>
+    <line x1="162" y1="785" x2="186" y2="785" stroke="#22d3ee" marker-end="url(#arrowC)"/>
+    <g>
+      <rect x="188" y="756" width="128" height="58" rx="6" fill="#0c1a2b" stroke="#22d3ee"/>
+      <text x="252" y="780" fill="#e6f8ff">plan-task</text>
+      <text x="252" y="796" fill="#fbbf24" font-size="9">+ architect</text>
+    </g>
+    <line x1="316" y1="785" x2="340" y2="785" stroke="#22d3ee" marker-end="url(#arrowC)"/>
+    <g>
+      <rect x="342" y="756" width="128" height="58" rx="6" fill="#0c1a2b" stroke="#22d3ee"/>
+      <text x="406" y="780" fill="#e6f8ff">implement</text>
+      <text x="406" y="796" fill="#f87171" font-size="9">coach + guardrails</text>
+    </g>
+    <line x1="470" y1="785" x2="494" y2="785" stroke="#22d3ee" marker-end="url(#arrowC)"/>
+    <g>
+      <rect x="496" y="756" width="100" height="58" rx="6" fill="#0c1a2b" stroke="#22d3ee"/>
+      <text x="546" y="780" fill="#e6f8ff">qa</text>
+      <text x="546" y="796" fill="#4a90b8" font-size="9">real flows</text>
+    </g>
+    <line x1="596" y1="785" x2="620" y2="785" stroke="#22d3ee" marker-end="url(#arrowC)"/>
+    <g>
+      <rect x="622" y="756" width="128" height="58" rx="6" fill="#0c1a2b" stroke="#22d3ee"/>
+      <text x="686" y="780" fill="#e6f8ff">task-review</text>
+      <text x="686" y="796" fill="#fbbf24" font-size="9">+ reviewers ×4</text>
+    </g>
+    <line x1="750" y1="785" x2="774" y2="785" stroke="#22d3ee" marker-end="url(#arrowC)"/>
+    <g>
+      <rect x="776" y="756" width="128" height="58" rx="6" fill="#0c1a2b" stroke="#f87171"/>
+      <text x="840" y="780" fill="#e6f8ff">push gate</text>
+      <text x="840" y="796" fill="#f87171" font-size="9">pre-push-review</text>
+    </g>
+    <line x1="904" y1="785" x2="928" y2="785" stroke="#22d3ee" marker-end="url(#arrowC)"/>
+    <g>
+      <rect x="930" y="756" width="128" height="58" rx="6" fill="#0c1a2b" stroke="#22d3ee"/>
+      <text x="994" y="780" fill="#e6f8ff">deploy</text>
+      <text x="994" y="796" fill="#4a90b8" font-size="9">fly-ops + verify</text>
+    </g>
+    <line x1="1058" y1="785" x2="1082" y2="785" stroke="#22d3ee" marker-end="url(#arrowC)"/>
+    <g>
+      <rect x="1084" y="756" width="128" height="58" rx="6" fill="#0c1a2b" stroke="#22d3ee"/>
+      <text x="1148" y="780" fill="#e6f8ff">monitor</text>
+      <text x="1148" y="796" fill="#fbbf24" font-size="9">logs + debugger</text>
+    </g>
+  </g>
+
+  <!-- feedback loop -->
+  <path d="M1148,814 C1148,880 98,880 98,814" fill="none" stroke="#fbbf24" stroke-width="1" stroke-dasharray="5 5" marker-end="url(#arrowG)" opacity="0.8"/>
+  <text x="640" y="872" text-anchor="middle" fill="#fbbf24" font-size="10" opacity="0.9">bugs and incidents feed back into requirements</text>
+
+  <!-- footer -->
+  <text x="640" y="920" text-anchor="middle" fill="#2d5a7a" font-size="10" letter-spacing="2">10 PLUGINS · 6 SUBAGENTS · 10 SKILLS · 7 HOOK SCRIPTS + PUSH GATE · VALIDATED BY scripts/validate.py</text>
+</svg>
