@@ -1,0 +1,14 @@
+[
+  {
+    "name": "tsc-watch",
+    "command": "sh -c 'if [ -f tsconfig.json ] || [ -f tsconfig.base.json ]; then npx --no-install tsc -b --watch 2>&1 | grep --line-buffered -E \"error TS|Found [1-9][0-9]* error\"; else echo \"[tsc-watch] no tsconfig in $(pwd); idle\"; exec sleep 2147483647; fi'",
+    "description": "Streams TypeScript build errors (tsc -b --watch). Idle outside a TS repo.",
+    "when": "always"
+  },
+  {
+    "name": "dev-errors",
+    "command": "sh -c 'tail -n0 -F ./.dev.log 2>/dev/null | grep --line-buffered -E \"\\[ERROR\\]|\\[WARN\\]|ERROR:|Traceback\"'",
+    "description": "Surfaces errors from the local dev server. Enable by piping it to a log: `<dev command> | tee .dev.log`.",
+    "when": "always"
+  }
+]

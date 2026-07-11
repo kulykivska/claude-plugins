@@ -1,0 +1,6 @@
+{
+  "name": "reviewers",
+  "version": "1.0.0",
+  "description": "Per-stack reviewer subagents: Python/FastAPI, web (Vite/React/TS), SwiftUI, ML pipeline.",
+  "author": { "name": "Yuliia Kulykivska" }
+}
