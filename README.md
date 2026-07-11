@@ -7,6 +7,11 @@ One source of truth for personal Claude Code tooling across all projects
 
 ## How it fits together
 
+![Marketplace architecture](assets/architecture.svg)
+
+<details>
+<summary>Text version (Mermaid)</summary>
+
 ```mermaid
 flowchart TB
     settings["~/.claude/settings.json<br/>extraKnownMarketplaces + enabledPlugins<br/>(user scope = every project)"]
@@ -62,6 +67,8 @@ flowchart LR
     R["requirements"] --> P["plan-task<br/>(+ architect)"] --> I["implement<br/>(coach nudges,<br/>guardrails veto)"] --> Q["qa"] --> T["task-review<br/>(+ reviewers)"] --> G["pre-push gate →<br/>pre-push-review"] --> D["deploy<br/>(fly-ops)"] --> M["monitor<br/>(fly-logs, incident,<br/>debugger)"]
     M -. bugs feed back .-> R
 ```
+
+</details>
 
 ## Plugins
 
