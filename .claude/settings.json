@@ -93,7 +93,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/yuliia_kulykivska/.claude/scripts/pre-push-gate.sh",
+            "command": "~/.claude/scripts/pre-push-gate.sh",
             "timeout": 10,
             "statusMessage": "Pre-push policy check"
           }
@@ -114,13 +114,13 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "/Users/yuliia_kulykivska/.claude/scripts/statusline.sh"
+    "command": "~/.claude/scripts/statusline.sh"
   },
   "extraKnownMarketplaces": {
     "personal": {
       "source": {
         "source": "directory",
-        "path": "/Users/yuliia_kulykivska/Documents/Work/Projects/AI/claude-plugins"
+        "path": "~/Documents/Work/Projects/AI/claude-plugins"
       }
     }
   },
