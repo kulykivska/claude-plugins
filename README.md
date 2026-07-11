@@ -9,8 +9,7 @@ One source of truth for personal Claude Code tooling across all projects
 
 ![Marketplace architecture](assets/architecture.svg)
 
-<details>
-<summary>Text version (Mermaid)</summary>
+Interactive versions below (GitHub renders Mermaid with pan/zoom controls):
 
 ```mermaid
 flowchart TB
@@ -20,18 +19,29 @@ flowchart TB
 
     subgraph workflow["Workflow skills"]
         ppr["pre-push-review<br/>fix-and-verify before push"]
-        morn["morning<br/>daily kickoff recap"]
+        morn["morning / evening<br/>daily kickoff + wind-down"]
         sdlcS["sdlc skills:<br/>requirements · plan-task ·<br/>qa · task-review · debug"]
         flyops["fly-ops skills:<br/>deploy · fly-logs · incident"]
+        bizS["seo-audit · social-post ·<br/>weekly-report"]
     end
 
-    subgraph agents["Subagents"]
+    subgraph agents["Engineering subagents"]
         arch["architect<br/>(design before coding)"]
         dbg["debugger<br/>(root cause from evidence)"]
         pyr["python-reviewer<br/>(FastAPI, async, failure paths)"]
         webr["web-reviewer<br/>(React/TS, i18n, gating)"]
         swiftr["swiftui-reviewer<br/>(crashes, StoreKit, l10n)"]
         mlr["ml-reviewer<br/>(LORO gate, leakage,<br/>FEATURE_COLS sync)"]
+    end
+
+    subgraph growth["Growth & content subagents"]
+        seoA["seo-strategist<br/>(keywords → LLM SEO)"]
+        resA["researcher<br/>(cited, verified briefs)"]
+        cwA["content-writer<br/>(LinkedIn · Threads · X · IG)"]
+        rbA["report-builder<br/>(reports · decks · updates)"]
+        asoA["aso-optimizer<br/>(App Store growth)"]
+        gaA["growth-analyst<br/>(funnel leaks → experiment)"]
+        owA["outreach-writer<br/>(pitches that get replies)"]
     end
 
     subgraph hooks["Hooks (automatic)"]
@@ -48,6 +58,7 @@ flowchart TB
 
     mp --> workflow
     mp --> agents
+    mp --> growth
     mp --> hooks
     mp --> infra
 
@@ -66,16 +77,15 @@ The task lifecycle the pieces compose into:
 flowchart LR
     R["requirements"] --> P["plan-task<br/>(+ architect)"] --> I["implement<br/>(coach nudges,<br/>guardrails veto)"] --> Q["qa"] --> T["task-review<br/>(+ reviewers)"] --> G["pre-push gate →<br/>pre-push-review"] --> D["deploy<br/>(fly-ops)"] --> M["monitor<br/>(fly-logs, incident,<br/>debugger)"]
     M -. bugs feed back .-> R
+    M --> A2["announce<br/>(social-post)"] --> G2["growth-analyst<br/>reads the funnel"] -.-> R
 ```
-
-</details>
 
 ## Plugins
 
 | Plugin | Type(s) | What it does |
 |--------|---------|--------------|
 | `pre-push-review` | skill | Fix-and-verify review before any `git push` (pairs with the user-level pre-push gate hook). |
-| `morning` | skill | Daily kickoff recap from git + transcripts + memory. |
+| `daily` | skills | `morning` (kickoff recap from git + transcripts + memory) and `evening` (wind-down: today's recap, tomorrow's top 3, wellbeing + who to reach out to). |
 | `guardrails` | blocking hooks | Vetoes destructive Fly ops (destroy/scale-0/secrets unset), DROP/TRUNCATE via DB clients, force-push to main, AI attribution in commits, secrets/PII in staged + pushed diffs. |
 | `coach` | non-blocking hooks | Per-stack nudges on edit (Python/TS/Swift, FEATURE_COLS sync reminder, no long dashes in UI text), session banner, failure hints (ports, Docker reload, Fly release_command), uncommitted reminder. |
 | `sdlc` | skills + subagents | requirements → plan-task → implement → qa → task-review loop, plus `architect` and `debugger` subagents. |
@@ -84,6 +94,11 @@ flowchart LR
 | `lsp` | LSP | pyright, typescript-language-server, sourcekit-lsp (see SETUP.md for binaries). |
 | `monitors` | monitors | tsc-watch build errors + `.dev.log` error tail, idle-safe. |
 | `mcp-catalog` | MCP example | GitHub / Playwright / Postgres catalog; copy into a project's `.mcp.json` to activate. |
+| `seo` | subagent + skill | `seo-strategist` + `/seo-audit`: keyword research through technical, programmatic, and LLM SEO (entity signals, citability, AI Overviews, ChatGPT/Perplexity). |
+| `research` | subagent | `researcher`: background multi-source research, claims verified, cited briefs. |
+| `content` | subagent + skill | `content-writer` + `/social-post`: one idea into platform-native posts (LinkedIn formula, Threads, X, IG), EN/UK, my voice rules. |
+| `reports` | subagent + skill | `report-builder` + `/weekly-report`: business reports, decks, consulting deliverables with charts. |
+| `biz` | subagents | `aso-optimizer` (App Store), `growth-analyst` (funnel leaks → one experiment), `outreach-writer` (partnership/consulting pitches). |
 
 ## Wiring (already applied)
 

@@ -1,0 +1,6 @@
+{
+  "name": "reports",
+  "version": "1.0.0",
+  "description": "report-builder subagent + weekly-report skill: business reports, decks, and consulting deliverables with charts.",
+  "author": { "name": "Yuliia Kulykivska" }
+}
