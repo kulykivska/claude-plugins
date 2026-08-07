@@ -1,0 +1,4 @@
+
+# Python bytecode from the hooks
+__pycache__/
+*.pyc
