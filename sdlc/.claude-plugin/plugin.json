@@ -1,6 +1,6 @@
 {
   "name": "sdlc",
   "version": "1.0.0",
-  "description": "Task lifecycle: requirements, plan-task, task-review, debug, qa skills + architect and debugger subagents.",
+  "description": "Task lifecycle: new-task (BA authoring + contradiction gate + Gherkin), requirements, plan-task, task-review, debug, qa skills + architect, debugger and requirements-analyst subagents.",
   "author": { "name": "Yuliia Kulykivska" }
 }
