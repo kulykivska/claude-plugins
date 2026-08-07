@@ -30,7 +30,7 @@
     {
       "name": "sdlc",
       "source": "./sdlc",
-      "description": "Task lifecycle: requirements, plan-task, task-review, debug, qa skills + architect and debugger subagents."
+      "description": "Task lifecycle: new-task (BA authoring + contradiction gate + Gherkin), requirements, plan-task, task-review, debug, qa skills + architect, debugger and requirements-analyst subagents."
     },
     {
       "name": "reviewers",
