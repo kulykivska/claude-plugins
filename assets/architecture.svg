@@ -84,8 +84,8 @@
       <text x="80" y="552">git + transcripts + memory</text>
       <text x="80" y="606">wind-down: tomorrow's top 3,</text>
       <text x="80" y="622">wellbeing + who to call</text>
-      <text x="80" y="676">requirements · plan-task · qa</text>
-      <text x="80" y="692">task-review · debug</text>
+      <text x="80" y="676">new-task · requirements · plan-task</text>
+      <text x="80" y="692">qa · task-review · debug</text>
       <text x="370" y="466">deploy · fly-logs</text>
       <text x="370" y="482">incident triage</text>
       <text x="370" y="536">full-map SEO pass</text>
@@ -102,7 +102,7 @@
   <g>
     <rect x="650" y="360" width="590" height="430" rx="9" fill="url(#panelFill)" stroke="#fbbf24" stroke-width="1.1"/>
     <path d="M650,360 h22 M650,360 v22 M1240,360 h-22 M1240,360 v22 M650,790 h22 M650,790 v-22 M1240,790 h-22 M1240,790 v-22" stroke="#fde68a" stroke-width="2.4" fill="none"/>
-    <text x="945" y="395" text-anchor="middle" fill="#fde68a" font-size="19" letter-spacing="3" filter="url(#glow)">SUBAGENTS · 13</text>
+    <text x="945" y="395" text-anchor="middle" fill="#fde68a" font-size="19" letter-spacing="3" filter="url(#glow)">SUBAGENTS · 14</text>
     <line x1="700" y1="410" x2="1190" y2="410" stroke="#fbbf24" stroke-width="0.9" opacity="0.6"/>
 
     <g font-size="15" fill="#e6f8ff">
@@ -112,6 +112,7 @@
       <text x="676" y="594">⬡ web-reviewer</text>
       <text x="676" y="644">⬡ swiftui-reviewer</text>
       <text x="676" y="694">⬡ ml-reviewer</text>
+      <text x="676" y="744">⬡ requirements-analyst</text>
       <text x="966" y="444">⬡ seo-strategist</text>
       <text x="966" y="494">⬡ researcher</text>
       <text x="966" y="544">⬡ content-writer</text>
@@ -126,7 +127,7 @@
       <text x="692" y="562">FastAPI · async · failures</text>
       <text x="692" y="612">React/TS · i18n · gating</text>
       <text x="692" y="662">crashes · StoreKit · l10n</text>
-      <text x="692" y="712">LORO gate · leakage · sync</text>
+      <text x="692" y="712">regression gate · leakage · sync</text>
       <text x="982" y="462">keywords → LLM SEO</text>
       <text x="982" y="512">cited, verified briefs</text>
       <text x="982" y="562">LinkedIn · Threads · X · IG</text>
@@ -257,5 +258,5 @@
   <text x="640" y="1500" text-anchor="middle" fill="#4a90b8" font-size="12.5">ship → seo-audit + social-post announce → growth-analyst reads the funnel → next requirements</text>
 
   <!-- footer -->
-  <text x="640" y="1568" text-anchor="middle" fill="#2d5a7a" font-size="13" letter-spacing="2">15 PLUGINS · 13 SUBAGENTS · 13 SKILLS · 7 HOOK SCRIPTS + PUSH GATE · VALIDATED BY scripts/validate.py</text>
+  <text x="640" y="1568" text-anchor="middle" fill="#2d5a7a" font-size="13" letter-spacing="2">15 PLUGINS · 14 SUBAGENTS · 16 SKILLS · 8 HOOK SCRIPTS + PUSH GATE · VALIDATED BY scripts/validate.py</text>
 </svg>
