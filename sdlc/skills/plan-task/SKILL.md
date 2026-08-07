@@ -15,7 +15,7 @@ description: >-
    read the relevant parts. Never plan against an imagined codebase.
 2. **File-level plan**: ordered list of edits, per file, with what changes and
    why. Call out shared contracts that must stay in sync across repos
-   (e.g. RaceModel FEATURE_COLS ↔ f1-predictor shared.py).
+   (e.g. the feature-column contract shared by serving and training).
 3. **Risks**: what can regress; which tests / LORO / manual flows gate the
    change. For model changes the gate is multi-season LORO, not noisy
    single-season deltas.

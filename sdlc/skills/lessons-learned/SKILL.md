@@ -23,13 +23,13 @@ entry: symptom, root cause, rule.
 3. persistence of that state OUTSIDE process memory (DB/Redis) so restarts
    don't reset it.
 
-- **2026-07 RaceModel "16 identical weather emails/day".** A 15-minute scan
+- **2026-07 "16 identical weather emails/day".** A 15-minute scan
   diffed the forecast against the previous observation and mailed every
   follower per flip; an oscillating forecast (Spa weekend) mailed on every
   crossing of the threshold. Fix: diff vs last-notified snapshot + 6h
   per-race cooldown. Cache/prediction invalidation stays keyed to raw
   observations - only the outbound notification is debounced.
-- **2026-06 RaceModel "5 model-fallback admin alerts in one evening".** The
+- **2026-06 "5 model-fallback admin alerts in one evening".** The
   6-hour email cooldown lived in process memory; every deploy reset it, and
   fallbacks cluster exactly around deploys. Fix: Redis SET NX EX gate keyed
   by alert type; in-memory throttle is only the Redis-down fallback.
@@ -39,7 +39,7 @@ entry: symptom, root cause, rule.
 
 ## Email deliverability
 
-- **2026-07 RaceModel/Brevo: 30% of monthly sends "blocked".** Tests and dev
+- **2026-07 the transactional email provider: 30% of monthly sends "blocked".** Tests and dev
   environments sent real emails through the production provider key to
   example.com addresses; the provider blocklisted them and sender reputation
   paid for it. Rule: test/dev environments MUST use a noop email adapter enforced in
@@ -58,14 +58,14 @@ context at the right level; every "nothing happened" path needs a log line an
 operator can find. A swallowed rejection in a UI component needs a visible
 error state, not a silent null render.
 
-- **2026-07 RaceModel: model fell back to stub silently for hours.** Boot-time
+- **2026-07 model fell back to stub silently for hours.** Boot-time
   R2 load failure had no retry and the hot-reload watcher (a) watched a
   legacy loader with a wrong manifest key and (b) was never even scheduled in
   lifespan. Users saw seed data with no banner. Rules: background watchers
   must be provably scheduled (test that lifespan starts them); self-heal
   loops must retry the REAL load path; degraded mode must be visible to
   users (badge) and operators (health endpoint field).
-- **2026-07 RaceModel auth middleware `except Exception: pass`** kept stale
+- **2026-07 an auth middleware `except Exception: pass`** kept stale
   JWT claims when the DB blipped and let deleted/blocked users keep access.
   Rule: auth fallbacks must fail closed on "user not found" and log the
   degradation path.

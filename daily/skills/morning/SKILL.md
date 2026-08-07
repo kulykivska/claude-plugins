@@ -76,7 +76,7 @@ Format (English, concise, scannable):
 ```
 ☀️ Good morning — <today, weekday>
 
-## RaceModel
+## <Project>
 **Done yesterday:** <commits / key activity>
 **Continue:** <wip + carryover>
 **To do:** <todos / follow-ups>

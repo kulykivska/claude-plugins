@@ -51,7 +51,7 @@ Suggest ONE physical and ONE mental item, varied across days, e.g.:
 - mental: screens-off hour before bed, journaling three lines about the
   day, music/reading, cooking something proper instead of a snack.
 
-If a wellbeing tracker/notes exist (e.g. Jarvis wellbeing), align with it
+If a wellbeing tracker or notes app exists, align with it
 rather than inventing a parallel plan.
 
 ## Step 4 — People

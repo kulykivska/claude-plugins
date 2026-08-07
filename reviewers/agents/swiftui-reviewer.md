@@ -1,7 +1,7 @@
 ---
 name: swiftui-reviewer
 description: >-
-  Reviews SwiftUI/iOS diffs (RaceModel iOS, Aura, GT7 Engineer) for crashes,
+  Reviews SwiftUI/iOS app diffs for crashes,
   modern-API usage, and StoreKit/paywall correctness. Use to review Swift
   changes before commit/push. Returns concrete file:line findings.
 tools: Read, Grep, Glob, Bash

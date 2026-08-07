@@ -19,13 +19,13 @@ def h(pat, msg):
         hints.append(msg)
 
 h(r"eaddrinuse|address already in use",
-  "port in use: 8001 = RaceModel API, 8000 = the other app, 5180 = frontend; `lsof -i :<port>` and kill the process")
+  "port in use: check which app owns it; `lsof -i :<port>` and kill the process")
 h(r"cannot connect to the docker daemon|docker daemon",
   "Docker isn't running: start Docker Desktop/Colima. Also: macOS Docker --reload does NOT pick up host edits, `docker restart` the container")
 h(r"modulenotfounderror|no module named",
   "missing Python dep: activate the project venv and pip install; check which interpreter is running")
 h(r"feature.?names|shape mismatch|feature_names mismatch",
-  "likely FEATURE_COLS drift between racemodel predictor.py and f1-predictor shared.py: sync them exactly, mind deploy ordering")
+  "likely FEATURE_COLS drift between the serving predictor and the shared training module: sync them exactly, mind deploy ordering")
 h(r"econnrefused.*5432|could not connect to (server|database)",
   "database not reachable: is the local DB container up / fly proxy running?")
 h(r"release_command|machines? (stuck|in state) created",
