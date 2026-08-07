@@ -4,7 +4,7 @@
     "name": "Yuliia Kulykivska"
   },
   "metadata": {
-    "description": "Personal Claude Code tooling for all projects (RaceModel, Jarvis, Aura, GT7 Engineer, ...): skills, subagents, hooks, LSP, monitors."
+    "description": "Personal Claude Code tooling shared across projects: skills, subagents, hooks, LSP, monitors."
   },
   "plugins": [
     {

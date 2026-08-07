@@ -27,7 +27,7 @@ if low.endswith(".py"):
         "empty except swallows the error: log it or surface it to the caller")
     hit(r"\bbreakpoint\(\)|pdb\.set_trace\(", "leftover debugger breakpoint")
     if "feature_cols" in added.lower() and re.search(r"(predictor|shared)\.py$", low):
-        notes.append("FEATURE_COLS touched: it must stay EXACTLY synced between racemodel predictor.py and f1-predictor shared.py, or live predictions 500 with a shape mismatch. Sync both repos and mind deploy ordering.")
+        notes.append("FEATURE_COLS touched: it must stay EXACTLY synced between the serving predictor and the shared training module, or live predictions 500 with a shape mismatch. Sync both repos and mind deploy ordering.")
 
 elif low.endswith((".ts", ".tsx", ".js", ".jsx")):
     hit(r"\bconsole\.log\b", "leftover console.log: remove or use the project's logger")

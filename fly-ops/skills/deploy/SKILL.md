@@ -11,7 +11,7 @@ description: >-
 
 ## Default path: push to main
 
-For apps wired to CI (racemodel: deploy = push to main), the deploy IS the
+For apps wired to CI (deploy = push to main), the deploy IS the
 push. Run the pre-push-review gate first, push, then watch CI through to the
 Fly release.
 
@@ -23,7 +23,7 @@ fly status -a <app>          # all machines should reach `started`
 ```
 
 **Known gotcha**: machines can get stuck in state `created` when the app has
-a `release_command` (seen on racemodel). Fix: deploy via local flyctl without
+a `release_command`. Fix: deploy via local flyctl without
 the release_command (comment it out of fly.toml for the deploy, run the
 migration manually), then restore.
 

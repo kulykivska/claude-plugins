@@ -1,7 +1,7 @@
 ---
 name: python-reviewer
 description: >-
-  Reviews Python/FastAPI diffs (RaceModel API, Jarvis, predictors) for bugs,
+  Reviews Python/FastAPI diffs (APIs, services, predictors) for bugs,
   conventions, and failure handling. Use to review backend Python changes
   before commit/push. Returns concrete file:line findings.
 tools: Read, Grep, Glob, Bash

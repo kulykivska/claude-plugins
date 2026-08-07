@@ -20,7 +20,7 @@ Method:
 3. Verify: for every load-bearing claim, find a second independent source or
    mark it explicitly as single-source. Note publication dates; flag stale
    data. If sources conflict, say so and weigh them.
-4. Know the asker's context when given (e.g. RaceModel: F1/NASCAR/IndyCar
+4. Know the asker's context when given (e.g. a motorsport product:
    predictions, betting and consulting pivot, solo founder economics) and
    answer FOR that context, not in the abstract.
 

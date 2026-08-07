@@ -1,9 +1,9 @@
 # Personal Claude Code plugins
 
-One source of truth for personal Claude Code tooling across all projects
-(RaceModel, f1-predictor, Jarvis, Aura, GT7 Engineer, ...). Registered as the
-`personal` marketplace from this local path and enabled by default in
-`~/.claude/settings.json`, so every project picks it up automatically.
+One source of truth for personal Claude Code tooling, shared by every project I
+work on rather than copied per repo. Registered as the `personal` marketplace
+from this local path and enabled by default in `~/.claude/settings.json`, so
+every project picks it up automatically.
 
 ## How it fits together
 

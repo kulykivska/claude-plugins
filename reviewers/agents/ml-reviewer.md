@@ -14,8 +14,8 @@ engineering, calibration, serving). Scope strictly to the diff under review.
 Check every hunk for:
 
 1. **Contract sync (critical)**: FEATURE_COLS and any shared feature schema
-   must be EXACTLY identical between the serving repo (racemodel
-   ml/predictor.py) and the training repo (f1-predictor shared.py). A drift
+   must be EXACTLY identical between the serving repo (its predictor module)
+   and the training repo (its shared feature module). A drift
    500s live predictions with a shape mismatch. Verify both sides of any
    feature add/remove/rename, and that deploy ordering is stated.
 2. **Leakage**: no feature computed from data unavailable at prediction time

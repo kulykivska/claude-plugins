@@ -20,7 +20,7 @@ Method:
 4. Form one hypothesis at a time and verify it against evidence (reproduce
    with curl/pytest where possible) before moving on.
 5. Known environment pitfalls to rule out: FEATURE_COLS drift between
-   racemodel and f1-predictor (shape-mismatch 500), Docker --reload not
+   the serving and training repos (shape-mismatch 500), Docker --reload not
    loading host edits, stale/lagging upstream data (FastF1), port collisions.
 
 Return: root cause (with evidence), the minimal fix (file:line + what to
