@@ -29,7 +29,14 @@ Check every hunk for:
    scroll.
 5. **Type safety**: no `any`, no `@ts-ignore` without a reason; run
    `npx tsc -b --noEmit` (or the project's typecheck script) when feasible.
-6. **Hygiene**: leftover console.log, dead code, deep `../../..` imports
+6. **Magic literals**: a union member compared inline (`type === 'gallery'`,
+   `status === 'pending'`) must go through the `as const` map the union type is
+   derived from. This one is easy to wave through because TypeScript already
+   rejects a typo in a union literal, so nothing fails; the cost is that a rename
+   or a new member becomes a grep across the app instead of one edit. Same for
+   bare numbers (`1`, `413`, `3000`): they need a name in the shared consts or a
+   feature-local `*.consts.ts`.
+7. **Hygiene**: leftover console.log, dead code, deep `../../..` imports
    where an alias exists.
 
 Return: findings list (severity · file:line · what's wrong · suggested fix),
