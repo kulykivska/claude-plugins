@@ -81,6 +81,11 @@
       "name": "biz",
       "source": "./biz",
       "description": "Business growth subagents: aso-optimizer (App Store), growth-analyst (funnel/conversion), outreach-writer (partnership and consulting pitches)."
+    },
+    {
+      "name": "metrics",
+      "source": "./metrics",
+      "description": "AI-assist telemetry — logs every Claude Code edit to a local JSONL (outside the codebase) + /ai-code-report skill aggregating the AI-assisted share per repo and period."
     }
   ]
 }
