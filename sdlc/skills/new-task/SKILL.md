@@ -33,6 +33,27 @@ Before writing anything, ground yourself: read `CLAUDE.md` / `AGENTS.md`, grep
 the code for the feature area, and check memory for prior decisions. Catching a
 conflict with shipped behaviour is the whole point of doing this before planning.
 
+**Figma intake — discover the whole flow, not just the one frame.** If the
+intake is a redesign task, or includes a Figma link or a screenshot exported
+from Figma, do not scope the task to that single frame. A requester who sends
+one screen for "email confirmation" means the whole flow (sent, resend,
+expired link, success, error), not literally one screen — and a task scoped to
+one frame is how a dev ships one screen and stops. Use the Figma MCP tools to
+find the rest before drafting requirements:
+
+1. `get_metadata` on the frame's containing page/section to enumerate sibling
+   frames that belong to the same flow.
+2. `get_screenshot` (and `get_design_context` where the copy or state detail on
+   a frame isn't obvious from the screenshot alone) on each discovered frame,
+   so every state has a concrete visual to write requirements against.
+3. Treat every discovered screen as its own functional requirement and its own
+   Gherkin scenario in Step 4 — never require the requester to enumerate
+   screens by name.
+
+If the Figma file's structure genuinely doesn't group the flow (a flat page
+with no clear section boundary), don't guess the boundary — list what you
+found and ask the requester to confirm which frames belong to this task.
+
 ### Step 2 — Write the requirements
 
 - **Goal** — one sentence: who gets what value.
