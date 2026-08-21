@@ -2,8 +2,8 @@
   {
     "name": "tsc-watch",
     "command": "sh -c 'if [ -f tsconfig.json ] || [ -f tsconfig.base.json ]; then npx --no-install tsc -b --watch 2>&1 | grep --line-buffered -E \"error TS|Found [1-9][0-9]* error\"; else echo \"[tsc-watch] no tsconfig in $(pwd); idle\"; exec sleep 2147483647; fi'",
-    "description": "Streams TypeScript build errors (tsc -b --watch). Idle outside a TS repo.",
-    "when": "always"
+    "description": "Streams TypeScript build errors (tsc -b --watch). Opt-in via /watch-ts: a monorepo tsc watch is resource-heavy, so it must not run by default.",
+    "when": "on-skill-invoke:watch-ts"
   },
   {
     "name": "dev-errors",
