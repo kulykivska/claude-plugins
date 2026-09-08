@@ -164,6 +164,21 @@ flowchart LR
 | `app-factory` | skill | One spoken idea to a submitted App Store build: requirements, architecture, Xcode scaffolding, implementation, review, simulator QA, screenshots, ASC metadata, TestFlight. |
 | `workspace` | skill + command | `gmail-sorter-setup` (daily cloud routine triaging the logged-in account's inbox into Attention / Health / Receipts) and `/switch` for moving a session between claude.ai profiles. |
 
+## Cross-cutting conventions
+
+Some rules are not one plugin's business, so they are written into every plugin
+that touches the relevant stage of the work.
+
+**Behaviour analytics ship with the feature.** Whenever a feature is added or
+logic that already ships changes, the same change adds the behaviour events for
+it: entering the flow, finishing it, failing it, dropping out of it. The rule
+appears in `new-task` and `plan-task` (the events are part of the spec and the
+plan), in `architect` (the design names them), in `qa` (the events are verified
+to arrive, not just to exist in code), and in `task-review`, `pre-push-review`
+and the three code reviewers, where a new flow that reports nothing is a
+finding. Events reuse the project's existing taxonomy, describe mechanics the
+product actually has, and never fail the flow they measure.
+
 ## How I run it
 
 `~/.claude/settings.json`:

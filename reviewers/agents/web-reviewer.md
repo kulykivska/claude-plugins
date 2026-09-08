@@ -36,7 +36,11 @@ Check every hunk for:
    or a new member becomes a grep across the app instead of one edit. Same for
    bare numbers (`1`, `413`, `3000`): they need a name in the shared consts or a
    feature-local `*.consts.ts`.
-7. **Hygiene**: leftover console.log, dead code, deep `../../..` imports
+7. **Behaviour analytics**: new screens, flows and interactions emit their
+   behaviour events, including the paths where the user drops out. Reuse the
+   existing event names and property helpers; a hand-rolled call site with an
+   invented name is a finding.
+8. **Hygiene**: leftover console.log, dead code, deep `../../..` imports
    where an alias exists.
 
 Return: findings list (severity · file:line · what's wrong · suggested fix),
