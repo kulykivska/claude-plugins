@@ -54,6 +54,16 @@ Go through every changed hunk and find real issues (with `file:line`):
      when the types compile. Prefer: log at the right level (warn/error for
      unexpected, debug for benign), and surface terminal failures to the caller
      instead of leaving them hanging.
+   - **Behavioural analytics (always):** a new feature, or a change to logic
+     that already ships, emits its behaviour events in the same push. Flag any
+     new user- or operator-visible flow whose entry, success, failure and
+     drop-out paths report nothing, any event name invented outside the
+     project's taxonomy, any event describing a mechanic the product does not
+     have, and any tracking call that can fail the flow it measures. Unmeasured
+     behaviour is a hole in the funnel that nobody notices until an analyst asks
+     the question months later, and it costs almost nothing to close while the
+     code is still being written. Fix it by emitting through the project's
+     existing tracking service, with failures logged at warn rather than raised.
 2. **Architectural patterns** — layer/boundary violations, wrong responsibility
    placement, tight coupling, circular deps, God objects, business logic in the
    wrong layer, breaking the project's established patterns.

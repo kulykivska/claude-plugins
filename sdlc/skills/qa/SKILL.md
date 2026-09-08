@@ -22,7 +22,11 @@ Tests passing is not QA. QA = the real flow behaves correctly.
    browser console for errors.
 4. **iOS**: build the scheme; run in the simulator when the change is
    UI-visible.
-5. **Localization**: if user-facing strings changed, confirm they went
+5. **Analytics**: drive the flow and confirm the behaviour events actually
+   arrived with the right properties (the events table, the debug log, or the
+   tracking service's output). An event that exists in the code but never lands
+   is the same as no event.
+6. **Localization**: if user-facing strings changed, confirm they went
    through the i18n layer (en/uk/es), not hardcoded English.
-6. Record what was actually exercised and what was observed: "verified" means
+7. Record what was actually exercised and what was observed: "verified" means
    you saw it work, with output/screenshot to show.
