@@ -24,7 +24,10 @@ Check every hunk for:
    restored purchases handled.
 5. **Localization**: user-facing strings via the String Catalog (xcstrings),
    not hardcoded; no em/en dashes in user-facing text.
-6. **Hygiene**: leftover print(), dead code, previews broken by the change.
+6. **Behaviour analytics**: new screens and flows emit their behaviour events
+   through the app's tracking layer, drop-out paths included. A flow that
+   reports nothing, or an invented event name, is a finding.
+7. **Hygiene**: leftover print(), dead code, previews broken by the change.
 
 If a build is feasible, run `xcodebuild -scheme <scheme> build` (or the
 project's build command) to confirm it compiles.
