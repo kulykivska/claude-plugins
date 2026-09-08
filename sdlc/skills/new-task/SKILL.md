@@ -49,6 +49,13 @@ conflict with shipped behaviour is the whole point of doing this before planning
   path that fails silently is a defect in the spec, not a detail to settle later.
 - **Integration points** — endpoints, events, payload shapes, schema changes and
   migrations, and which clients must adopt them.
+- **Behaviour analytics** — required, not optional. Name the events this feature
+  emits: entering the flow, finishing it, failing it, and dropping out of it, with
+  the properties an analyst needs to segment them. A feature nobody can measure
+  after release is a feature nobody can argue about, so the events belong in the
+  spec next to the acceptance criteria. Reuse the project's existing taxonomy and
+  name events after mechanics the product actually has; a new event name is a
+  decision, not a detail.
 - **Open questions** — every assumption you had to make. Never invent a number:
   an unspecified limit, price or timeout is a question, not a decision.
 

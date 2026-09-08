@@ -100,6 +100,21 @@ flowchart LR
 | `reports` | subagent + skill | `report-builder` + `/weekly-report`: business reports, decks, consulting deliverables with charts. |
 | `biz` | subagents | `aso-optimizer` (App Store), `growth-analyst` (funnel leaks → one experiment), `outreach-writer` (partnership/consulting pitches). |
 
+## Cross-cutting conventions
+
+Some rules are not one plugin's business, so they are written into every plugin
+that touches the relevant stage of the work.
+
+**Behaviour analytics ship with the feature.** Whenever a feature is added or
+logic that already ships changes, the same change adds the behaviour events for
+it: entering the flow, finishing it, failing it, dropping out of it. The rule
+appears in `new-task` and `plan-task` (the events are part of the spec and the
+plan), in `architect` (the design names them), in `qa` (the events are verified
+to arrive, not just to exist in code), and in `task-review`, `pre-push-review`
+and the three code reviewers, where a new flow that reports nothing is a
+finding. Events reuse the project's existing taxonomy, describe mechanics the
+product actually has, and never fail the flow they measure.
+
 ## Wiring (already applied)
 
 `~/.claude/settings.json`:
