@@ -11,6 +11,8 @@ description: >-
 
 ## Steps
 
+0. **Read the standard**: `engineering-standards` is the list the code will be
+   marked against, so a plan that respects it costs nothing later.
 1. **Read before planning**: locate every file the change touches (Grep/Glob),
    read the relevant parts. Never plan against an imagined codebase.
 2. **File-level plan**: ordered list of edits, per file, with what changes and
