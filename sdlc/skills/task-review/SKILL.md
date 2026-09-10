@@ -9,12 +9,17 @@ description: >-
 
 # Task review
 
-Review exactly what this task changed, nothing else.
+Review what this task changed, and the code it lives in.
+
+Mark against the **`engineering-standards`** skill: the same list the code is written
+from, and the place the scope rule and the one-pass discipline below are defined.
 
 ## Steps
 
-1. Scope: `git diff` (unstaged + staged) or the task's commit range. List the
-   touched files.
+1. Scope, collected once: `git diff` (unstaged + staged) or the task's commit range.
+   List the touched files, then read each of them in full and find the direct callers
+   and callees of what changed. A defect two lines above the diff is still a defect.
+   Stop at callers and callees.
 2. For every hunk check:
    - **Regression risk**: callers of changed functions, changed contracts,
      changed defaults. Grep for usages; don't assume.
@@ -30,4 +35,7 @@ Review exactly what this task changed, nothing else.
      shapes), verify the counterpart repo is updated too.
 3. Fix what you find (small and safe: just fix; behavior-changing: flag).
 4. Run the project's real gate: its test suite with the same flags CI uses.
-5. Output: findings with file:line, what was fixed, what remains.
+5. Output, in one pass: findings with file:line, split into **in this change**
+   (fixed) and **pre-existing, found while reading** (small and safe ones fixed, the
+   rest reported with a suggested fix so the change stays reviewable). Analyse once;
+   do not re-run the pass because the first one turned something up.
