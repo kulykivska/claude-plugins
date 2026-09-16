@@ -70,7 +70,7 @@
     {
       "name": "content",
       "source": "./content",
-      "description": "content-writer subagent + social-post skill: one idea into platform-native posts for LinkedIn, Threads, X, Instagram; EN/UK, owner's voice."
+      "description": "content-writer subagent + social-post and remove-ai-marks skills: one idea into platform-native posts for LinkedIn, Threads, X, Instagram; EN/UK, owner's voice, plus AI-provenance mark removal."
     },
     {
       "name": "reports",

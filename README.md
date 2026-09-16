@@ -96,7 +96,7 @@ flowchart LR
 | `mcp-catalog` | MCP example | GitHub / Playwright / Postgres catalog; copy into a project's `.mcp.json` to activate. |
 | `seo` | subagent + skill | `seo-strategist` + `/seo-audit`: keyword research through technical, programmatic, and LLM SEO (entity signals, citability, AI Overviews, ChatGPT/Perplexity). |
 | `research` | subagent | `researcher`: background multi-source research, claims verified, cited briefs. |
-| `content` | subagent + skill | `content-writer` + `/social-post`: one idea into platform-native posts (LinkedIn formula, Threads, X, IG), EN/UK, my voice rules. |
+| `content` | subagent + skills | `content-writer` + `/social-post`: one idea into platform-native posts (LinkedIn formula, Threads, X, IG), EN/UK, my voice rules. `/remove-ai-marks`: strip invisible Unicode, statistical watermarks and C2PA/EXIF/XMP metadata from text and files. |
 | `reports` | subagent + skill | `report-builder` + `/weekly-report`: business reports, decks, consulting deliverables with charts. |
 | `biz` | subagents | `aso-optimizer` (App Store), `growth-analyst` (funnel leaks → one experiment), `outreach-writer` (partnership/consulting pitches). |
 
