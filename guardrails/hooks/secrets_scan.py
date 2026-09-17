@@ -20,6 +20,14 @@ if len(sys.argv) > 1 and os.path.isfile(sys.argv[1]):
         except re.error:
             pass
 
+_SECRET_KEY = (r"(?i)(password|passwd|pwd|secret|api[_-]?key|access[_-]?token"
+               r"|auth[_-]?token|private[_-]?key)")
+
+# A long value is still a reference, not a literal, when it is a dotted
+# identifier chain (process.env.X) or a shell/compose interpolation (${X:-}).
+_NOT_A_REFERENCE = (r"(?!(?:[A-Za-z_$][A-Za-z0-9_$]*(?:\.[A-Za-z0-9_$]+)+"
+                    r"|\$\{?[A-Za-z_][A-Za-z0-9_]*(?::[-+?][^}]*)?\}?)[\s,;)\]}]*$)")
+
 HIGH = [
     (re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----"), "private key block"),
     (re.compile(r"AKIA[0-9A-Z]{16}"), "AWS access key id"),
@@ -30,7 +38,15 @@ HIGH = [
     (re.compile(r"xox[baprs]-[0-9A-Za-z\-]{10,}"), "Slack token"),
     (re.compile(r"FlyV1[A-Za-z0-9_\-+/=]{20,}"), "Fly.io API token"),
     (re.compile(r"eyJ[A-Za-z0-9_\-]{10,}\.[A-Za-z0-9_\-]{10,}\.[A-Za-z0-9_\-]{6,}"), "JWT"),
-    (re.compile(r"(?i)(password|passwd|pwd|secret|api[_-]?key|access[_-]?token|auth[_-]?token|private[_-]?key)\s*[:=]\s*[\"']?[^\"'\s,;)]{8,}"), "hardcoded secret assignment"),
+    # A `keyword: value` shape alone is not a secret: prose, comments, schema
+    # declarations and env-var references all use it. Match the three shapes a
+    # real credential actually takes instead.
+    (re.compile(_SECRET_KEY + r"\s*[:=]\s*[\"'][^\"'\s]{8,}[\"']"),
+     "hardcoded secret assignment"),
+    (re.compile(_SECRET_KEY + r"\s*[:=]\s*(?=[^\"'\s,;)]*\d)[^\"'\s,;)]{8,}"),
+     "hardcoded secret assignment"),
+    (re.compile(_SECRET_KEY + r"\s*[:=]\s*" + _NOT_A_REFERENCE + r"[^\"'\s,;)]{20,}"),
+     "hardcoded secret assignment"),
 ]
 PII = [
     (re.compile(r"[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}"), "email address"),
