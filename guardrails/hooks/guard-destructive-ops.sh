@@ -37,10 +37,27 @@ if printf '%s' "$cmd" | grep -qiE '\b(psql|pg[[:space:]]+connect|sqlite3)\b'; th
   fi
 fi
 
-# 3) Force-push to main/master
+# 3) Force-push to main/master, whether the branch is named in the command or
+#    only implied by the checked-out branch (`git push -f` with main upstream).
 if printf '%s' "$cmd" | grep -qE 'git([[:space:]]+-[^[:space:]]+)*[[:space:]]+push'; then
-  if printf '%s' "$cmd" | grep -qE '(--force|-f)\b' && printf '%s' "$cmd" | grep -qE '\b(main|master)\b'; then
-    block "force-pushing to main/master."
+  if printf '%s' "$cmd" | grep -qE '(--force|-f)\b'; then
+    if printf '%s' "$cmd" | grep -qE '\b(main|master)\b'; then
+      block "force-pushing to main/master."
+    fi
+    # Only when no refspec is named does the push land on the checked-out
+    # branch. `git push -f origin my-feature` names its target, so the current
+    # branch says nothing about it; `git push -f [origin]` does not.
+    rest="$(printf '%s' "$cmd" | sed -E 's/.*[[:space:]]push([[:space:]]|$)/ /')"
+    named="$(printf '%s' "$rest" | tr ' ' '\n' | grep -cE '^[^-][^[:space:]]*$' || true)"
+    cwd="$(printf '%s' "$input" | python3 -c 'import sys,json
+try: print(json.load(sys.stdin).get("cwd",""))
+except Exception: print("")' 2>/dev/null || true)"
+    if [ -n "$cwd" ] && [ "$named" -lt 2 ]; then
+      branch="$(git -C "$cwd" rev-parse --abbrev-ref HEAD 2>/dev/null || true)"
+      case "$branch" in
+        main|master) block "force-pushing the checked-out $branch branch." ;;
+      esac
+    fi
   fi
 fi
 
