@@ -1,0 +1,29 @@
+# Core HTTP service for the remove-ai-marks skill.
+#
+#   docker compose up --build -d      # then: curl -sf http://127.0.0.1:8765/health
+#
+# Trimmed from upstream watermarks-remover: only the wr-core service is kept.
+# The upstream harness/heavy profiles (markllm, markdiffusion, ctrlregen,
+# synthid) build from non-redistributable sources and are not vendored here.
+
+name: remove-ai-marks
+
+services:
+  wr-core:
+    build:
+      context: service
+      dockerfile: Dockerfile
+    ports:
+      - "127.0.0.1:8765:8765"
+    environment:
+      # Empty by default (no auth). Set to require `Authorization: Bearer <key>`.
+      WATERMARKS_SERVER_API_KEY: ${WATERMARKS_SERVER_API_KEY:-}
+      WATERMARKS_CLEAN_STRATEGY_FILE: /app/config/clean_strategy.json
+    volumes:
+      - ./config:/app/config:ro
+    read_only: true
+    tmpfs:
+      - /tmp
+    init: true
+    user: "10001:10001"
+    restart: unless-stopped
