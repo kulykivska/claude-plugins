@@ -1,9 +1,69 @@
-# Personal Claude Code plugins
+# claude-plugins
 
-One source of truth for personal Claude Code tooling, shared by every project I
-work on rather than copied per repo. Registered as the `personal` marketplace
-from this local path and enabled by default in `~/.claude/settings.json`, so
-every project picks it up automatically.
+Sixteen Claude Code plugins I use every day across a Python backend, a React
+web app, a SwiftUI client and an ML pipeline: skills, subagents, blocking
+safety hooks, LSP servers and monitors. One marketplace, shared by every
+project instead of copied into each repo.
+
+```
+/plugin marketplace add kulykivska/claude-plugins
+/plugin install pre-push-review@personal
+```
+
+That is the whole install. Everything here is plain files - Markdown skills,
+Markdown subagents, shell hooks - so you can read exactly what a plugin does
+before you enable it, and take one without the rest.
+
+## Start with the gate
+
+`pre-push-review` reviews the diff you are about to push across five
+dimensions, **fixes** what it finds, re-verifies, and only then lets the push
+through. Not a report you skim - a working tree that changed.
+
+Yesterday it caught three regressions in code written in that same session. The
+one worth the price of the whole repository:
+
+> A response-size guard, added so a hostile feed could not OOM-kill a scheduled
+> job. It passed its tests, passed the linter, passed the type checker - and
+> broke **every network request in the tool**. Response event hooks on an async
+> httpx client are awaited; the guard was a plain function, so each request died
+> with `TypeError: object NoneType can't be used in 'await' expression`. The
+> tests called the guard directly and never a client, so 108 of them passed
+> over a tool that could not fetch anything.
+
+The other two: a database write lock held across every network call in a batch,
+and a cache file written from several threads without a lock. All three fixed
+before the push, each with a test that fails without the fix.
+
+The gate is deliberately hard to skip. It writes a one-shot marker naming the
+exact commit it reviewed, and a push without that marker is refused - so
+amending after a review means reviewing again.
+
+## What else is in here
+
+Highlights; the full table is further down.
+
+- **`guardrails`** - blocking hooks that veto destroying or scaling a Fly app to
+  zero, clearing its configuration, `DROP`/`TRUNCATE` through a database client,
+  force-pushes to main, and any commit or push carrying a real credential or
+  someone's personal data.
+- **`reviewers`** - four subagents that each know one stack, so a review of a
+  SwiftUI diff talks about StoreKit and crashes rather than generic advice.
+- **`sdlc`** - requirements to plan to implementation to QA to review, with an
+  `architect` that designs before anyone writes code and a `debugger` that works
+  from logs and stack traces rather than guesses.
+- **`seo`** - a strategist covering technical SEO through LLM SEO: whether a page
+  is citable by an AI answer, not only whether it ranks.
+- **`coach`** - non-blocking nudges while you edit, which is where a reminder is
+  worth something and a blocked tool call is not.
+
+## Taking one piece
+
+Every plugin is a folder, and none of them depend on each other: copy one into
+your own marketplace, or install only that one. Two are worth reading even if
+you never install anything: `pre-push-review/skills/pre-push-review/SKILL.md`,
+which is the whole review in about eighty lines, and
+`guardrails/hooks/secrets_scan.py`, the credential scanner with its allowlist.
 
 ## How it fits together
 
@@ -100,7 +160,7 @@ flowchart LR
 | `reports` | subagent + skill | `report-builder` + `/weekly-report`: business reports, decks, consulting deliverables with charts. |
 | `biz` | subagents | `aso-optimizer` (App Store), `growth-analyst` (funnel leaks → one experiment), `outreach-writer` (partnership/consulting pitches). |
 
-## Wiring (already applied)
+## How I run it
 
 `~/.claude/settings.json`:
 
@@ -141,8 +201,13 @@ new machine just copy `.claude/settings.json` + `.claude/scripts/` into
 ## Validate
 
 ```bash
-python3 scripts/validate.py
+python3 scripts/validate.py         # every plugin manifest parses and matches the marketplace
+python3 scripts/test_guardrails.py  # what the blocking hooks stop, and what they must not
 ```
+
+The second one exists because a guard that cries wolf gets turned off, and a
+guard that is turned off stops nothing. It covers both halves: `fly apps
+destroy` is blocked, and a README that merely mentions it is not.
 
 ## Update / extend
 

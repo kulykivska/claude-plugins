@@ -5,9 +5,20 @@
 # back to Claude. Exit 0 allows. Fail open (allow) if anything unexpected.
 
 input="$(cat)"
-cmd="$(printf '%s' "$input" | python3 -c 'import sys,json
-try: print(json.load(sys.stdin).get("tool_input",{}).get("command",""))
-except Exception: print("")' 2>/dev/null || true)"
+# The command, with heredoc bodies removed: text a command writes is data, not
+# an operation. A README that mentions destroying an app is not destroying one.
+# Kept whole when an interpreter would execute that body (bash/sh/zsh/eval).
+cmd="$(printf '%s' "$input" | python3 -c 'import sys, json, re
+try:
+    command = json.load(sys.stdin).get("tool_input", {}).get("command", "")
+except Exception:
+    print("")
+    sys.exit(0)
+if not re.search(r"\b(bash|sh|zsh|eval)\b", command):
+    command = re.sub(
+        r"<<-?\s*([\x27\"]?)(\w+)\1.*?^\s*\2\s*$", " ", command, flags=re.S | re.M
+    )
+print(command)' 2>/dev/null || true)"
 
 [ -z "$cmd" ] && exit 0
 
