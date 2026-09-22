@@ -1,8 +1,8 @@
 {
   "name": "guardrails",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Blocking safety hooks: destructive Fly.io/prod-DB ops, force-push to main, AI attribution in commits, secrets/PII in staged and pushed diffs.",
   "author": {
-    "name": "Yuliia Kulykivska"
+    "name": "Engineering"
   }
 }

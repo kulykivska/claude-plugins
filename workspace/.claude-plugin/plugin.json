@@ -2,5 +2,5 @@
   "name": "workspace",
   "version": "1.0.0",
   "description": "Claude's own plumbing: gmail-sorter-setup (a daily cloud routine that triages the logged-in account's Gmail) and the /switch command for moving a session between claude.ai profiles.",
-  "author": { "name": "Yuliia Kulykivska" }
+  "author": { "name": "Engineering" }
 }

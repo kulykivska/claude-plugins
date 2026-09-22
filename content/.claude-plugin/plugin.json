@@ -2,5 +2,5 @@
   "name": "content",
   "version": "1.1.0",
   "description": "content-writer and fact-checker subagents + social-post, linkedin-post-writer, racemodel-post-writer, humanizer and remove-ai-marks skills: one idea into platform-native posts for LinkedIn, Threads, X, and Instagram, EN/UK, in the owner's voice, fact-checked, humanized, and stripped of AI provenance marks.",
-  "author": { "name": "Yuliia Kulykivska" }
+  "author": { "name": "Engineering" }
 }
