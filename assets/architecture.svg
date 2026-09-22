@@ -1,262 +1,172 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1620" font-family="Menlo, SF Mono, Consolas, monospace">
-  <defs>
-    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
-      <feGaussianBlur stdDeviation="3" result="b"/>
-      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <radialGradient id="bgGlow" cx="50%" cy="14%" r="90%">
-      <stop offset="0%" stop-color="#0e2233"/>
-      <stop offset="100%" stop-color="#070d16"/>
-    </radialGradient>
-    <linearGradient id="panelFill" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#0c1a2b" stop-opacity="0.95"/>
-      <stop offset="100%" stop-color="#081120" stop-opacity="0.95"/>
-    </linearGradient>
-    <marker id="arrowC" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#22d3ee"/>
-    </marker>
-    <marker id="arrowG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#fbbf24"/>
-    </marker>
-  </defs>
-
-  <!-- background -->
-  <rect width="1280" height="1620" fill="url(#bgGlow)"/>
-  <g stroke="#123049" stroke-width="0.5" opacity="0.3">
-    <path d="M0,160 H1280 M0,320 H1280 M0,480 H1280 M0,640 H1280 M0,800 H1280 M0,960 H1280 M0,1120 H1280 M0,1280 H1280 M0,1440 H1280"/>
-    <path d="M160,0 V1620 M320,0 V1620 M480,0 V1620 M640,0 V1620 M800,0 V1620 M960,0 V1620 M1120,0 V1620"/>
-  </g>
-
-  <!-- header -->
-  <g filter="url(#glow)">
-    <text x="640" y="58" text-anchor="middle" fill="#7ff3ff" font-size="34" letter-spacing="7">PERSONAL CLAUDE CODE MARKETPLACE</text>
-  </g>
-  <text x="640" y="88" text-anchor="middle" fill="#4a90b8" font-size="15" letter-spacing="4">ONE SOURCE OF TRUTH · EVERY PROJECT · EVERY SESSION</text>
-  <path d="M300,104 H560 M720,104 H980" stroke="#22d3ee" stroke-width="1" opacity="0.6"/>
-  <circle cx="640" cy="104" r="5" fill="none" stroke="#22d3ee"/>
-  <circle cx="640" cy="104" r="2" fill="#7ff3ff"/>
-
-  <!-- settings node -->
-  <g>
-    <rect x="400" y="126" width="480" height="64" rx="7" fill="url(#panelFill)" stroke="#22d3ee" stroke-width="1.3"/>
-    <path d="M400,126 h16 M400,126 v16 M880,126 h-16 M880,126 v16 M400,190 h16 M400,190 v-16 M880,190 h-16 M880,190 v-16" stroke="#7ff3ff" stroke-width="2.4" fill="none"/>
-    <text x="640" y="153" text-anchor="middle" fill="#e6f8ff" font-size="17">~/.claude/settings.json</text>
-    <text x="640" y="176" text-anchor="middle" fill="#4a90b8" font-size="13">extraKnownMarketplaces + enabledPlugins · user scope</text>
-  </g>
-
-  <line x1="640" y1="190" x2="640" y2="222" stroke="#22d3ee" stroke-width="1.3" marker-end="url(#arrowC)"/>
-
-  <!-- marketplace core -->
-  <g filter="url(#glow)">
-    <circle cx="640" cy="272" r="46" fill="#0c1a2b" stroke="#22d3ee" stroke-width="1.6"/>
-    <circle cx="640" cy="272" r="56" fill="none" stroke="#22d3ee" stroke-width="0.8" opacity="0.5" stroke-dasharray="4 6"/>
-    <text x="640" y="268" text-anchor="middle" fill="#7ff3ff" font-size="15">personal</text>
-    <text x="640" y="286" text-anchor="middle" fill="#4a90b8" font-size="11">marketplace</text>
-  </g>
-
-  <!-- connectors core -> panels -->
-  <path d="M598,296 C480,330 360,330 335,356" fill="none" stroke="#22d3ee" stroke-width="1.1" marker-end="url(#arrowC)" opacity="0.85"/>
-  <path d="M682,296 C800,330 920,330 945,356" fill="none" stroke="#fbbf24" stroke-width="1.1" marker-end="url(#arrowG)" opacity="0.85"/>
-  <path d="M614,316 C520,420 380,700 335,812" fill="none" stroke="#f87171" stroke-width="1" marker-end="url(#arrowC)" opacity="0.55"/>
-  <path d="M666,316 C760,420 900,700 945,812" fill="none" stroke="#a78bfa" stroke-width="1" marker-end="url(#arrowC)" opacity="0.55"/>
-
-  <!-- ===== PANEL A : WORKFLOW SKILLS ===== -->
-  <g>
-    <rect x="40" y="360" width="590" height="430" rx="9" fill="url(#panelFill)" stroke="#22d3ee" stroke-width="1.1"/>
-    <path d="M40,360 h22 M40,360 v22 M630,360 h-22 M630,360 v22 M40,790 h22 M40,790 v-22 M630,790 h-22 M630,790 v-22" stroke="#7ff3ff" stroke-width="2.4" fill="none"/>
-    <text x="335" y="395" text-anchor="middle" fill="#7ff3ff" font-size="19" letter-spacing="3" filter="url(#glow)">WORKFLOW SKILLS</text>
-    <line x1="90" y1="410" x2="580" y2="410" stroke="#22d3ee" stroke-width="0.9" opacity="0.6"/>
-
-    <g font-size="15" fill="#e6f8ff">
-      <text x="66" y="446">▸ pre-push-review</text>
-      <text x="66" y="516">▸ morning</text>
-      <text x="66" y="586">▸ evening</text>
-      <text x="66" y="656">▸ sdlc</text>
-      <text x="356" y="446">▸ fly-ops</text>
-      <text x="356" y="516">▸ seo-audit</text>
-      <text x="356" y="586">▸ social-post</text>
-      <text x="356" y="656">▸ weekly-report</text>
-    </g>
-    <g font-size="12.5" fill="#4a90b8">
-      <text x="80" y="466">fix-and-verify before</text>
-      <text x="80" y="482">every push</text>
-      <text x="80" y="536">daily kickoff recap:</text>
-      <text x="80" y="552">git + transcripts + memory</text>
-      <text x="80" y="606">wind-down: tomorrow's top 3,</text>
-      <text x="80" y="622">wellbeing + who to call</text>
-      <text x="80" y="676">new-task · requirements · plan-task</text>
-      <text x="80" y="692">qa · task-review · debug</text>
-      <text x="370" y="466">deploy · fly-logs</text>
-      <text x="370" y="482">incident triage</text>
-      <text x="370" y="536">full-map SEO pass</text>
-      <text x="370" y="552">incl. LLM SEO</text>
-      <text x="370" y="606">multi-network drafts</text>
-      <text x="370" y="622">in my voice</text>
-      <text x="370" y="676">business report</text>
-      <text x="370" y="692">with charts</text>
-    </g>
-    <text x="66" y="740" fill="#22d3ee" font-size="12.5" opacity="0.85">triggered by intent or /command, run inline in the main context</text>
-  </g>
-
-  <!-- ===== PANEL B : SUBAGENTS ===== -->
-  <g>
-    <rect x="650" y="360" width="590" height="430" rx="9" fill="url(#panelFill)" stroke="#fbbf24" stroke-width="1.1"/>
-    <path d="M650,360 h22 M650,360 v22 M1240,360 h-22 M1240,360 v22 M650,790 h22 M650,790 v-22 M1240,790 h-22 M1240,790 v-22" stroke="#fde68a" stroke-width="2.4" fill="none"/>
-    <text x="945" y="395" text-anchor="middle" fill="#fde68a" font-size="19" letter-spacing="3" filter="url(#glow)">SUBAGENTS · 14</text>
-    <line x1="700" y1="410" x2="1190" y2="410" stroke="#fbbf24" stroke-width="0.9" opacity="0.6"/>
-
-    <g font-size="15" fill="#e6f8ff">
-      <text x="676" y="444">⬡ architect</text>
-      <text x="676" y="494">⬡ debugger</text>
-      <text x="676" y="544">⬡ python-reviewer</text>
-      <text x="676" y="594">⬡ web-reviewer</text>
-      <text x="676" y="644">⬡ swiftui-reviewer</text>
-      <text x="676" y="694">⬡ ml-reviewer</text>
-      <text x="676" y="744">⬡ requirements-analyst</text>
-      <text x="966" y="444">⬡ seo-strategist</text>
-      <text x="966" y="494">⬡ researcher</text>
-      <text x="966" y="544">⬡ content-writer</text>
-      <text x="966" y="594">⬡ report-builder</text>
-      <text x="966" y="644">⬡ aso-optimizer</text>
-      <text x="966" y="694">⬡ growth-analyst</text>
-      <text x="966" y="744">⬡ outreach-writer</text>
-    </g>
-    <g font-size="12" fill="#8aa8c0">
-      <text x="692" y="462">design + plan before code</text>
-      <text x="692" y="512">root cause from evidence</text>
-      <text x="692" y="562">FastAPI · async · failures</text>
-      <text x="692" y="612">React/TS · i18n · gating</text>
-      <text x="692" y="662">crashes · StoreKit · l10n</text>
-      <text x="692" y="712">regression gate · leakage · sync</text>
-      <text x="982" y="462">keywords → LLM SEO</text>
-      <text x="982" y="512">cited, verified briefs</text>
-      <text x="982" y="562">LinkedIn · Threads · X · IG</text>
-      <text x="982" y="612">reports · decks · updates</text>
-      <text x="982" y="662">App Store growth</text>
-      <text x="982" y="712">funnel leaks → experiment</text>
-      <text x="982" y="762">pitches that get replies</text>
-    </g>
-    <text x="676" y="762" fill="#fbbf24" font-size="12" opacity="0.85">fresh context each,</text>
-    <text x="676" y="778" fill="#fbbf24" font-size="12" opacity="0.85">run in parallel</text>
-  </g>
-
-  <!-- ===== PANEL C : HOOKS ===== -->
-  <g>
-    <rect x="40" y="816" width="590" height="400" rx="9" fill="url(#panelFill)" stroke="#f87171" stroke-width="1.1"/>
-    <path d="M40,816 h22 M40,816 v22 M630,816 h-22 M630,816 v22 M40,1216 h22 M40,1216 v-22 M630,1216 h-22 M630,1216 v-22" stroke="#fca5a5" stroke-width="2.4" fill="none"/>
-    <text x="335" y="851" text-anchor="middle" fill="#fca5a5" font-size="19" letter-spacing="3" filter="url(#glow)">HOOKS · AUTOMATIC</text>
-    <line x1="90" y1="866" x2="580" y2="866" stroke="#f87171" stroke-width="0.9" opacity="0.6"/>
-
-    <text x="66" y="900" fill="#f87171" font-size="15">⛔ guardrails · BLOCKING</text>
-    <g font-size="12.5" fill="#8aa8c0">
-      <text x="82" y="920">fly destroy / scale-0 / secrets unset · DROP·TRUNCATE via db clients</text>
-      <text x="82" y="937">force-push to main · AI attribution in commits</text>
-      <text x="82" y="954">secrets + PII scan of staged and pushed diffs</text>
-    </g>
-    <text x="66" y="990" fill="#7ff3ff" font-size="15">◈ coach · non-blocking</text>
-    <g font-size="12.5" fill="#8aa8c0">
-      <text x="82" y="1010">edit nudges: py/ts/swift · FEATURE_COLS sync · no long dashes in UI</text>
-      <text x="82" y="1027">session banner · failure hints (ports, Docker reload, Fly gotchas)</text>
-      <text x="82" y="1044">uncommitted-changes reminder at turn end</text>
-    </g>
-    <text x="66" y="1080" fill="#fde68a" font-size="15">⛔ pre-push gate</text>
-    <g font-size="12.5" fill="#8aa8c0">
-      <text x="82" y="1100">user-level hook, versioned here in .claude/scripts/</text>
-      <text x="82" y="1117">blocks git push until pre-push-review approves the exact HEAD</text>
-    </g>
-    <text x="66" y="1165" fill="#f87171" font-size="12.5" opacity="0.85">fire on events, no one calls them: exit 2 vetoes the action</text>
-  </g>
-
-  <!-- ===== PANEL D : INFRASTRUCTURE ===== -->
-  <g>
-    <rect x="650" y="816" width="590" height="400" rx="9" fill="url(#panelFill)" stroke="#a78bfa" stroke-width="1.1"/>
-    <path d="M650,816 h22 M650,816 v22 M1240,816 h-22 M1240,816 v22 M650,1216 h22 M650,1216 v-22 M1240,1216 h-22 M1240,1216 v-22" stroke="#c4b5fd" stroke-width="2.4" fill="none"/>
-    <text x="945" y="851" text-anchor="middle" fill="#c4b5fd" font-size="19" letter-spacing="3" filter="url(#glow)">INFRASTRUCTURE</text>
-    <line x1="700" y1="866" x2="1190" y2="866" stroke="#a78bfa" stroke-width="0.9" opacity="0.6"/>
-
-    <text x="676" y="900" fill="#e6f8ff" font-size="15">⚙ lsp</text>
-    <g font-size="12.5" fill="#8aa8c0">
-      <text x="692" y="920">pyright · typescript-language-server · sourcekit-lsp</text>
-      <text x="692" y="937">live diagnostics while editing py/ts/swift</text>
-    </g>
-    <text x="676" y="972" fill="#e6f8ff" font-size="15">⚙ monitors</text>
-    <g font-size="12.5" fill="#8aa8c0">
-      <text x="692" y="992">tsc-watch build errors · dev-log ERROR/WARN tail</text>
-    </g>
-    <text x="676" y="1027" fill="#e6f8ff" font-size="15">⚙ mcp-catalog</text>
-    <g font-size="12.5" fill="#8aa8c0">
-      <text x="692" y="1047">github · playwright · postgres · opt-in per project</text>
-    </g>
-    <text x="676" y="1082" fill="#e6f8ff" font-size="15">⚙ .claude/ · versioned config</text>
-    <g font-size="12.5" fill="#8aa8c0">
-      <text x="692" y="1102">settings.json + scripts, ~-based paths</text>
-      <text x="692" y="1119">new machine = clone + copy into ~/.claude/</text>
-    </g>
-    <text x="676" y="1165" fill="#a78bfa" font-size="12.5" opacity="0.85">loaded when plugins are enabled, work in the background</text>
-  </g>
-
-  <!-- ===== LIFECYCLE STRIP ===== -->
-  <text x="640" y="1272" text-anchor="middle" fill="#7ff3ff" font-size="17" letter-spacing="5" filter="url(#glow)">TASK LIFECYCLE</text>
-  <line x1="380" y1="1284" x2="580" y2="1284" stroke="#22d3ee" stroke-width="0.9" opacity="0.5"/>
-  <line x1="700" y1="1284" x2="900" y2="1284" stroke="#22d3ee" stroke-width="0.9" opacity="0.5"/>
-
-  <g font-size="13" text-anchor="middle">
-    <g>
-      <rect x="34" y="1306" width="128" height="64" rx="7" fill="#0c1a2b" stroke="#22d3ee"/>
-      <text x="98" y="1333" fill="#e6f8ff">requirements</text>
-      <text x="98" y="1351" fill="#4a90b8" font-size="11">concretize + edges</text>
-    </g>
-    <line x1="162" y1="1338" x2="186" y2="1338" stroke="#22d3ee" marker-end="url(#arrowC)"/>
-    <g>
-      <rect x="188" y="1306" width="128" height="64" rx="7" fill="#0c1a2b" stroke="#22d3ee"/>
-      <text x="252" y="1333" fill="#e6f8ff">plan-task</text>
-      <text x="252" y="1351" fill="#fbbf24" font-size="11">+ architect</text>
-    </g>
-    <line x1="316" y1="1338" x2="340" y2="1338" stroke="#22d3ee" marker-end="url(#arrowC)"/>
-    <g>
-      <rect x="342" y="1306" width="128" height="64" rx="7" fill="#0c1a2b" stroke="#22d3ee"/>
-      <text x="406" y="1333" fill="#e6f8ff">implement</text>
-      <text x="406" y="1351" fill="#f87171" font-size="11">coach + guardrails</text>
-    </g>
-    <line x1="470" y1="1338" x2="494" y2="1338" stroke="#22d3ee" marker-end="url(#arrowC)"/>
-    <g>
-      <rect x="496" y="1306" width="100" height="64" rx="7" fill="#0c1a2b" stroke="#22d3ee"/>
-      <text x="546" y="1333" fill="#e6f8ff">qa</text>
-      <text x="546" y="1351" fill="#4a90b8" font-size="11">real flows</text>
-    </g>
-    <line x1="596" y1="1338" x2="620" y2="1338" stroke="#22d3ee" marker-end="url(#arrowC)"/>
-    <g>
-      <rect x="622" y="1306" width="128" height="64" rx="7" fill="#0c1a2b" stroke="#22d3ee"/>
-      <text x="686" y="1333" fill="#e6f8ff">task-review</text>
-      <text x="686" y="1351" fill="#fbbf24" font-size="11">+ reviewers ×4</text>
-    </g>
-    <line x1="750" y1="1338" x2="774" y2="1338" stroke="#22d3ee" marker-end="url(#arrowC)"/>
-    <g>
-      <rect x="776" y="1306" width="128" height="64" rx="7" fill="#0c1a2b" stroke="#f87171"/>
-      <text x="840" y="1333" fill="#e6f8ff">push gate</text>
-      <text x="840" y="1351" fill="#f87171" font-size="11">pre-push-review</text>
-    </g>
-    <line x1="904" y1="1338" x2="928" y2="1338" stroke="#22d3ee" marker-end="url(#arrowC)"/>
-    <g>
-      <rect x="930" y="1306" width="128" height="64" rx="7" fill="#0c1a2b" stroke="#22d3ee"/>
-      <text x="994" y="1333" fill="#e6f8ff">deploy</text>
-      <text x="994" y="1351" fill="#4a90b8" font-size="11">fly-ops + verify</text>
-    </g>
-    <line x1="1058" y1="1338" x2="1082" y2="1338" stroke="#22d3ee" marker-end="url(#arrowC)"/>
-    <g>
-      <rect x="1084" y="1306" width="128" height="64" rx="7" fill="#0c1a2b" stroke="#22d3ee"/>
-      <text x="1148" y="1333" fill="#e6f8ff">monitor</text>
-      <text x="1148" y="1351" fill="#fbbf24" font-size="11">logs + debugger</text>
-    </g>
-  </g>
-
-  <!-- feedback loop -->
-  <path d="M1148,1370 C1148,1440 98,1440 98,1370" fill="none" stroke="#fbbf24" stroke-width="1.1" stroke-dasharray="5 5" marker-end="url(#arrowG)" opacity="0.85"/>
-  <text x="640" y="1466" text-anchor="middle" fill="#fbbf24" font-size="12.5" opacity="0.9">bugs and incidents feed back into requirements</text>
-
-  <!-- growth loop -->
-  <text x="640" y="1500" text-anchor="middle" fill="#4a90b8" font-size="12.5">ship → seo-audit + social-post announce → growth-analyst reads the funnel → next requirements</text>
-
-  <!-- footer -->
-  <text x="640" y="1568" text-anchor="middle" fill="#2d5a7a" font-size="13" letter-spacing="2">15 PLUGINS · 14 SUBAGENTS · 16 SKILLS · 8 HOOK SCRIPTS + PUSH GATE · VALIDATED BY scripts/validate.py</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1518" width="1280" height="1518" font-family="Menlo, SF Mono, Consolas, monospace">
+<defs>
+<filter id="glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<radialGradient id="bgGlow" cx="50%" cy="14%" r="90%"><stop offset="0%" stop-color="#0e2233"/><stop offset="100%" stop-color="#070d16"/></radialGradient>
+<linearGradient id="panelFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0c1a2b" stop-opacity="0.95"/><stop offset="100%" stop-color="#081120" stop-opacity="0.95"/></linearGradient>
+<marker id="arrowC" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#22d3ee"/></marker>
+<marker id="arrowG" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#fbbf24"/></marker>
+</defs>
+<rect width="1280" height="1518" fill="url(#bgGlow)"/>
+<g stroke="#123049" stroke-width="0.5" opacity="0.3"><path d="M0,160 H1280 M0,320 H1280 M0,480 H1280 M0,640 H1280 M0,800 H1280 M0,960 H1280 M0,1120 H1280 M0,1280 H1280 M0,1440 H1280 M160,0 V1518 M320,0 V1518 M480,0 V1518 M640,0 V1518 M800,0 V1518 M960,0 V1518 M1120,0 V1518"/></g>
+<g filter="url(#glow)"><text x="640.0" y="58" text-anchor="middle" fill="#7ff3ff" font-size="30" letter-spacing="6">PERSONAL CLAUDE CODE MARKETPLACE</text></g>
+<text x="640.0" y="88" text-anchor="middle" fill="#4a90b8" font-size="15" letter-spacing="4">ONE SOURCE OF TRUTH · EVERY PROJECT · EVERY SESSION</text>
+<path d="M300,104 H560 M720,104 H980" stroke="#22d3ee" stroke-width="1" opacity="0.6"/>
+<circle cx="640.0" cy="104" r="5" fill="none" stroke="#22d3ee"/><circle cx="640.0" cy="104" r="2" fill="#7ff3ff"/>
+<rect x="400" y="126" width="480" height="64" rx="7" fill="url(#panelFill)" stroke="#22d3ee" stroke-width="1.3"/>
+<text x="640.0" y="153" text-anchor="middle" fill="#e6f8ff" font-size="17">~/.claude/settings.json</text>
+<text x="640.0" y="176" text-anchor="middle" fill="#4a90b8" font-size="13">extraKnownMarketplaces + enabledPlugins · user scope</text>
+<line x1="640" y1="190" x2="640" y2="222" stroke="#22d3ee" stroke-width="1.3" marker-end="url(#arrowC)"/>
+<g filter="url(#glow)"><circle cx="640" cy="272" r="46" fill="#0c1a2b" stroke="#22d3ee" stroke-width="1.6"/>
+<circle cx="640" cy="272" r="56" fill="none" stroke="#22d3ee" stroke-width="0.8" opacity="0.5" stroke-dasharray="4 6"/>
+<text x="640" y="268" text-anchor="middle" fill="#7ff3ff" font-size="15">personal</text>
+<text x="640" y="286" text-anchor="middle" fill="#4a90b8" font-size="11">19 plugins</text></g>
+<path d="M598,296 C480,330 360,330 335,356" fill="none" stroke="#22d3ee" stroke-width="1.1" marker-end="url(#arrowC)" opacity="0.85"/>
+<path d="M682,296 C800,330 920,330 945,356" fill="none" stroke="#fbbf24" stroke-width="1.1" marker-end="url(#arrowG)" opacity="0.85"/>
+<path d="M614,316 C520,420 380,770 335,886" fill="none" stroke="#f87171" stroke-width="1" marker-end="url(#arrowC)" opacity="0.55"/>
+<path d="M666,316 C760,420 900,770 945,886" fill="none" stroke="#a78bfa" stroke-width="1" marker-end="url(#arrowC)" opacity="0.55"/>
+<rect x="40" y="360" width="590" height="476" rx="9" fill="url(#panelFill)" stroke="#22d3ee" stroke-width="1.1"/>
+<path d="M40,360 h22 M40,360 v22" stroke="#7ff3ff" stroke-width="2.4" fill="none"/>
+<path d="M630,360 h-22 M630,360 v22" stroke="#7ff3ff" stroke-width="2.4" fill="none"/>
+<path d="M40,836 h22 M40,836 v-22" stroke="#7ff3ff" stroke-width="2.4" fill="none"/>
+<path d="M630,836 h-22 M630,836 v-22" stroke="#7ff3ff" stroke-width="2.4" fill="none"/>
+<text x="335.0" y="395" text-anchor="middle" fill="#7ff3ff" font-size="19" letter-spacing="3" filter="url(#glow)">WORKFLOW SKILLS · 28</text>
+<line x1="90" y1="410" x2="580" y2="410" stroke="#22d3ee" stroke-width="0.9" opacity="0.6"/>
+<text x="66" y="446" fill="#e6f8ff" font-size="15">▸ pre-push-review</text>
+<text x="80" y="466" fill="#4a90b8" font-size="11.5">pre-push-review</text>
+<text x="356" y="446" fill="#e6f8ff" font-size="15">▸ daily</text>
+<text x="370" y="466" fill="#4a90b8" font-size="11.5">evening · morning</text>
+<text x="66" y="508" fill="#e6f8ff" font-size="15">▸ guardrails</text>
+<text x="80" y="528" fill="#4a90b8" font-size="11.5">local-secrets</text>
+<text x="356" y="508" fill="#e6f8ff" font-size="15">▸ sdlc</text>
+<text x="370" y="528" fill="#4a90b8" font-size="11.5">debug · engineering-standards · qa</text>
+<text x="370" y="544" fill="#4a90b8" font-size="11.5">lessons-learned · new-task · …</text>
+<text x="66" y="570" fill="#e6f8ff" font-size="15">▸ fly-ops</text>
+<text x="80" y="590" fill="#4a90b8" font-size="11.5">deploy · fly-logs · incident</text>
+<text x="356" y="570" fill="#e6f8ff" font-size="15">▸ monitors</text>
+<text x="370" y="590" fill="#4a90b8" font-size="11.5">watch-ts</text>
+<text x="66" y="632" fill="#e6f8ff" font-size="15">▸ seo</text>
+<text x="80" y="652" fill="#4a90b8" font-size="11.5">seo-audit</text>
+<text x="356" y="632" fill="#e6f8ff" font-size="15">▸ content</text>
+<text x="370" y="652" fill="#4a90b8" font-size="11.5">humanizer · linkedin-post-writer</text>
+<text x="370" y="668" fill="#4a90b8" font-size="11.5">racemodel-post-writer · …</text>
+<text x="66" y="694" fill="#e6f8ff" font-size="15">▸ reports</text>
+<text x="80" y="714" fill="#4a90b8" font-size="11.5">weekly-report</text>
+<text x="356" y="694" fill="#e6f8ff" font-size="15">▸ ml</text>
+<text x="370" y="714" fill="#4a90b8" font-size="11.5">feature-change · model-eval</text>
+<text x="370" y="730" fill="#4a90b8" font-size="11.5">ship-model</text>
+<text x="66" y="756" fill="#e6f8ff" font-size="15">▸ app-factory</text>
+<text x="80" y="776" fill="#4a90b8" font-size="11.5">app-factory</text>
+<text x="356" y="756" fill="#e6f8ff" font-size="15">▸ workspace</text>
+<text x="370" y="776" fill="#4a90b8" font-size="11.5">gmail-sorter-setup</text>
+<text x="66" y="818" fill="#22d3ee" font-size="12.5" opacity="0.85">triggered by intent or /command, run inline in the main context</text>
+<rect x="650" y="360" width="590" height="504" rx="9" fill="url(#panelFill)" stroke="#fbbf24" stroke-width="1.1"/>
+<path d="M650,360 h22 M650,360 v22" stroke="#fde68a" stroke-width="2.4" fill="none"/>
+<path d="M1240,360 h-22 M1240,360 v22" stroke="#fde68a" stroke-width="2.4" fill="none"/>
+<path d="M650,864 h22 M650,864 v-22" stroke="#fde68a" stroke-width="2.4" fill="none"/>
+<path d="M1240,864 h-22 M1240,864 v-22" stroke="#fde68a" stroke-width="2.4" fill="none"/>
+<text x="945.0" y="395" text-anchor="middle" fill="#fde68a" font-size="19" letter-spacing="3" filter="url(#glow)">SUBAGENTS · 16</text>
+<line x1="700" y1="410" x2="1190" y2="410" stroke="#fbbf24" stroke-width="0.9" opacity="0.6"/>
+<text x="676" y="444" fill="#e6f8ff" font-size="14">⬡ architect</text>
+<text x="690" y="462" fill="#8aa8c0" font-size="11">Designs the implementation appr…</text>
+<text x="966" y="444" fill="#e6f8ff" font-size="14">⬡ debugger</text>
+<text x="980" y="462" fill="#8aa8c0" font-size="11">Investigates a bug or incident…</text>
+<text x="676" y="494" fill="#e6f8ff" font-size="14">⬡ requirements-analyst</text>
+<text x="690" y="512" fill="#8aa8c0" font-size="11">Audits a set of requirements fo…</text>
+<text x="966" y="494" fill="#e6f8ff" font-size="14">⬡ ml-reviewer</text>
+<text x="980" y="512" fill="#8aa8c0" font-size="11">Reviews ML pipeline diffs (feat…</text>
+<text x="676" y="544" fill="#e6f8ff" font-size="14">⬡ python-reviewer</text>
+<text x="690" y="562" fill="#8aa8c0" font-size="11">Reviews Python/FastAPI diffs (A…</text>
+<text x="966" y="544" fill="#e6f8ff" font-size="14">⬡ swiftui-reviewer</text>
+<text x="980" y="562" fill="#8aa8c0" font-size="11">Reviews SwiftUI/iOS app diffs f…</text>
+<text x="676" y="594" fill="#e6f8ff" font-size="14">⬡ web-reviewer</text>
+<text x="690" y="612" fill="#8aa8c0" font-size="11">Reviews web frontend diffs (Vit…</text>
+<text x="966" y="594" fill="#e6f8ff" font-size="14">⬡ seo-strategist</text>
+<text x="980" y="612" fill="#8aa8c0" font-size="11">Full-map SEO strategist: keywor…</text>
+<text x="676" y="644" fill="#e6f8ff" font-size="14">⬡ researcher</text>
+<text x="690" y="662" fill="#8aa8c0" font-size="11">Background research specialist:…</text>
+<text x="966" y="644" fill="#e6f8ff" font-size="14">⬡ content-writer</text>
+<text x="980" y="662" fill="#8aa8c0" font-size="11">Writes platform-native social p…</text>
+<text x="676" y="694" fill="#e6f8ff" font-size="14">⬡ fact-checker</text>
+<text x="690" y="712" fill="#8aa8c0" font-size="11">Verifies factual claims against…</text>
+<text x="966" y="694" fill="#e6f8ff" font-size="14">⬡ report-builder</text>
+<text x="980" y="712" fill="#8aa8c0" font-size="11">Builds polished reports, decks…</text>
+<text x="676" y="744" fill="#e6f8ff" font-size="14">⬡ aso-optimizer</text>
+<text x="690" y="762" fill="#8aa8c0" font-size="11">App Store optimization speciali…</text>
+<text x="966" y="744" fill="#e6f8ff" font-size="14">⬡ growth-analyst</text>
+<text x="980" y="762" fill="#8aa8c0" font-size="11">Funnel and conversion analyst:…</text>
+<text x="676" y="794" fill="#e6f8ff" font-size="14">⬡ outreach-writer</text>
+<text x="690" y="812" fill="#8aa8c0" font-size="11">Writes partnership, consulting…</text>
+<text x="966" y="794" fill="#e6f8ff" font-size="14">⬡ legal-reviewer</text>
+<text x="980" y="812" fill="#8aa8c0" font-size="11">Reviews a draft post, article…</text>
+<text x="676" y="844" fill="#fbbf24" font-size="12" opacity="0.85">fresh context each, restricted tools, run in parallel</text>
+<rect x="40" y="890" width="590" height="306" rx="9" fill="url(#panelFill)" stroke="#f87171" stroke-width="1.1"/>
+<path d="M40,890 h22 M40,890 v22" stroke="#fca5a5" stroke-width="2.4" fill="none"/>
+<path d="M630,890 h-22 M630,890 v22" stroke="#fca5a5" stroke-width="2.4" fill="none"/>
+<path d="M40,1196 h22 M40,1196 v-22" stroke="#fca5a5" stroke-width="2.4" fill="none"/>
+<path d="M630,1196 h-22 M630,1196 v-22" stroke="#fca5a5" stroke-width="2.4" fill="none"/>
+<text x="335.0" y="925" text-anchor="middle" fill="#fca5a5" font-size="19" letter-spacing="3" filter="url(#glow)">HOOKS · AUTOMATIC</text>
+<line x1="90" y1="940" x2="580" y2="940" stroke="#f87171" stroke-width="0.9" opacity="0.6"/>
+<text x="66" y="974" fill="#f87171" font-size="15">⛔ guardrails · BLOCKING · 4</text>
+<text x="82" y="994" fill="#8aa8c0" font-size="12.5">destructive Fly</text>
+<text x="82" y="1012" fill="#8aa8c0" font-size="12">PreToolUse</text>
+<text x="66" y="1040" fill="#7ff3ff" font-size="15">◈ coach · NON-BLOCKING · 4</text>
+<text x="82" y="1060" fill="#8aa8c0" font-size="12.5">per-stack nudges on edit (Python/TS/Swift, FEATURE_COLS sync…</text>
+<text x="82" y="1078" fill="#8aa8c0" font-size="12">PostToolUse</text>
+<text x="82" y="1096" fill="#8aa8c0" font-size="12">PostToolUseFailure</text>
+<text x="82" y="1114" fill="#8aa8c0" font-size="12">SessionStart</text>
+<text x="82" y="1132" fill="#8aa8c0" font-size="12">Stop</text>
+<text x="66" y="1178" fill="#f87171" font-size="12.5" opacity="0.85">fire on events, no one calls them: exit 2 vetoes the action</text>
+<rect x="650" y="890" width="590" height="318" rx="9" fill="url(#panelFill)" stroke="#a78bfa" stroke-width="1.1"/>
+<path d="M650,890 h22 M650,890 v22" stroke="#c4b5fd" stroke-width="2.4" fill="none"/>
+<path d="M1240,890 h-22 M1240,890 v22" stroke="#c4b5fd" stroke-width="2.4" fill="none"/>
+<path d="M650,1208 h22 M650,1208 v-22" stroke="#c4b5fd" stroke-width="2.4" fill="none"/>
+<path d="M1240,1208 h-22 M1240,1208 v-22" stroke="#c4b5fd" stroke-width="2.4" fill="none"/>
+<text x="945.0" y="925" text-anchor="middle" fill="#c4b5fd" font-size="19" letter-spacing="3" filter="url(#glow)">INFRASTRUCTURE</text>
+<line x1="700" y1="940" x2="1190" y2="940" stroke="#a78bfa" stroke-width="0.9" opacity="0.6"/>
+<text x="676" y="974" fill="#e6f8ff" font-size="15">⚙ lsp</text>
+<text x="692" y="994" fill="#8aa8c0" font-size="12.5">Python (pyright), TypeScript, Swift</text>
+<text x="676" y="1026" fill="#e6f8ff" font-size="15">⚙ mcp-catalog</text>
+<text x="692" y="1046" fill="#8aa8c0" font-size="12.5">GitHub, Playwright, Postgres</text>
+<text x="676" y="1078" fill="#e6f8ff" font-size="15">⚙ slash commands</text>
+<text x="692" y="1098" fill="#8aa8c0" font-size="12.5">/switch</text>
+<text x="676" y="1130" fill="#e6f8ff" font-size="15">⚙ .claude/ · versioned config</text>
+<text x="692" y="1150" fill="#8aa8c0" font-size="12.5">settings.json + scripts, new machine = clone + copy</text>
+<text x="676" y="1190" fill="#a78bfa" font-size="12.5" opacity="0.85">loaded when plugins are enabled, work in the background</text>
+<text x="640.0" y="1268" text-anchor="middle" fill="#7ff3ff" font-size="17" letter-spacing="5" filter="url(#glow)">TASK LIFECYCLE</text>
+<line x1="380" y1="1280" x2="580" y2="1280" stroke="#22d3ee" stroke-width="0.9" opacity="0.5"/>
+<line x1="700" y1="1280" x2="900" y2="1280" stroke="#22d3ee" stroke-width="0.9" opacity="0.5"/>
+<rect x="34" y="1302" width="145" height="64" rx="7" fill="#0c1a2b" stroke="#22d3ee"/>
+<text x="106.5" y="1329" text-anchor="middle" fill="#e6f8ff" font-size="13">requirements</text>
+<text x="106.5" y="1347" text-anchor="middle" fill="#4a90b8" font-size="11">concretize + edges</text>
+<line x1="179" y1="1334" x2="187" y2="1334" stroke="#22d3ee" marker-end="url(#arrowC)"/>
+<rect x="189" y="1302" width="145" height="64" rx="7" fill="#0c1a2b" stroke="#22d3ee"/>
+<text x="261.5" y="1329" text-anchor="middle" fill="#e6f8ff" font-size="13">plan-task</text>
+<text x="261.5" y="1347" text-anchor="middle" fill="#fbbf24" font-size="11">+ architect</text>
+<line x1="334" y1="1334" x2="342" y2="1334" stroke="#22d3ee" marker-end="url(#arrowC)"/>
+<rect x="344" y="1302" width="145" height="64" rx="7" fill="#0c1a2b" stroke="#22d3ee"/>
+<text x="416.5" y="1329" text-anchor="middle" fill="#e6f8ff" font-size="13">implement</text>
+<text x="416.5" y="1347" text-anchor="middle" fill="#f87171" font-size="11">coach + guardrails</text>
+<line x1="489" y1="1334" x2="497" y2="1334" stroke="#22d3ee" marker-end="url(#arrowC)"/>
+<rect x="499" y="1302" width="145" height="64" rx="7" fill="#0c1a2b" stroke="#22d3ee"/>
+<text x="571.5" y="1329" text-anchor="middle" fill="#e6f8ff" font-size="13">qa</text>
+<text x="571.5" y="1347" text-anchor="middle" fill="#4a90b8" font-size="11">real flows</text>
+<line x1="644" y1="1334" x2="652" y2="1334" stroke="#22d3ee" marker-end="url(#arrowC)"/>
+<rect x="654" y="1302" width="145" height="64" rx="7" fill="#0c1a2b" stroke="#22d3ee"/>
+<text x="726.5" y="1329" text-anchor="middle" fill="#e6f8ff" font-size="13">task-review</text>
+<text x="726.5" y="1347" text-anchor="middle" fill="#fbbf24" font-size="11">+ reviewers</text>
+<line x1="799" y1="1334" x2="807" y2="1334" stroke="#22d3ee" marker-end="url(#arrowC)"/>
+<rect x="809" y="1302" width="145" height="64" rx="7" fill="#0c1a2b" stroke="#f87171"/>
+<text x="881.5" y="1329" text-anchor="middle" fill="#e6f8ff" font-size="13">push gate</text>
+<text x="881.5" y="1347" text-anchor="middle" fill="#f87171" font-size="11">pre-push-review</text>
+<line x1="954" y1="1334" x2="962" y2="1334" stroke="#22d3ee" marker-end="url(#arrowC)"/>
+<rect x="964" y="1302" width="145" height="64" rx="7" fill="#0c1a2b" stroke="#22d3ee"/>
+<text x="1036.5" y="1329" text-anchor="middle" fill="#e6f8ff" font-size="13">deploy</text>
+<text x="1036.5" y="1347" text-anchor="middle" fill="#4a90b8" font-size="11">runbook + verify</text>
+<line x1="1109" y1="1334" x2="1117" y2="1334" stroke="#22d3ee" marker-end="url(#arrowC)"/>
+<rect x="1119" y="1302" width="145" height="64" rx="7" fill="#0c1a2b" stroke="#22d3ee"/>
+<text x="1191.5" y="1329" text-anchor="middle" fill="#e6f8ff" font-size="13">monitor</text>
+<text x="1191.5" y="1347" text-anchor="middle" fill="#fbbf24" font-size="11">logs + debugger</text>
+<path d="M1191.5,1366 C1119,1432 114,1432 106.5,1366" fill="none" stroke="#fbbf24" stroke-width="1.1" stroke-dasharray="5 5" marker-end="url(#arrowG)" opacity="0.85"/>
+<text x="640.0" y="1454" text-anchor="middle" fill="#fbbf24" font-size="12.5" opacity="0.9">bugs and incidents feed back into requirements</text>
+<text x="640.0" y="1494" text-anchor="middle" fill="#4a90b8" font-size="12.5">19 plugins · 28 skills · 16 subagents · 8 hooks · every piece is plain Markdown and shell</text>
 </svg>

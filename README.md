@@ -1,9 +1,9 @@
 # claude-plugins
 
 Nineteen Claude Code plugins I use every day across a Python backend, a React
-web app, a SwiftUI client and an ML pipeline: skills, subagents, blocking
-safety hooks, LSP servers and monitors. One marketplace, shared by every
-project instead of copied into each repo.
+web app, a SwiftUI client and an ML pipeline: 28 skills, 16 subagents, 8
+blocking and coaching hooks, LSP servers and monitors. One marketplace, shared
+by every project instead of copied into each repo.
 
 ```
 /plugin marketplace add kulykivska/claude-plugins
@@ -56,6 +56,13 @@ Highlights; the full table is further down.
   is citable by an AI answer, not only whether it ranks.
 - **`coach`** - non-blocking nudges while you edit, which is where a reminder is
   worth something and a blocked tool call is not.
+- **`ml`** - the pipeline half the reviewers cannot cover: the feature contract
+  between training and serving, the multi-season gate a model change has to pass
+  before it counts, and the artifact/cache steps a release actually needs.
+- **`app-factory`** - one spoken idea to a submitted App Store build, including
+  the two steps that stay manual because Apple requires a human.
+- **`brand`** - `legal-reviewer`, which reads a draft before publication and
+  returns clean, nuances or blocked with the offending lines rewritten.
 
 ## Taking one piece
 
@@ -68,6 +75,15 @@ which is the whole review in about eighty lines, and
 ## How it fits together
 
 ![Marketplace architecture](assets/architecture.svg)
+
+The picture is generated from the repository, not drawn by hand, so it cannot
+drift from what is actually installed:
+
+```
+python3 scripts/gen_architecture.py . "PERSONAL CLAUDE CODE MARKETPLACE" \
+  "ONE SOURCE OF TRUTH · EVERY PROJECT · EVERY SESSION" assets/architecture.svg
+python3 scripts/render_svg.py assets/architecture.svg   # optional PNG
+```
 
 Interactive versions below (GitHub renders Mermaid with pan/zoom controls):
 
@@ -82,7 +98,10 @@ flowchart TB
         morn["morning / evening<br/>daily kickoff + wind-down"]
         sdlcS["sdlc skills:<br/>requirements · plan-task ·<br/>qa · task-review · debug"]
         flyops["fly-ops skills:<br/>deploy · fly-logs · incident"]
-        bizS["seo-audit · social-post ·<br/>weekly-report"]
+        mlS["ml skills:<br/>feature-change · model-eval ·<br/>ship-model"]
+        appf["app-factory<br/>idea → submitted build"]
+        bizS["seo-audit · social-post ·<br/>linkedin-post-writer ·<br/>humanizer · weekly-report"]
+        wsS["workspace:<br/>gmail-sorter-setup · /switch"]
     end
 
     subgraph agents["Engineering subagents"]
@@ -102,6 +121,8 @@ flowchart TB
         asoA["aso-optimizer<br/>(App Store growth)"]
         gaA["growth-analyst<br/>(funnel leaks → experiment)"]
         owA["outreach-writer<br/>(pitches that get replies)"]
+        fcA["fact-checker<br/>(claims verified before publishing)"]
+        lrA["legal-reviewer<br/>(contract · NDA · defamation risk)"]
     end
 
     subgraph hooks["Hooks (automatic)"]
@@ -159,7 +180,7 @@ flowchart LR
 | `content` | subagent + skills | `content-writer` + `/social-post`: one idea into platform-native posts (LinkedIn formula, Threads, X, IG), EN/UK, my voice rules. `/remove-ai-marks`: strip invisible Unicode, statistical watermarks and C2PA/EXIF/XMP metadata from text and files. |
 | `reports` | subagent + skill | `report-builder` + `/weekly-report`: business reports, decks, consulting deliverables with charts. |
 | `biz` | subagents | `aso-optimizer` (App Store), `growth-analyst` (funnel leaks → one experiment), `outreach-writer` (partnership/consulting pitches). |
-| `metrics` | hook + skill | Logs every Claude Code edit to a local JSONL outside the codebase; `/ai-code-report` aggregates the AI-assisted share per repo and period. |
+| `brand` | subagent | `legal-reviewer`: reads a draft post, article or comment for contract, NDA, defamation and disclosure risk, and returns clean / nuances / blocked with the lines at fault. |
 | `ml` | skills | `feature-change` (training/serving schema contract, leakage, deploy order), `model-eval` (multi-season leave-one-out gate: pooled win, no season regresses, effect beats the noise), `ship-model` (snapshot, registry, artifact publish, cache flush, verify against live). |
 | `app-factory` | skill | One spoken idea to a submitted App Store build: requirements, architecture, Xcode scaffolding, implementation, review, simulator QA, screenshots, ASC metadata, TestFlight. |
 | `workspace` | skill + command | `gmail-sorter-setup` (daily cloud routine triaging the logged-in account's inbox into Attention / Health / Receipts) and `/switch` for moving a session between claude.ai profiles. |
