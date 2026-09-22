@@ -1,8 +1,8 @@
 ---
 name: fly-logs
 description: >-
-  Fetch and filter production logs from Fly.io apps. Trigger on "посмотри
-  логи", "check prod logs", "что в логах", or when debugging any production
+  Fetch and filter production logs from Fly.io apps. Trigger on "show me the logs",
+  "check prod logs", "what is in the logs", or when debugging any production
   issue on a Fly-hosted app.
 ---
 

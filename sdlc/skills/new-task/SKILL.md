@@ -5,7 +5,7 @@ description: >-
   contradictory one through. Turns an intake into structured requirements, runs a
   mandatory consistency audit, writes full Gherkin scenarios, and creates the
   ticket in the project's tracker. Also runs in audit mode against a ticket that
-  already exists. Use for "create a task for X", "оформи задачу", "check this
+  already exists. Use for "create a task for X", "write this task up properly", "check this
   ticket for contradictions", or before any feature leaves the idea stage.
 ---
 

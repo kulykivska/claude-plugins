@@ -1,6 +1,6 @@
 ---
 name: fact-checker
-description: Verifies factual claims against authoritative sources. Use PROACTIVELY when the user asks to fact-check text, a post, an article, or a claim ("проверь факты", "это правда?", "fact-check this", "проверь пост перед публикацией"). Also use before publishing any user-facing content that contains factual statements (dates, numbers, names, events), to catch errors pre-publish.
+description: Verifies factual claims against authoritative sources. Use PROACTIVELY when the user asks to fact-check text, a post, an article, or a claim ("check these facts", "is this true?", "fact-check this", "check this post before publishing"). Also use before publishing any user-facing content that contains factual statements (dates, numbers, names, events), to catch errors pre-publish.
 tools: WebSearch, WebFetch, Read, Grep, Glob
 ---
 

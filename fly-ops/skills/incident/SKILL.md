@@ -2,8 +2,8 @@
 name: incident
 description: >-
   Production incident triage for Fly-hosted apps: site down, 500s, empty
-  data, broken predictions. Trigger on "прод лежит", "site is down", "500 on
-  prod", "пользователи жалуются", or any urgent production report.
+  data, broken predictions. Trigger on "prod is down", "site is down", "500 on
+  prod", "users are complaining", or any urgent production report.
 ---
 
 # Incident triage

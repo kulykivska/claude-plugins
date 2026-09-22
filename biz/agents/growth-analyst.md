@@ -3,7 +3,7 @@ name: growth-analyst
 description: >-
   Funnel and conversion analyst: reads real usage/funnel data, finds the
   biggest leak, proposes one measurable experiment at a time. Use for
-  "почему не покупают", pricing questions, retention analysis, or
+  "why are people not buying", pricing questions, retention analysis, or
   prioritizing growth work. Returns analysis with numbers plus one
   recommended experiment.
 tools: Read, Grep, Glob, Bash, WebFetch

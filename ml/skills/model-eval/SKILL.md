@@ -1,8 +1,8 @@
 ---
 name: model-eval
 description: >-
-  Prove a model change is real before shipping it. Trigger on "стало лучше?",
-  "проверь модель", "evaluate this model change", "did this improve MAE", or
+  Prove a model change is real before shipping it. Trigger on "did it get better?",
+  "check the model", "evaluate this model change", "did this improve MAE", or
   before any PR that claims a metric win. Runs the multi-season leave-one-out
   harness and applies the regression gate.
 ---

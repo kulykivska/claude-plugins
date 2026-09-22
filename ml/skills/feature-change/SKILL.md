@@ -2,7 +2,7 @@
 name: feature-change
 description: >-
   Add, remove or rename a model feature without breaking serving. Trigger on
-  "добавь фичу", "новая фича в модель", "add a feature", "remove this
+  "add a model feature", "new feature in the model", "add a feature", "remove this
   feature", or any diff touching the feature schema. Covers the training and
   serving sides of the contract, the leakage check, and deploy ordering.
 ---

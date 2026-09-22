@@ -6,7 +6,7 @@ description: >-
   run BEFORE any `git push`, for EVERY project on EVERY branch. Reviews the
   diff to be pushed, fixes the findings, re-verifies, and only then pushes
   clean code.
-  Trigger on "проверь перед пушем", "запусти проверку перед пушем", "review
+  Trigger on "check before pushing", "run the pre-push check", "review
   before push", "pre-push review", the PRE-PUSH POLICY gate message, or
   proactively whenever about to run `git push` / the user asks to push.
 ---
@@ -42,7 +42,7 @@ git diff origin/main...HEAD 2>/dev/null || git diff main...HEAD   # new branch f
 git diff --name-only <same range>       # scope to changed files
 ```
 
-If the diff is empty, report "нечего проверять" and allow the push.
+If the diff is empty, report "nothing to review" and allow the push.
 
 Then widen once: read each changed file **in full** and find the direct callers and
 callees. Findings split into **in this change** (fix all of them) and **pre-existing,
