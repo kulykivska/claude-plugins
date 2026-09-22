@@ -26,9 +26,15 @@ git rev-parse --show-toplevel 2>/dev/null || { echo "not a git repo"; exit 0; }
 The gate applies to EVERY project on EVERY branch. Only skip when there is
 nothing to review (not a git repo, or an empty push diff in Step 2).
 
-## Step 2 — Collect the diff to review
+## Step 1b — The standard you mark against
 
-Review exactly what will be pushed:
+Read the **`engineering-standards`** skill. It is the same list the code is written
+from, so these findings are ones the author could have avoided rather than rules
+invented at push time. It also defines the scope rule and the one-pass discipline.
+
+## Step 2 — Collect the scope, once
+
+Review what will be pushed, and the code it lives in:
 
 ```bash
 git diff @{upstream}..HEAD              # if an upstream exists
@@ -37,6 +43,11 @@ git diff --name-only <same range>       # scope to changed files
 ```
 
 If the diff is empty, report "нечего проверять" and allow the push.
+
+Then widen once: read each changed file **in full** and find the direct callers and
+callees. Findings split into **in this change** (fix all of them) and **pre-existing,
+found while reading** (fix the small and safe ones; report the rest with a suggested
+fix and let the author decide). Stop at callers and callees.
 
 ## Step 3 — Review across all five dimensions
 
@@ -100,12 +111,14 @@ For every confirmed finding, apply the fix in the working tree:
   unsure.
 - Keep each fix minimal and matched to the surrounding code style.
 
-After fixing, **verify once**: re-read the changed hunks and run the project's
-build / tests / linters. This is one pass, not a loop — if new findings appear
-while fixing, add them to the list and finish the pass rather than restarting the
-analysis. Re-analysis happens only if verification fails, and then only over what
-it flagged. A review that keeps finding one more thing is a review nobody trusts
-to be finished.
+After fixing, **verify once**: build, tests, linter and formatter, plus a re-read of
+the hunks you changed.
+
+This is one pass, not a loop. Collect the scope once, analyse every dimension over it
+once, dedup and verify, fix everything confirmed, then run the gate. Re-analysis only
+if the gate fails, and only over what it flagged. Findings that appear while fixing
+join the list rather than restarting the analysis — a review that keeps finding one
+more thing is a review nobody trusts to be finished.
 
 ## Cost discipline
 
