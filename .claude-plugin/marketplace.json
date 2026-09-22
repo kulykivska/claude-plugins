@@ -1,7 +1,7 @@
 {
   "name": "personal",
   "owner": {
-    "name": "Yuliia Kulykivska"
+    "name": "Engineering"
   },
   "metadata": {
     "description": "Personal Claude Code tooling shared across projects: skills, subagents, hooks, LSP, monitors."
@@ -83,11 +83,6 @@
       "description": "Business growth subagents: aso-optimizer (App Store), growth-analyst (funnel/conversion), outreach-writer (partnership and consulting pitches)."
     },
     {
-      "name": "metrics",
-      "source": "./metrics",
-      "description": "AI-assist telemetry — logs every Claude Code edit to a local JSONL (outside the codebase) + /ai-code-report skill aggregating the AI-assisted share per repo and period."
-    },
-    {
       "name": "ml",
       "source": "./ml",
       "description": "ML pipeline skills: feature-change (training/serving schema contract + leakage check), model-eval (multi-season leave-one-out regression gate), ship-model (snapshot, registry, artifact publish, cache flush, rollback). Pairs with the ml-reviewer subagent."
@@ -101,6 +96,11 @@
       "name": "workspace",
       "source": "./workspace",
       "description": "Claude's own plumbing: gmail-sorter-setup (a daily cloud routine that triages the logged-in account's Gmail) and the /switch command for moving a session between claude.ai profiles."
+    },
+    {
+      "name": "brand",
+      "source": "./brand",
+      "description": "Publication-safety review for personal-brand content: legal-reviewer subagent (contract / NDA / defamation / disclosure risk) + the employer-safety filter."
     }
   ]
 }

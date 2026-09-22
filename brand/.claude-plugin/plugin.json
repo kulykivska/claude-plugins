@@ -1,0 +1,8 @@
+{
+  "name": "brand",
+  "version": "1.0.1",
+  "description": "Publication-safety review for personal-brand content: the legal-reviewer subagent checks a draft post, article or comment for employment-contract, NDA, defamation and disclosure risk, plus the employer-safety filter it marks against. Publishing skills are not part of this plugin yet.",
+  "author": {
+    "name": "Engineering"
+  }
+}

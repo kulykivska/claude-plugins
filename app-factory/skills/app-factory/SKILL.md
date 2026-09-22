@@ -11,9 +11,9 @@ description: >
 
 # App Factory
 
-A pipeline for turning an idea into a shipped iOS app. The point is that Yuliia
-describes what she wants once, in her own words, and everything after that runs
-without her having to specify stages.
+A pipeline for turning an idea into a shipped iOS app. The point is that the
+owner describes what they want once, in their own words, and everything after
+that runs without them having to specify stages.
 
 ## Before anything else
 
@@ -90,7 +90,7 @@ See `references/app-store.md` for the full checklist: certificates, the
 App Store Connect API key, metadata fields Apple rejects builds over, privacy
 nutrition labels, and the fastlane lanes.
 
-Two things always need Yuliia herself and cannot be automated:
+Two things always need the owner in person and cannot be automated:
 
 - The first App Store Connect app record for a brand-new bundle id, if the API
   key lacks the App Manager role.
