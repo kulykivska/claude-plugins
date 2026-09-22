@@ -1,8 +1,0 @@
-{
-  "name": "metrics",
-  "version": "1.0.0",
-  "description": "AI-assist telemetry — logs every Claude Code edit (repo/file/lines) to a local JSONL outside the codebase, plus an /ai-code-report skill that aggregates the share of AI-assisted changes per repo and period.",
-  "author": {
-    "name": "Shmoozer Engineering"
-  }
-}

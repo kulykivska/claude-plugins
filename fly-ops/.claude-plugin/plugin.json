@@ -2,5 +2,5 @@
   "name": "fly-ops",
   "version": "1.0.0",
   "description": "Fly.io ops runbooks: deploy, fly-logs, incident triage.",
-  "author": { "name": "Yuliia Kulykivska" }
+  "author": { "name": "Engineering" }
 }
