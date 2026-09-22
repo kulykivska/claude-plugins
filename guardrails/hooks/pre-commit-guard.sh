@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # PreToolUse(Bash): enforce commit hygiene before a `git commit`:
-#   1) message: no AI attribution / co-author trailers
+#   1) message: no AI attribution / co-author trailers, no people's roles/titles
 #   2) no real secrets/PII in the staged diff (reuses the secret scanner)
 # Blocks (exit 2) on violation. Fail open on anything unexpected.
 
@@ -17,6 +17,12 @@ root="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "$0")/.." && pwd)}"
 # 1) commit-message policy (attribution ban)
 if printf '%s' "$cmd" | grep -qiE 'co-authored-by|generated with claude|noreply@anthropic'; then
   echo "BLOCKED by guardrails (commit policy): remove AI attribution / co-author trailer from the commit message." >&2
+  exit 2
+fi
+
+# 1b) no people's roles or titles in the message — these repos are public.
+if printf '%s' "$cmd" | grep -qiE '\b(CTO|CEO|COO|CFO|CPO|VP of|head of|team lead|tech lead|engineering manager)\b'; then
+  echo "BLOCKED by guardrails (commit policy): don't reference people's roles or titles in commits." >&2
   exit 2
 fi
 
