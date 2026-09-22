@@ -67,10 +67,15 @@ Go through every changed hunk and find real issues (with `file:line`):
    repeated work that should be cached/memoized, sync I/O that should be async,
    chatty network calls, large payloads, missing indexes.
 
-For large diffs, fan the five dimensions out as parallel subagents (one lens
-each), then merge and dedup. For small diffs, do it inline. You may corroborate
-with `/code-review` and `/security-review`, but this skill owns all five
-dimensions and the fixing.
+**Fan the five dimensions out as parallel subagents, in a single message with
+five tool calls** — one lens each, then merge and dedup. Firing them one at a
+time makes the review take the sum of the five instead of the slowest one; that
+is the difference between about a minute and about five. Only skip the fan-out
+when the diff is a handful of lines in one file, and then do all five inline in
+one pass.
+
+You may corroborate with `/code-review` and `/security-review`, but this skill
+owns all five dimensions and the fixing.
 
 ## Step 4 — FIX the findings (this is the point of the skill)
 
@@ -85,10 +90,32 @@ For every confirmed finding, apply the fix in the working tree:
   unsure.
 - Keep each fix minimal and matched to the surrounding code style.
 
-After fixing, **re-verify**: re-read the changed hunks (and re-run the relevant
-dimension checks / build / tests / linters if the project has them) to confirm
-the issue is actually resolved and nothing regressed. Loop fix → re-verify until
-no blocking findings remain.
+After fixing, **verify once**: re-read the changed hunks and run the project's
+build / tests / linters. This is one pass, not a loop — if new findings appear
+while fixing, add them to the list and finish the pass rather than restarting the
+analysis. Re-analysis happens only if verification fails, and then only over what
+it flagged. A review that keeps finding one more thing is a review nobody trusts
+to be finished.
+
+## Cost discipline
+
+The measured cost of this review is dominated by waiting, not by analysis. Three
+rules, in order of how much they save:
+
+1. **Run the whole pass in one turn.** Review, fix, commit, approve and push
+   without handing control back in the middle. Two thirds of the elapsed time of
+   a typical run is the pass stopping and waiting for someone to say "continue".
+2. **Escalate at most once, at the end.** If several findings need a decision,
+   collect them into a single question after the pass is otherwise complete —
+   never one question per finding, never mid-analysis. Nothing ambiguous blocks
+   the fixes that are not.
+3. **Reach the gate once.** Write the approval immediately after the final fix
+   commit, in the same turn, so the gate is hit once rather than repeatedly. A
+   run that trips the gate several times has re-read the same diff each time.
+
+Command hygiene, which is pure overhead: use `git -C <root>` and absolute paths
+instead of chains of `cd`, and put independent commands in one call rather than
+one call each.
 
 Then fold the fixes into the push: either `git commit --amend` (if fixing your
 last commit is appropriate) or add a new commit (e.g. `fix: address pre-push
@@ -101,17 +128,16 @@ Show a short summary: what was found, what was fixed, and anything escalated.
 - **🟢 Clean** — no blocking findings remain. Proceed to push.
 - **🟠 Needs a decision** — an escalated item is waiting on the user. Stop and ask.
 
-When clean and the user is ready to push, record the one-shot approval marker for
-the **current** HEAD (the gate consumes it to let this exact commit through),
-then push:
+When clean, record the one-shot approval and push. The approval script resolves
+HEAD on its own — never type, echo, or ask anyone for a commit hash:
 
 ```bash
-echo "$(git rev-parse HEAD)" > "$(git rev-parse --git-dir)/PREPUSH_REVIEW_OK"
-git push        # the pre-push-gate hook sees the marker and allows it once
+~/.claude/scripts/prepush-approve.sh   # path is also printed by the gate message
+git push                                # the gate sees the approval and allows it once
 ```
 
-If you committed fixes in Step 4, HEAD changed — write the marker AFTER the final
-commit so its sha matches.
+Run it AFTER the final fix commit, so the approval covers the commit being pushed.
+
 
 ## Notes
 
