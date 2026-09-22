@@ -148,7 +148,7 @@ flowchart LR
 | `daily` | skills | `morning` (kickoff recap from git + transcripts + memory) and `evening` (wind-down: today's recap, tomorrow's top 3, wellbeing + who to reach out to). |
 | `guardrails` | blocking hooks | Vetoes destructive Fly ops (destroy/scale-0/secrets unset), DROP/TRUNCATE via DB clients, force-push to main, AI attribution in commits, secrets/PII in staged + pushed diffs. |
 | `coach` | non-blocking hooks | Per-stack nudges on edit (Python/TS/Swift, FEATURE_COLS sync reminder, no long dashes in UI text), session banner, failure hints (ports, Docker reload, Fly release_command), uncommitted reminder. |
-| `sdlc` | skills + subagents | requirements → plan-task → implement → qa → task-review loop, plus `architect` and `debugger` subagents. |
+| `sdlc` | skills + subagents | requirements → plan-task → implement → qa → task-review loop, plus `architect` and `debugger` subagents, `engineering-standards` (the one list writing and reviewing both work from) and `behaviour-events` (analytics ship with the feature). |
 | `reviewers` | subagents | `python-reviewer`, `web-reviewer`, `swiftui-reviewer`, `ml-reviewer` (LORO gate, leakage, cross-repo FEATURE_COLS sync). |
 | `fly-ops` | skills | `deploy` (incl. release_command gotcha), `fly-logs`, `incident` triage with known failure modes. |
 | `lsp` | LSP | pyright, typescript-language-server, sourcekit-lsp (see SETUP.md for binaries). |
@@ -168,6 +168,15 @@ flowchart LR
 
 Some rules are not one plugin's business, so they are written into every plugin
 that touches the relevant stage of the work.
+
+**One engineering standard for writing and for reviewing.** The `engineering-standards`
+skill holds the whole list: architecture, failure handling, security, scalability,
+performance, naming, data and migrations, analytics, tests. The coding work and the
+reviewers both read it, so code is written against the same standard it is marked
+against. It also fixes two things about review itself: the scope is the diff **plus**
+the files it touches in full and their direct callers and callees, with pre-existing
+findings reported in their own section; and a review is one analysis pass, one fix
+pass, one verification run, rather than a find-fix-rerun loop with no natural end.
 
 **Behaviour analytics ship with the feature.** Whenever a feature is added or
 logic that already ships changes, the same change adds the behaviour events for
