@@ -27,7 +27,11 @@ Check every hunk for:
    resilient to missing data (fall back, don't crash); no unbounded growth.
 5. **Security**: no secrets in code or logs, inputs validated, no SQL string
    interpolation, admin endpoints actually gated.
-6. **Hygiene**: leftover breakpoints/prints, dead code, duplication with an
+6. **Behaviour analytics**: new endpoints, new jobs and changed business logic
+   emit their behaviour events (entry, success, failure) through the project's
+   tracking service. No event at all, or a name from outside the existing
+   taxonomy, is a finding. Tracking must never fail the request it measures.
+7. **Hygiene**: leftover breakpoints/prints, dead code, duplication with an
    existing helper.
 
 Return: findings list (severity · file:line · what's wrong · suggested fix),

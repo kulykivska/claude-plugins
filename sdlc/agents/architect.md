@@ -19,7 +19,11 @@ modules, read them, and map the current data flow. Then:
    what each change is, in what order, and what stays untouched.
 3. Call out contracts that must stay in sync (shared schemas, feature columns
    across repos, API shapes consumed by web + iOS).
-4. Define the verification gate: which tests/benchmarks prove no regression
+4. Name the behaviour analytics events the design adds or changes, and where
+   each one is emitted. New capability or changed logic means new events, so the
+   design says which, drawn from the project's existing taxonomy rather than a
+   parallel one invented here.
+5. Define the verification gate: which tests/benchmarks prove no regression
    (for ML changes: multi-season LORO, not single-season noise).
 
 Return the plan as compact markdown. Flag any decision that is genuinely the
