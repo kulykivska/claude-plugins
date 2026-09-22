@@ -1,6 +1,6 @@
 # claude-plugins
 
-Sixteen Claude Code plugins I use every day across a Python backend, a React
+Nineteen Claude Code plugins I use every day across a Python backend, a React
 web app, a SwiftUI client and an ML pipeline: skills, subagents, blocking
 safety hooks, LSP servers and monitors. One marketplace, shared by every
 project instead of copied into each repo.
@@ -159,6 +159,10 @@ flowchart LR
 | `content` | subagent + skills | `content-writer` + `/social-post`: one idea into platform-native posts (LinkedIn formula, Threads, X, IG), EN/UK, my voice rules. `/remove-ai-marks`: strip invisible Unicode, statistical watermarks and C2PA/EXIF/XMP metadata from text and files. |
 | `reports` | subagent + skill | `report-builder` + `/weekly-report`: business reports, decks, consulting deliverables with charts. |
 | `biz` | subagents | `aso-optimizer` (App Store), `growth-analyst` (funnel leaks → one experiment), `outreach-writer` (partnership/consulting pitches). |
+| `metrics` | hook + skill | Logs every Claude Code edit to a local JSONL outside the codebase; `/ai-code-report` aggregates the AI-assisted share per repo and period. |
+| `ml` | skills | `feature-change` (training/serving schema contract, leakage, deploy order), `model-eval` (multi-season leave-one-out gate: pooled win, no season regresses, effect beats the noise), `ship-model` (snapshot, registry, artifact publish, cache flush, verify against live). |
+| `app-factory` | skill | One spoken idea to a submitted App Store build: requirements, architecture, Xcode scaffolding, implementation, review, simulator QA, screenshots, ASC metadata, TestFlight. |
+| `workspace` | skill + command | `gmail-sorter-setup` (daily cloud routine triaging the logged-in account's inbox into Attention / Health / Receipts) and `/switch` for moving a session between claude.ai profiles. |
 
 ## How I run it
 

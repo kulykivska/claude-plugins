@@ -70,7 +70,7 @@
     {
       "name": "content",
       "source": "./content",
-      "description": "content-writer subagent + social-post and remove-ai-marks skills: one idea into platform-native posts for LinkedIn, Threads, X, Instagram; EN/UK, owner's voice, plus AI-provenance mark removal."
+      "description": "content-writer and fact-checker subagents + social-post, linkedin-post-writer, racemodel-post-writer, humanizer and remove-ai-marks skills: one idea into platform-native posts for LinkedIn, Threads, X, Instagram; EN/UK, owner's voice, fact-checked, humanized, and stripped of AI provenance marks."
     },
     {
       "name": "reports",
@@ -86,6 +86,21 @@
       "name": "metrics",
       "source": "./metrics",
       "description": "AI-assist telemetry — logs every Claude Code edit to a local JSONL (outside the codebase) + /ai-code-report skill aggregating the AI-assisted share per repo and period."
+    },
+    {
+      "name": "ml",
+      "source": "./ml",
+      "description": "ML pipeline skills: feature-change (training/serving schema contract + leakage check), model-eval (multi-season leave-one-out regression gate), ship-model (snapshot, registry, artifact publish, cache flush, rollback). Pairs with the ml-reviewer subagent."
+    },
+    {
+      "name": "app-factory",
+      "source": "./app-factory",
+      "description": "app-factory skill: one spoken idea to a submitted App Store build. Requirements, architecture, Xcode scaffolding, implementation, review, simulator QA, screenshots, App Store Connect metadata, TestFlight and submission."
+    },
+    {
+      "name": "workspace",
+      "source": "./workspace",
+      "description": "Claude's own plumbing: gmail-sorter-setup (a daily cloud routine that triages the logged-in account's Gmail) and the /switch command for moving a session between claude.ai profiles."
     }
   ]
 }
