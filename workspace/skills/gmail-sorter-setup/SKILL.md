@@ -4,7 +4,7 @@ description: >
   Set up the "Morning Gmail Sorter" cloud routine for whichever claude.ai
   account is currently logged in: creates a daily scheduled cloud agent that
   triages the connected Gmail inbox into Attention / Health / Receipts labels
-  and flags obvious spam. Trigger on "настрой сортировку почты",
+  and flags obvious spam. Trigger on "set up mail sorting",
   "set up gmail sorter", "/gmail-sorter-setup". Works for any account —
   the Gmail connector of the CURRENT account is used.
 ---

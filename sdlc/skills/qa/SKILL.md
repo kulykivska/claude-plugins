@@ -2,7 +2,7 @@
 name: qa
 description: >-
   Exercise a change end-to-end like a user before declaring it done. Trigger
-  on "протестируй", "qa this", or after implementing any user-visible change.
+  on "test this", "qa this", or after implementing any user-visible change.
   Drives the real flow (API calls, running app, UI), not just unit tests.
 ---
 

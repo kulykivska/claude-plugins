@@ -2,8 +2,8 @@
 name: weekly-report
 description: >-
   Generate the weekly business report across projects: what shipped, metric
-  movement, incidents, next week's plan. Trigger on "недельный отчет",
-  "weekly report", "как прошла неделя", or on a Friday/Sunday recap request.
+  movement, incidents, next week's plan. Trigger on "weekly report",
+  "how did the week go", or on a Friday/Sunday recap request.
 ---
 
 # Weekly report

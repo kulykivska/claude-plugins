@@ -2,7 +2,7 @@
 name: debug
 description: >-
   Systematic debugging of a reported problem: reproduce, gather evidence from
-  logs, hypothesize, fix, verify. Trigger on "не работает", "разберись почему",
+  logs, hypothesize, fix, verify. Trigger on "it is broken", "figure out why",
   "debug", a pasted stack trace, or a prod incident report.
 ---
 

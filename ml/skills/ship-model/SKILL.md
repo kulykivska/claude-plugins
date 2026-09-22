@@ -1,8 +1,8 @@
 ---
 name: ship-model
 description: >-
-  Release a retrained model into serving. Trigger on "выкати модель",
-  "задеплой модель", "ship this model", "publish the new weights", or after a
+  Release a retrained model into serving. Trigger on "ship this model",
+  "publish the model", "publish the new weights", or after a
   model change has passed the eval gate. Covers snapshot, registry, artifact
   publish, verification against live, and the rollback path.
 ---
