@@ -1,6 +1,6 @@
 {
   "name": "content",
-  "version": "1.0.0",
-  "description": "content-writer subagent + social-post and remove-ai-marks skills: one idea into platform-native posts for LinkedIn, Threads, X, and Instagram, EN/UK, in the owner's voice, plus removal of AI provenance marks from text and files.",
+  "version": "1.1.0",
+  "description": "content-writer and fact-checker subagents + social-post, linkedin-post-writer, racemodel-post-writer, humanizer and remove-ai-marks skills: one idea into platform-native posts for LinkedIn, Threads, X, and Instagram, EN/UK, in the owner's voice, fact-checked, humanized, and stripped of AI provenance marks.",
   "author": { "name": "Yuliia Kulykivska" }
 }
