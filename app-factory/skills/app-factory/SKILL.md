@@ -5,7 +5,7 @@ description: >
   Runs the whole pipeline with subagents: requirements, architecture, Xcode
   project scaffolding, implementation, review, simulator QA, screenshots,
   App Store Connect metadata, TestFlight and submission. Trigger on
-  "сделай приложение", "хочу приложение которое...", "build me an app",
+  "build me an app", "I want an app that...", "build me an app",
   "new app", "/app-factory", or any request to create and ship an iOS app.
 ---
 

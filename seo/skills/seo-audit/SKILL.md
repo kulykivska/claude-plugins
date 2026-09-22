@@ -1,9 +1,9 @@
 ---
 name: seo-audit
 description: >-
-  Run an SEO audit of a site, section, or single page. Trigger on "проверь
-  SEO", "seo audit", "почему нас не видно в гугле", "оптимизируй страницу под
-  поиск", or after shipping new public pages. Delegates the deep pass to the
+  Run an SEO audit of a site, section, or single page. Trigger on "check
+  SEO", "seo audit", "why are we not showing up on Google", "optimize this
+  page for search", or after shipping new public pages. Delegates the deep pass to the
   seo-strategist subagent and turns the result into applied fixes.
 ---
 

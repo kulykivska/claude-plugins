@@ -1,8 +1,8 @@
 ---
 name: morning
 description: >-
-  Morning standup / daily kickoff. On "morning" (or "/morning", "доброе утро",
-  "что вчера делали", "с чего начать") produce a per-project recap of what was
+  Morning standup / daily kickoff. On "morning" (or "/morning", "good morning",
+  "what did we do yesterday", "where do I start") produce a per-project recap of what was
   done YESTERDAY across all projects and what to continue or do next — pulled
   from git commits and yesterday's Claude Code conversations/transcripts and
   project memory. Use whenever the user types `morning` or asks for a daily

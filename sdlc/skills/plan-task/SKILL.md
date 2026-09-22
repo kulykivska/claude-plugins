@@ -2,7 +2,7 @@
 name: plan-task
 description: >-
   Plan the implementation of a defined task before writing code. Trigger on
-  "спланируй", "plan this", or before starting any multi-file change. Produces
+  "plan this out", "plan this", or before starting any multi-file change. Produces
   the file-level plan, risks, and verification strategy, grounded in the
   actual code (not assumptions).
 ---

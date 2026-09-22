@@ -2,7 +2,7 @@
 name: task-review
 description: >-
   Task-scoped review after implementing: regressions, bugs, and smells on the
-  touched files only. Trigger on "проверь задачу", "review the task", or after
+  touched files only. Trigger on "review the task", or after
   finishing a multi-file change before commit. Complements pre-push-review
   (which gates the push); this one runs right after implementation.
 ---

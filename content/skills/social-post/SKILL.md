@@ -2,7 +2,7 @@
 name: social-post
 description: >-
   Create posts for one or several social networks from an idea or recent
-  work. Trigger on "напиши пост", "сделай пост для...", "запость про...",
+  work. Trigger on "write a post", "make a post for...", "post about...",
   "write a post about...", or when the user wants to announce something
   shipped. Orchestrates the content-writer subagent with real material.
 ---

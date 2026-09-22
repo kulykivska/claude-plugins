@@ -2,7 +2,7 @@
 name: deploy
 description: >-
   Deploy a Fly.io-hosted app safely and verify the rollout. Trigger on
-  "задеплой", "deploy", "выкати на прод", or after merging work that must go
+  "deploy", "ship it to prod", or after merging work that must go
   live. Covers the push-to-main pipeline, the local flyctl fallback, the
   release_command gotcha, and post-deploy verification.
 ---

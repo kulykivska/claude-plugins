@@ -1,7 +1,7 @@
 ---
 name: linkedin-post-writer
 description: >
-  Use this skill whenever the user wants to write, draft, or improve a LinkedIn post — especially when the goal is maximum reach, impressions, or engagement. Trigger for requests like "напиши пост для LinkedIn", "помоги написать пост", "создай LinkedIn-пост о...", "write a LinkedIn post about...", "draft a post for my LinkedIn", "how should I post about X on LinkedIn", or any request to create social media content for LinkedIn. Also trigger when the user says "опубликуй пост", "сделай пост", or asks for content that would fit a LinkedIn update. This skill encodes a data-driven formula derived from real post analytics — use it proactively any time LinkedIn post creation is involved.
+  Use this skill whenever the user wants to write, draft, or improve a LinkedIn post — especially when the goal is maximum reach, impressions, or engagement. Trigger for requests like "write a LinkedIn post", "help me draft a post", "create a LinkedIn post about...", "write a LinkedIn post about...", "draft a post for my LinkedIn", "how should I post about X on LinkedIn", or any request to create social media content for LinkedIn. Also trigger when the user says "publish this post", "make a post", or asks for content that would fit a LinkedIn update. This skill encodes a data-driven formula derived from real post analytics — use it proactively any time LinkedIn post creation is involved.
 ---
 
 # LinkedIn Post Writer — Proven High-Reach Formula

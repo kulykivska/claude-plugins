@@ -2,7 +2,7 @@
 name: requirements
 description: >-
   Turn a raw (often dictated) idea into concrete requirements before coding.
-  Trigger on "давай сделаем...", "хочу фичу...", "add a feature", or any
+  Trigger on "let us build...", "I want a feature...", "add a feature", or any
   substantial new-feature request where scope is fuzzy. Produces user-visible
   behavior, edge cases, acceptance criteria, and a consistency check against
   the existing app.

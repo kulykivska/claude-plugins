@@ -5,7 +5,7 @@ description: >-
   owner's projects. Load PROACTIVELY during development, code review, and
   planning of any feature that sends notifications, handles errors, or runs
   on a schedule - and whenever a new incident is analyzed, append its lesson
-  here. Trigger on "проверь на повторяющиеся события", "lessons", or when
+  here. Trigger on "check for repeat incidents", "lessons", or when
   implementing notification/alert/email logic.
 ---
 

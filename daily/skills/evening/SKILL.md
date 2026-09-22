@@ -2,7 +2,7 @@
 name: evening
 description: >-
   Evening wind-down, the pair of /morning. On "evening" (or "/evening",
-  "на сегодня хватит", "чем закончить день", "подведи итог дня") close the
+  "that is enough for today", "how should I end the day", "sum up the day") close the
   work day: summarize what was done TODAY, name what can wait until
   tomorrow, and suggest how to spend the evening well: physical activity,
   mental recovery, and one or two people worth talking to. Use whenever the
@@ -76,7 +76,7 @@ priority order:
 **Tonight:** <one physical + one mental suggestion, one line each>
 **Reach out:** <1-2 people and why>
 
-Работы на сегодня хватит. 🙂
+That is enough for today.
 ```
 
 Keep the whole thing under 20 lines. Never add new work items in the
