@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# PreToolUse gate for `git push`.
+# PreToolUse gate for `git push` (personal guardrails plugin).
 # Blocks the push until a pre-push review has run. Applies to EVERY project
 # and EVERY branch (no per-project exemptions).
 # After the review passes, prepush-approve.sh (next to this script) writes the
