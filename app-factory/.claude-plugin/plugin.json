@@ -1,0 +1,6 @@
+{
+  "name": "app-factory",
+  "version": "1.0.0",
+  "description": "app-factory skill: one spoken idea to a submitted App Store build. Requirements, architecture, Xcode scaffolding, implementation, review, simulator QA, screenshots, App Store Connect metadata, TestFlight and submission.",
+  "author": { "name": "Yuliia Kulykivska" }
+}
