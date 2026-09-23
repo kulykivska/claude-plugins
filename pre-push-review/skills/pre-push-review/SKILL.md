@@ -3,9 +3,9 @@ name: pre-push-review
 description: >-
   Comprehensive pre-push review that FIXES issues before pushing — covering code
   smells, architectural patterns, security, scalability, and performance. MUST
-  run BEFORE any `git push`, for EVERY project on EVERY branch. Reviews the
-  diff to be pushed, fixes the findings, re-verifies, and only then pushes
-  clean code.
+  run BEFORE any `git push`, for EVERY project on EVERY branch (except
+  Shmoozer `hotfix*` branches). Reviews the diff to be pushed, fixes the
+  findings, re-verifies, and only then pushes clean code.
   Trigger on "check before pushing", "run the pre-push check", "review
   before push", "pre-push review", the PRE-PUSH POLICY gate message, or
   proactively whenever about to run `git push` / the user asks to push.
@@ -23,7 +23,9 @@ of security / scalability / performance problems.
 git rev-parse --show-toplevel 2>/dev/null || { echo "not a git repo"; exit 0; }
 ```
 
-The gate applies to EVERY project on EVERY branch. Only skip when there is
+The gate applies to EVERY project on EVERY branch, with one exception: in a
+Shmoozer repo (path contains `Shmoozer`), a branch whose name starts with `hotfix`
+(`hotfix/...`, `hotfix-...`) skips the review. Otherwise only skip when there is
 nothing to review (not a git repo, or an empty push diff in Step 2).
 
 ## Step 1b — The standard you mark against

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # PreToolUse gate for `git push`.
 # Blocks the push until a pre-push review has run. Applies to EVERY project
-# and EVERY branch (no per-project exemptions).
+# and EVERY branch, except `hotfix*` branches in Shmoozer repos.
 # After the review passes, prepush-approve.sh (next to this script) writes the
 # marker ($GIT_DIR/PREPUSH_REVIEW_OK = HEAD sha); the gate lets that exact commit
 # through while the marker matches HEAD. A stale marker (different sha) is
@@ -31,6 +31,13 @@ root=$(git rev-parse --show-toplevel 2>/dev/null) || exit 0
 branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "")
 gitdir=$(git rev-parse --git-dir 2>/dev/null || echo "")
 head=$(git rev-parse HEAD 2>/dev/null || echo "")
+
+# Shmoozer hotfix branches skip the review so an urgent fix ships without delay.
+case "$root" in
+  *Shmoozer*|*shmoozer*)
+    case "$branch" in hotfix*) exit 0 ;; esac
+    ;;
+esac
 
 # Approval marker: review already done & approved for this exact commit.
 # Valid while it matches HEAD (any new commit invalidates it); stale = removed.
