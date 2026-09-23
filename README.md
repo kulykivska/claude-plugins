@@ -237,7 +237,7 @@ Claude Code config:
 
 - `.claude/settings.json`: copy of `~/.claude/settings.json`
 - `.claude/scripts/pre-push-gate.sh`: the push gate, generic (every project,
-  every branch, no per-project exemptions); the live copy is
+  every branch; the only exemption is Shmoozer `hotfix*` branches); the live copy is
   `~/.claude/scripts/pre-push-gate.sh`
 - `.claude/scripts/statusline.sh`: status line script
 
