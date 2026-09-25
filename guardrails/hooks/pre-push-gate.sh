@@ -18,13 +18,32 @@ extract() { printf '%s' "$input" | plutil -extract "$1" raw -o - - 2>/dev/null; 
 
 # Only act on `git push` (optionally with global flags like `git --no-pager push`).
 cmd=$(extract tool_input.command)
-printf '%s' "$cmd" | grep -Eq 'git([[:space:]]+-[^[:space:]]+)*[[:space:]]+push' || exit 0
+printf '%s' "$cmd" | grep -Eq 'git([[:space:]]+(-C[[:space:]]+[^[:space:]]+|-[^[:space:]]+))*[[:space:]]+push([[:space:]]|$)' || exit 0
 
 # Run in the session's working directory.
 cwd=$(extract cwd)
 # A failed cd would gate whatever directory the hook happens to be in, so
 # bail out instead and let the push through (fail open, as everywhere else).
 [ -n "$cwd" ] && { cd "$cwd" 2>/dev/null || exit 0; }
+
+# `git -C <dir> push` and `cd <dir> && git push` push a repo other than the session's cwd,
+# so gate that repo; an unresolvable path (a shell variable) blocks instead of slipping through.
+path_re='("[^"]+"|'"'"'[^'"'"']+'"'"'|[^[:space:];&|]+)'
+target=""
+if [[ "$cmd" =~ git[[:space:]]+-C[[:space:]]+$path_re[[:space:]]+push ]]; then
+  target="${BASH_REMATCH[1]}"
+elif [[ "$cmd" =~ (^|[;&|[:space:]])cd[[:space:]]+$path_re ]]; then
+  target="${BASH_REMATCH[2]}"
+fi
+if [ -n "$target" ]; then
+  target="${target#\"}"; target="${target%\"}"; target="${target#\'}"; target="${target%\'}"
+  case "$target" in "~"*) target="$HOME${target#\~}" ;; esac
+  case "$target" in *'$'*|*'`'*)
+    echo "⛔ Pre-push gate: cannot tell which repo '$target' is. Push with a literal path." >&2
+    exit 2 ;;
+  esac
+  cd "$target" 2>/dev/null || { echo "⛔ Pre-push gate: push target '$target' is not a directory." >&2; exit 2; }
+fi
 
 # Not a git repo -> nothing to gate.
 root=$(git rev-parse --show-toplevel 2>/dev/null) || exit 0
