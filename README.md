@@ -1,7 +1,7 @@
 # claude-plugins
 
-Nineteen Claude Code plugins I use every day across a Python backend, a React
-web app, a SwiftUI client and an ML pipeline: 28 skills, 16 subagents, 8
+Twenty-one Claude Code plugins I use every day across a Python backend, a React
+web app, iOS and Android clients and an ML pipeline: 35 skills, 20 subagents, 8
 blocking and coaching hooks, LSP servers and monitors. One marketplace, shared
 by every project instead of copied into each repo.
 
@@ -49,6 +49,13 @@ Highlights; the full table is further down.
   someone's personal data.
 - **`reviewers`** - four subagents that each know one stack, so a review of a
   SwiftUI diff talks about StoreKit and crashes rather than generic advice.
+- **`delivery`** - `ship` takes an idea or a ticket to a published result on its
+  own: it runs analyst, architect, implementers in parallel, reviewers, QA and
+  release as subagents, decides open questions itself, and logs every decision in
+  the pull request. It stops only for money, credentials, data deletion and legal
+  calls.
+- **`coding`** - per-stack guides for web, backend (FastAPI, NestJS), iOS and
+  Android, plus mobile accessibility, written from the same list the reviewers use.
 - **`sdlc`** - requirements to plan to implementation to QA to review, with an
   `architect` that designs before anyone writes code and a `debugger` that works
   from logs and stack traces rather than guesses.
@@ -100,6 +107,8 @@ flowchart TB
         flyops["fly-ops skills:<br/>deploy · fly-logs · incident"]
         mlS["ml skills:<br/>feature-change · model-eval ·<br/>ship-model"]
         appf["app-factory<br/>idea → submitted build"]
+        shipS["delivery: ship<br/>idea → published result"]
+        codeS["coding skills:<br/>web · backend · ios ·<br/>android · mobile-accessibility"]
         bizS["seo-audit · social-post ·<br/>linkedin-post-writer ·<br/>humanizer · weekly-report"]
         wsS["workspace:<br/>gmail-sorter-setup · /switch"]
     end
@@ -110,6 +119,8 @@ flowchart TB
         pyr["python-reviewer<br/>(FastAPI, async, failure paths)"]
         webr["web-reviewer<br/>(React/TS, i18n, gating)"]
         swiftr["swiftui-reviewer<br/>(crashes, StoreKit, l10n)"]
+        andr["android-reviewer<br/>(MVI, coroutines, vacuous tests)"]
+        implA["implementer · qa-engineer ·<br/>release-manager<br/>(delivery team)"]
         mlr["ml-reviewer<br/>(LORO gate, leakage,<br/>FEATURE_COLS sync)"]
     end
 
@@ -144,6 +155,10 @@ flowchart TB
     mp --> infra
 
     sdlcS -. delegates to .-> arch
+    shipS -. leads .-> implA
+    shipS -. leads .-> arch
+    shipS -. leads .-> swiftr
+    shipS -. leads .-> andr
     sdlcS -. delegates to .-> dbg
     ppr -. can corroborate with .-> pyr
     ppr -. can corroborate with .-> webr
@@ -169,8 +184,10 @@ flowchart LR
 | `daily` | skills | `morning` (kickoff recap from git + transcripts + memory) and `evening` (wind-down: today's recap, tomorrow's top 3, wellbeing + who to reach out to). |
 | `guardrails` | blocking hooks | Vetoes destructive Fly ops (destroy/scale-0/secrets unset), DROP/TRUNCATE via DB clients, force-push to main, AI attribution in commits, secrets/PII in staged + pushed diffs. |
 | `coach` | non-blocking hooks | Per-stack nudges on edit (Python/TS/Swift, FEATURE_COLS sync reminder, no long dashes in UI text), session banner, failure hints (ports, Docker reload, Fly release_command), uncommitted reminder. |
-| `sdlc` | skills + subagents | requirements → plan-task → implement → qa → task-review loop, plus `architect` and `debugger` subagents, `engineering-standards` (the one list writing and reviewing both work from) and `behaviour-events` (analytics ship with the feature). |
-| `reviewers` | subagents | `python-reviewer`, `web-reviewer`, `swiftui-reviewer`, `ml-reviewer` (LORO gate, leakage, cross-repo FEATURE_COLS sync). |
+| `sdlc` | skills + subagents | requirements → plan-task → implement → qa → task-review loop, `branch-commit`, plus `architect` and `debugger` subagents, `engineering-standards` (the one list writing and reviewing both work from) and `behaviour-events` (analytics ship with the feature). |
+| `delivery` | skill + subagents | `ship`: an autonomous lead that takes an idea, issue or ticket to a PR, a release or a published announcement, directing `implementer`, `qa-engineer` and `release-manager` plus the sdlc and reviewer subagents, and deciding open questions with a logged rule instead of asking. |
+| `coding` | skills | `web-coding`, `backend-coding` (FastAPI, NestJS), `ios-coding`, `android-coding`, `mobile-accessibility`: what to get right while writing, and the build and test traps per stack. |
+| `reviewers` | subagents | `python-reviewer`, `web-reviewer`, `swiftui-reviewer`, `android-reviewer`, `ml-reviewer` (LORO gate, leakage, cross-repo FEATURE_COLS sync). |
 | `fly-ops` | skills | `deploy` (incl. release_command gotcha), `fly-logs`, `incident` triage with known failure modes. |
 | `lsp` | LSP | pyright, typescript-language-server, sourcekit-lsp (see SETUP.md for binaries). |
 | `monitors` | monitors | tsc-watch build errors + `.dev.log` error tail, idle-safe. |
