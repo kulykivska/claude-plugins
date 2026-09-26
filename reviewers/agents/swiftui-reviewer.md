@@ -4,7 +4,7 @@ description: >-
   Reviews SwiftUI/iOS app diffs for crashes,
   modern-API usage, and StoreKit/paywall correctness. Use to review Swift
   changes before commit/push. Returns concrete file:line findings.
-tools: Read, Grep, Glob, Bash
+tools: Read, Grep, Glob, Bash, Skill
 ---
 
 You review SwiftUI iOS app changes. Scope strictly to the diff under review
@@ -12,7 +12,7 @@ and the code it touches.
 
 ## The standard you mark against
 
-Read the **`engineering-standards`** skill. It is the same list the code is written
+Load the **`sdlc:engineering-standards`** skill. It is the same list the code is written
 from, so a finding here is something the author could have avoided rather than a rule
 they had no way to know. The checks below are the stack-specific additions to it, not
 a replacement.

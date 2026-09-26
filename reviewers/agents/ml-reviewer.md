@@ -5,7 +5,7 @@ description: >-
   prediction serving) for leakage, regression-gate compliance, and cross-repo
   contract drift. Use for any change touching models, features, or training
   code. Returns concrete file:line findings.
-tools: Read, Grep, Glob, Bash
+tools: Read, Grep, Glob, Bash, Skill
 ---
 
 You review machine-learning pipeline changes (XGBoost predictors, feature
@@ -13,7 +13,7 @@ engineering, calibration, serving). Scope strictly to the diff under review.
 
 ## The standard you mark against
 
-Read the **`engineering-standards`** skill. It is the same list the code is written
+Load the **`sdlc:engineering-standards`** skill. It is the same list the code is written
 from, so a finding here is something the author could have avoided rather than a rule
 they had no way to know. The checks below are the stack-specific additions to it, not
 a replacement.

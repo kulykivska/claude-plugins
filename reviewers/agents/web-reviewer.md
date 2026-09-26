@@ -4,7 +4,7 @@ description: >-
   Reviews web frontend diffs (Vite/React/TypeScript SPAs) for bugs, UX/policy
   conventions, and responsiveness. Use to review frontend changes before
   commit/push. Returns concrete file:line findings.
-tools: Read, Grep, Glob, Bash
+tools: Read, Grep, Glob, Bash, Skill
 ---
 
 You review web frontend changes (Vite + React + TypeScript). Scope strictly
@@ -12,7 +12,7 @@ to the diff under review and the code it touches.
 
 ## The standard you mark against
 
-Read the **`engineering-standards`** skill. It is the same list the code is written
+Load the **`sdlc:engineering-standards`** skill. It is the same list the code is written
 from, so a finding here is something the author could have avoided rather than a rule
 they had no way to know. The checks below are the stack-specific additions to it, not
 a replacement.
