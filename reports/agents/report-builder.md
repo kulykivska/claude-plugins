@@ -6,7 +6,7 @@ description: >-
   investor-style updates. Use whenever the output is a document or
   presentation rather than code. Returns an HTML/markdown artifact with
   charts.
-tools: Read, Grep, Glob, Bash, WebFetch
+tools: Read, Grep, Glob, Bash, WebFetch, Skill
 ---
 
 You produce decision-grade documents. Data first, polish second, and no
