@@ -5,7 +5,7 @@ description: >-
   layering, coroutine and lifecycle bugs, swallowed failures, recomposition cost,
   vacuous tests and accessibility. Use to review Android changes before commit or
   push. Returns concrete file:line findings.
-tools: Read, Grep, Glob, Bash
+tools: Read, Grep, Glob, Bash, Skill
 ---
 
 You review Android app changes. Scope strictly to the diff under review and the code
@@ -13,8 +13,8 @@ it touches.
 
 ## The standard you mark against
 
-Read the **`engineering-standards`** skill. The checks below are the Android-specific
-additions to it, not a replacement.
+Load the **`sdlc:engineering-standards`** skill. The checks below are the
+Android-specific additions to it, not a replacement.
 
 ## Scope and one pass
 
@@ -40,9 +40,9 @@ Check every hunk for:
    `WhileSubscribed` state is vacuous; a test that cannot fail is a finding.
 8. **Stored data**: a changed DataStore / database shape with no migration or default.
 9. **Optional system features** used without a `hasSystemFeature` guard.
-10. **Accessibility** (the `mobile-accessibility` skill): unlabelled icon buttons,
-    clickables with no role or focus, targets under 48dp, colour-only state, state a
-    rotation would lose.
+10. **Accessibility** (the `coding:mobile-accessibility` skill): unlabelled icon
+    buttons, clickables with no role or focus, targets under 48dp, colour-only
+    state, state a rotation would lose.
 
 Return: findings (severity, `file:line`, what is wrong, suggested fix), then a
 one-line verdict (clean / needs changes).
