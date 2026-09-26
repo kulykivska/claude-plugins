@@ -35,7 +35,7 @@
     {
       "name": "reviewers",
       "source": "./reviewers",
-      "description": "Per-stack reviewer subagents: Python/FastAPI, web (Vite/React/TS), SwiftUI, and ML pipeline (LORO gate, FEATURE_COLS sync, leakage)."
+      "description": "Per-stack reviewer subagents: Python/FastAPI, web (Vite/React/TS), SwiftUI, Android, and ML pipeline (LORO gate, FEATURE_COLS sync, leakage)."
     },
     {
       "name": "fly-ops",
@@ -101,6 +101,16 @@
       "name": "brand",
       "source": "./brand",
       "description": "Publication-safety review for personal-brand content: legal-reviewer subagent (contract / NDA / defamation / disclosure risk) + the employer-safety filter."
+    },
+    {
+      "name": "coding",
+      "source": "./coding",
+      "description": "Per-stack coding guides: web-coding (React/TS), backend-coding (FastAPI, NestJS), ios-coding (SwiftUI), android-coding (Compose) and mobile-accessibility, all written from engineering-standards."
+    },
+    {
+      "name": "delivery",
+      "source": "./delivery",
+      "description": "Autonomous delivery from idea to published result: the ship skill leads, implementer / qa-engineer / release-manager subagents do the work, and open questions are decided and logged instead of asked."
     }
   ]
 }
