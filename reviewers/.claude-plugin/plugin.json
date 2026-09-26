@@ -1,7 +1,7 @@
 {
   "name": "reviewers",
-  "version": "1.1.0",
-  "description": "Per-stack reviewer subagents: Python/FastAPI, web (Vite/React/TS), SwiftUI, ML pipeline.",
+  "version": "1.2.0",
+  "description": "Per-stack reviewer subagents: Python/FastAPI, web (Vite/React/TS), SwiftUI, Android (Compose), ML pipeline.",
   "author": {
     "name": "Engineering"
   }

@@ -1,0 +1,8 @@
+{
+  "name": "delivery",
+  "version": "1.0.0",
+  "description": "Autonomous delivery: the ship skill leads a run from idea to published result, directing implementer, qa-engineer and release-manager subagents alongside the sdlc, coding and reviewers plugins, and deciding open questions itself.",
+  "author": {
+    "name": "Engineering"
+  }
+}
