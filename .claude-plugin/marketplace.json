@@ -101,6 +101,16 @@
       "name": "brand",
       "source": "./brand",
       "description": "Publication-safety review for personal-brand content: legal-reviewer subagent (contract / NDA / defamation / disclosure risk) + the employer-safety filter."
+    },
+    {
+      "name": "product-design",
+      "source": "./product-design",
+      "description": "Selling and retention design: conversion-review, paywall-and-pricing, habit-loop, landing-builder and ux-copy skills + conversion-reviewer subagent. Honest by default (no dark patterns), every finding names the event that proves it."
+    },
+    {
+      "name": "ux-craft",
+      "source": "./ux-craft",
+      "description": "Apple-grade UX and the toy feel: delight-spec (spring, haptic and motion tokens with CSS and SwiftUI snippets), hig-review, and the design-first redesign orchestrator (5-6 directions, design system, screens, then plan) + hig-reviewer subagent."
     }
   ]
 }
