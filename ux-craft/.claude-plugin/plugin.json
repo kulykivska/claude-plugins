@@ -1,0 +1,6 @@
+{
+  "name": "ux-craft",
+  "version": "1.0.0",
+  "description": "Apple-grade UX and the toy feel: delight-spec (spring, haptic and motion tokens), hig-review (Human Interface Guidelines audit) and the design-first redesign orchestrator + the hig-reviewer subagent.",
+  "author": { "name": "Engineering" }
+}
