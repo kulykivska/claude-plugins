@@ -1,7 +1,7 @@
 # claude-plugins
 
-Nineteen Claude Code plugins I use every day across a Python backend, a React
-web app, a SwiftUI client and an ML pipeline: 28 skills, 16 subagents, 8
+Twenty-one Claude Code plugins I use every day across a Python backend, a
+React web app, a SwiftUI client and an ML pipeline: 36 skills, 18 subagents, 8
 blocking and coaching hooks, LSP servers and monitors. One marketplace, shared
 by every project instead of copied into each repo.
 
@@ -63,6 +63,15 @@ Highlights; the full table is further down.
   the two steps that stay manual because Apple requires a human.
 - **`brand`** - `legal-reviewer`, which reads a draft before publication and
   returns clean, nuances or blocked with the offending lines rewritten.
+- **`product-design`** - selling and retention design that stays honest:
+  conversion reviews where every finding names the event that proves the fix,
+  paywalls that preview instead of lock, return loops built on the product's
+  real calendar, landing pages per audience, and microcopy without jargon. Dark
+  patterns are listed as forbidden, not as options.
+- **`ux-craft`** - the Apple-grade half: a motion and haptics spec with real
+  spring tokens for CSS and SwiftUI, a HIG review, and a `redesign`
+  orchestrator that always shows five or six directions and writes no product
+  code before one is approved.
 
 ## Taking one piece
 
@@ -102,6 +111,8 @@ flowchart TB
         appf["app-factory<br/>idea → submitted build"]
         bizS["seo-audit · social-post ·<br/>linkedin-post-writer ·<br/>humanizer · weekly-report"]
         wsS["workspace:<br/>gmail-sorter-setup · /switch"]
+        pdS["product-design:<br/>conversion-review · paywall-and-pricing ·<br/>habit-loop · landing-builder · ux-copy"]
+        uxS["ux-craft:<br/>delight-spec · hig-review · redesign"]
     end
 
     subgraph agents["Engineering subagents"]
@@ -123,6 +134,8 @@ flowchart TB
         owA["outreach-writer<br/>(pitches that get replies)"]
         fcA["fact-checker<br/>(claims verified before publishing)"]
         lrA["legal-reviewer<br/>(contract · NDA · defamation risk)"]
+        crA["conversion-reviewer<br/>(ranked selling-path findings)"]
+        hrA["hig-reviewer<br/>(HIG + delight checklist)"]
     end
 
     subgraph hooks["Hooks (automatic)"]
@@ -150,6 +163,9 @@ flowchart TB
     ppr -. can corroborate with .-> swiftr
     ppr -. can corroborate with .-> mlr
     gate -- blocks git push until review --> ppr
+    uxS -. audits with .-> hrA
+    uxS -. audits with .-> crA
+    uxS -. approved design hands off to .-> sdlcS
 ```
 
 The task lifecycle the pieces compose into:
@@ -183,6 +199,8 @@ flowchart LR
 | `brand` | subagent | `legal-reviewer`: reads a draft post, article or comment for contract, NDA, defamation and disclosure risk, and returns clean / nuances / blocked with the lines at fault. |
 | `ml` | skills | `feature-change` (training/serving schema contract, leakage, deploy order), `model-eval` (multi-season leave-one-out gate: pooled win, no season regresses, effect beats the noise), `ship-model` (snapshot, registry, artifact publish, cache flush, verify against live). |
 | `app-factory` | skill | One spoken idea to a submitted App Store build: requirements, architecture, Xcode scaffolding, implementation, review, simulator QA, screenshots, ASC metadata, TestFlight. |
+| `product-design` | skills + subagent | `conversion-review` (ranked findings with fix, severity and the event that proves it), `paywall-and-pricing` (previews over hard locks, honest anchoring and trials, forbidden dark patterns), `habit-loop` (trigger, action, reward, investment on the product's real calendar, notification caps and quiet hours), `landing-builder` (sections, audience variants, A/B plan), `ux-copy` (states, jargon replacements, local-time dates, humanized) + `conversion-reviewer`. |
+| `ux-craft` | skills + subagent | `delight-spec` (spring, snap, haptic, sound and reduced-motion tokens with CSS and SwiftUI code, screen checklist), `hig-review` (navigation, type, targets, contrast, accessibility), `redesign` (audit, 5-6 directions as a live page, design system and screens, behaviour pass, plan only after approval) + `hig-reviewer`. |
 | `workspace` | skill + command | `gmail-sorter-setup` (daily cloud routine triaging the logged-in account's inbox into Attention / Health / Receipts) and `/switch` for moving a session between claude.ai profiles. |
 
 ## Cross-cutting conventions
