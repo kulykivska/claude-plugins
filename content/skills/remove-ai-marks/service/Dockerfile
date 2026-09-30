@@ -6,6 +6,7 @@
 #
 # Run (HTTP on loopback host port, unprivileged, read-only rootfs):
 #   docker run --rm -p 127.0.0.1:8765:8765 \
+#     -e WATERMARKS_SERVER_API_KEY \
 #     --read-only --tmpfs /tmp \
 #     watermarks-remover
 #

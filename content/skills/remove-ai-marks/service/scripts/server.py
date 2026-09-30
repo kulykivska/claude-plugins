@@ -31,9 +31,21 @@ the batch. Capped at WATERMARKS_MAX_BATCH_FILES entries per request (default
 size the same as a single-file request.
 
 Hardening mirrors the CLIs: input size caps, binary-as-text guard, atomic
-writes, loopback-only bind by default, optional bearer API key. Run it as an
-unprivileged user (the Docker image does). Intended for a trusted network;
-expose through a reverse proxy if reachable from untrusted clients.
+writes, loopback-only bind by default. Browser-facing hardening: a bearer API
+key is required (refuses to start without one unless WATERMARKS_ALLOW_NO_AUTH=1),
+POST bodies must be application/json, the Host header must be an allowlisted
+loopback name (DNS rebinding), any Origin header must be allowlisted, and
+concurrent requests and body size are capped. Run it as an unprivileged user
+(the Docker image does). Intended for a trusted network; expose through a
+reverse proxy if reachable from untrusted clients.
+
+Environment:
+    WATERMARKS_SERVER_API_KEY     required bearer token
+    WATERMARKS_ALLOW_NO_AUTH=1    local development only: start without a key
+    WATERMARKS_ALLOWED_HOSTS      extra Host values, comma-separated (name or name:port)
+    WATERMARKS_ALLOWED_ORIGINS    extra Origin values, comma-separated
+    WATERMARKS_MAX_BODY_BYTES     request body cap (default 64 MiB)
+    WATERMARKS_MAX_CONCURRENT     requests processed at once (default 2)
 """
 
 from __future__ import annotations
@@ -47,6 +59,7 @@ import os
 import subprocess
 import sys
 import tempfile
+import threading
 import time
 import urllib.error
 from datetime import datetime
@@ -90,13 +103,25 @@ from text_watermark import (
 
 VERSION = os.environ.get("WATERMARKS_SERVER_VERSION", "dev")
 
-# Optional bearer token: when set, every request must send
-# `Authorization: Bearer <key>`. Empty means no auth (default).
+# Bearer token every request except GET /health must send. main() refuses to
+# start without one unless WATERMARKS_ALLOW_NO_AUTH=1.
 API_KEY = os.environ.get("WATERMARKS_SERVER_API_KEY", "").strip()
 
-# Body cap for the JSON envelope. Base64 inflates by 4/3, so the decoded file
-# stays well under MAX_INPUT_BYTES for the same cap.
-MAX_BODY_BYTES = MAX_INPUT_BYTES + (MAX_INPUT_BYTES >> 1)
+# Body cap for the JSON envelope; base64 inflates by 4/3. Kept well below
+# MAX_INPUT_BYTES so a few parallel requests cannot exhaust memory.
+MAX_BODY_BYTES = min(
+    int(os.environ.get("WATERMARKS_MAX_BODY_BYTES", str(64 << 20))),
+    MAX_INPUT_BYTES + (MAX_INPUT_BYTES >> 1),
+)
+
+# Requests processed at once; the rest get 503 instead of queueing in memory.
+MAX_CONCURRENT = max(1, int(os.environ.get("WATERMARKS_MAX_CONCURRENT", "2")))
+_SLOTS = threading.BoundedSemaphore(MAX_CONCURRENT)
+
+# Host and Origin allowlists; configure_allowlists() fills them at startup.
+LOOPBACK_HOSTS = ("localhost", "127.0.0.1", "[::1]")
+ALLOWED_HOSTS: frozenset[str] = frozenset()
+ALLOWED_ORIGINS: frozenset[str] = frozenset()
 
 # Per-request file count cap for /inspect/batch and /clean/batch. MAX_BODY_BYTES
 # already bounds total payload size; this bounds worst-case CPU/thread time from
@@ -866,6 +891,30 @@ def openapi_spec() -> dict[str, Any]:
     return spec
 
 
+def _split_env_list(name: str) -> list[str]:
+    return [v.strip().lower() for v in os.environ.get(name, "").split(",") if v.strip()]
+
+
+def configure_allowlists(port: int) -> None:
+    """Allow the loopback names, bare or with *port*, plus the env extras."""
+    global ALLOWED_HOSTS, ALLOWED_ORIGINS  # noqa: PLW0603 — set once at startup
+    hosts: set[str] = set()
+    for name in (*LOOPBACK_HOSTS, *_split_env_list("WATERMARKS_ALLOWED_HOSTS")):
+        hosts.add(name)
+        if not name.rsplit("]", 1)[-1].count(":"):
+            hosts.add(f"{name}:{port}")
+    origins = {f"{scheme}://{h}" for h in hosts for scheme in ("http", "https")}
+    origins.update(_split_env_list("WATERMARKS_ALLOWED_ORIGINS"))
+    ALLOWED_HOSTS = frozenset(hosts)
+    ALLOWED_ORIGINS = frozenset(origins)
+
+
+def _is_json_content_type(value: str | None) -> bool:
+    if not value:
+        return False
+    return value.split(";", 1)[0].strip().lower() == "application/json"
+
+
 def _safe_name(name: str) -> str:
     """Reduce a client-supplied filename to a bare basename safe for temp use.
 
@@ -1412,6 +1461,8 @@ def _clean_payload(data: bytes, name: str, options: dict[str, Any]) -> dict[str,
 
 class Handler(BaseHTTPRequestHandler):
     server_version = f"watermarks-remover/{VERSION}"
+    # Socket timeout, so a stalled client cannot hold a request slot forever.
+    timeout = 120
 
     def log_message(self, fmt: str, *args: object) -> None:
         # Local time with UTC offset, e.g. "2026-08-27 14:03:11 +0300" — readable
@@ -1424,6 +1475,22 @@ class Handler(BaseHTTPRequestHandler):
             return True
         header = self.headers.get("Authorization", "")
         return hmac.compare_digest(header.encode(), f"Bearer {API_KEY}".encode())
+
+    def _reject(self, status: int, error: str) -> None:
+        self.close_connection = True
+        self._respond(status, {"ok": False, "error": error})
+
+    def _origin_checks_pass(self) -> bool:
+        """Host allowlist (DNS rebinding) and Origin allowlist (cross-site pages)."""
+        host = (self.headers.get("Host") or "").strip().lower()
+        if host not in ALLOWED_HOSTS:
+            self._reject(HTTPStatus.MISDIRECTED_REQUEST, "host not allowed")
+            return False
+        origin = self.headers.get("Origin")
+        if origin is not None and origin.strip().lower() not in ALLOWED_ORIGINS:
+            self._reject(HTTPStatus.FORBIDDEN, "origin not allowed")
+            return False
+        return True
 
     def _read_json(self) -> dict[str, Any] | None:
         raw = self.headers.get("Content-Length")
@@ -1451,12 +1518,15 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_GET(self) -> None:
         path = urlparse(self.path).path
-        if not self._authorized():
-            self._respond(HTTPStatus.UNAUTHORIZED, {"ok": False, "error": "unauthorized"})
+        if not self._origin_checks_pass():
             return
         if path == "/health":
             self._respond(HTTPStatus.OK, {"ok": True, "version": VERSION})
-        elif path == "/capabilities":
+            return
+        if not self._authorized():
+            self._respond(HTTPStatus.UNAUTHORIZED, {"ok": False, "error": "unauthorized"})
+            return
+        if path == "/capabilities":
             self._respond(HTTPStatus.OK, {"ok": True, **capabilities()})
         elif path == "/openapi.json":
             self._respond(HTTPStatus.OK, openapi_spec())
@@ -1465,9 +1535,30 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self) -> None:
         path = urlparse(self.path).path
-        if not self._authorized():
-            self._respond(HTTPStatus.UNAUTHORIZED, {"ok": False, "error": "unauthorized"})
+        if not self._origin_checks_pass():
             return
+        if not self._authorized():
+            self._reject(HTTPStatus.UNAUTHORIZED, "unauthorized")
+            return
+        if not _is_json_content_type(self.headers.get("Content-Type")):
+            self._reject(HTTPStatus.UNSUPPORTED_MEDIA_TYPE, "Content-Type must be application/json")
+            return
+        raw_len = self.headers.get("Content-Length")
+        if raw_len is None or not raw_len.isdigit():
+            self._reject(HTTPStatus.LENGTH_REQUIRED, "Content-Length required")
+            return
+        if int(raw_len) > MAX_BODY_BYTES:
+            self._reject(HTTPStatus.REQUEST_ENTITY_TOO_LARGE, "request body too large")
+            return
+        if not _SLOTS.acquire(blocking=False):
+            self._reject(HTTPStatus.SERVICE_UNAVAILABLE, "server busy, retry later")
+            return
+        try:
+            self._dispatch_post(path)
+        finally:
+            _SLOTS.release()
+
+    def _dispatch_post(self, path: str) -> None:
         if path not in (
             "/inspect",
             "/clean",
@@ -1482,12 +1573,7 @@ class Handler(BaseHTTPRequestHandler):
             return
         body = self._read_json()
         if body is None:
-            raw_len = self.headers.get("Content-Length")
-            oversized = raw_len is not None and raw_len.isdigit() and int(raw_len) > MAX_BODY_BYTES
-            self._respond(
-                HTTPStatus.REQUEST_ENTITY_TOO_LARGE if oversized else HTTPStatus.BAD_REQUEST,
-                {"ok": False, "error": "invalid request body"},
-            )
+            self._respond(HTTPStatus.BAD_REQUEST, {"ok": False, "error": "invalid request body"})
             return
         try:
             if path == "/inspect/batch":
@@ -1673,7 +1759,12 @@ def main() -> int:
     p.add_argument(
         "--port", type=int, default=int(os.environ.get("WATERMARKS_SERVER_PORT", "8765"))
     )
-    p.add_argument("--api-key", default=API_KEY, help="require this bearer token (default: none)")
+    p.add_argument(
+        "--api-key",
+        default=API_KEY,
+        help="bearer token to require (default: WATERMARKS_SERVER_API_KEY; required unless "
+        "WATERMARKS_ALLOW_NO_AUTH=1)",
+    )
     p.add_argument(
         "--strategy-config",
         default=os.environ.get("WATERMARKS_CLEAN_STRATEGY_FILE", "config/clean_strategy.json"),
@@ -1692,15 +1783,24 @@ def main() -> int:
     global _DEFAULT_STRATEGY  # noqa: PLW0603 — loaded once at startup
     _DEFAULT_STRATEGY = _load_default_strategy(Path(args.strategy_config))
 
+    API_KEY = (API_KEY or "").strip()
+    if not API_KEY and os.environ.get("WATERMARKS_ALLOW_NO_AUTH", "").strip() != "1":
+        eprint(
+            "error: no API key. Set WATERMARKS_SERVER_API_KEY (or --api-key), or set "
+            "WATERMARKS_ALLOW_NO_AUTH=1 for local development only."
+        )
+        return 2
     if args.host not in ("127.0.0.1", "localhost", "::1"):
         eprint(f"warning: binding {args.host} — intended for a trusted network only")
     if API_KEY:
         eprint("API key required for requests")
     else:
-        eprint("warning: no API key set — only bind to loopback or a trusted network")
+        eprint("warning: WATERMARKS_ALLOW_NO_AUTH=1 — no API key, local development only")
 
     server = ThreadingHTTPServer((args.host, args.port), Handler)
-    eprint(f"watermarks-remover service {VERSION} on http://{args.host}:{args.port}")
+    port = server.server_address[1]
+    configure_allowlists(port)
+    eprint(f"watermarks-remover service {VERSION} on http://{args.host}:{port}")
     try:
         server.serve_forever()
     except KeyboardInterrupt:
