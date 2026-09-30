@@ -43,10 +43,12 @@ amending after a review means reviewing again.
 
 Highlights; the full table is further down.
 
-- **`guardrails`** - blocking hooks that veto destroying or scaling a Fly app to
-  zero, clearing its configuration, `DROP`/`TRUNCATE` through a database client,
-  force-pushes to main, and any commit or push carrying a real credential or
-  someone's personal data.
+- **`guardrails`** - blocking hooks that veto destroying Fly apps, machines or
+  volumes, scaling a Fly app to zero, clearing its configuration,
+  `DROP`/`TRUNCATE`/unbounded `DELETE` through a database client (heredocs and
+  `-f` files included), force-pushes to main in any spelling, `rm -rf ~`,
+  `kubectl delete` in prod, and any commit or push carrying a real credential or
+  someone's personal data. Scope and limits: [guardrails/README.md](guardrails/README.md).
 - **`reviewers`** - four subagents that each know one stack, so a review of a
   SwiftUI diff talks about StoreKit and crashes rather than generic advice.
 - **`sdlc`** - requirements to plan to implementation to QA to review, with an
@@ -183,7 +185,7 @@ flowchart LR
 |--------|---------|--------------|
 | `pre-push-review` | skill | Fix-and-verify review before any `git push` (pairs with the user-level pre-push gate hook). |
 | `daily` | skills | `morning` (kickoff recap from git + transcripts + memory) and `evening` (wind-down: today's recap, tomorrow's top 3, wellbeing + who to reach out to). |
-| `guardrails` | blocking hooks | Vetoes destructive Fly ops (destroy/scale-0/secrets unset), DROP/TRUNCATE via DB clients, force-push to main, AI attribution in commits, secrets/PII in staged + pushed diffs. |
+| `guardrails` | blocking hooks | Vetoes destructive Fly ops (destroy/scale-0/secrets unset), DROP/TRUNCATE/unbounded DELETE via DB clients, force-push or delete of main, rm -rf of home, kubectl delete in prod, AI attribution in commits, secrets/PII in staged + pushed diffs. |
 | `coach` | non-blocking hooks | Per-stack nudges on edit (Python/TS/Swift, FEATURE_COLS sync reminder, no long dashes in UI text), session banner, failure hints (ports, Docker reload, Fly release_command), uncommitted reminder. |
 | `sdlc` | skills + subagents | requirements → plan-task → implement → qa → task-review loop, plus `architect` and `debugger` subagents, `engineering-standards` (the one list writing and reviewing both work from) and `behaviour-events` (analytics ship with the feature). |
 | `reviewers` | subagents | `python-reviewer`, `web-reviewer`, `swiftui-reviewer`, `ml-reviewer` (LORO gate, leakage, cross-repo FEATURE_COLS sync). |
