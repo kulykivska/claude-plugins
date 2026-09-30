@@ -1,5 +1,6 @@
 # Core HTTP service for the remove-ai-marks skill.
 #
+#   # WATERMARKS_SERVER_API_KEY must be set in the shell or in .env (git-ignored)
 #   docker compose up --build -d      # then: curl -sf http://127.0.0.1:8765/health
 #
 # Trimmed from upstream watermarks-remover: only the wr-core service is kept.
@@ -13,11 +14,16 @@ services:
     build:
       context: service
       dockerfile: Dockerfile
+    # The server binds 0.0.0.0 inside the container; publish on loopback only.
     ports:
       - "127.0.0.1:8765:8765"
     environment:
-      # Empty by default (no auth). Set to require `Authorization: Bearer <key>`.
-      WATERMARKS_SERVER_API_KEY: ${WATERMARKS_SERVER_API_KEY:-}
+      # Required: compose refuses to start without it. Never commit the value.
+      WATERMARKS_SERVER_API_KEY: ${WATERMARKS_SERVER_API_KEY:?set WATERMARKS_SERVER_API_KEY in the shell or in .env}
+      WATERMARKS_ALLOWED_HOSTS: ${WATERMARKS_ALLOWED_HOSTS:-}
+      WATERMARKS_ALLOWED_ORIGINS: ${WATERMARKS_ALLOWED_ORIGINS:-}
+      WATERMARKS_MAX_BODY_BYTES: ${WATERMARKS_MAX_BODY_BYTES:-67108864}
+      WATERMARKS_MAX_CONCURRENT: ${WATERMARKS_MAX_CONCURRENT:-2}
       WATERMARKS_CLEAN_STRATEGY_FILE: /app/config/clean_strategy.json
     volumes:
       - ./config:/app/config:ro
@@ -25,5 +31,6 @@ services:
     tmpfs:
       - /tmp
     init: true
+    mem_limit: 2g
     user: "10001:10001"
     restart: unless-stopped
