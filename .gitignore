@@ -2,3 +2,8 @@
 # Python bytecode from the hooks
 __pycache__/
 *.pyc
+
+# Local secrets, never committed
+.env
+.env.*
+!.env.example
