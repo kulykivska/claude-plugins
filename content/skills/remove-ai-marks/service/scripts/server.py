@@ -41,6 +41,7 @@ from __future__ import annotations
 import argparse
 import base64
 import binascii
+import hmac
 import json
 import os
 import subprocess
@@ -1422,7 +1423,7 @@ class Handler(BaseHTTPRequestHandler):
         if not API_KEY:
             return True
         header = self.headers.get("Authorization", "")
-        return header == f"Bearer {API_KEY}"
+        return hmac.compare_digest(header.encode(), f"Bearer {API_KEY}".encode())
 
     def _read_json(self) -> dict[str, Any] | None:
         raw = self.headers.get("Content-Length")
