@@ -1,6 +1,6 @@
 # Landing section templates
 
-Fill-in templates per section, then the three RaceModel audience variants as
+Fill-in templates per section, then the three ExampleApp audience variants as
 worked examples. Product claims in the examples are placeholders; replace
 every number with a real, dated one.
 
@@ -42,7 +42,7 @@ Visual:    <the real product showing the outcome, not a stock photo>
 <The objection it answers>
 ```
 
-## RaceModel, fans
+## ExampleApp, fans
 
 - Headline: Know the result before the lights go out
 - Subline: F1 predictions for every session, with our track record in
@@ -59,7 +59,7 @@ Visual:    <the real product showing the outcome, not a stock photo>
 - Final: Sunday is closer than you think. [Get this weekend's prediction]
   Free. No card.
 
-## RaceModel, teams and analysts
+## ExampleApp, teams and analysts
 
 - Headline: Race predictions your engineers can audit
 - Subline: Session-by-session finishing order with published error rates,
@@ -73,7 +73,7 @@ Visual:    <the real product showing the outcome, not a stock photo>
 - FAQ: What does the model use? How is error measured? Can we get raw
   probabilities? Data retention? Seats and pricing?
 
-## RaceModel, bookmakers and media
+## ExampleApp, bookmakers and media
 
 - Headline: Calibrated F1 probabilities, delivered by API
 - Subline: Win, podium and head-to-head probabilities for every session,

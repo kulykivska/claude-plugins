@@ -42,7 +42,7 @@ heuristic; details and examples for each are in
 2. **One primary action per screen.** Exactly one filled button per viewport.
    Secondary actions are links or outlined. Two equal buttons split the click.
 3. **Proof.** Specific, checkable, near the claim: a public track record
-   (RaceModel: every past prediction next to the actual result, including the
+   (ExampleApp: every past prediction next to the actual result, including the
    misses), numbers with a date, named users, press. Unverifiable superlatives
    count as zero proof.
 4. **Friction to sign-up.** Count fields, screens and decisions between the

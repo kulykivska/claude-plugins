@@ -110,7 +110,7 @@ whichever provider is preselected.
 ## Sequence for a brand-new app
 
 ```bash
-fastlane produce -a io.racemodel.chip -q "Chip" --skip_itc false   # create records
+fastlane produce -a com.example.chip -q "Chip" --skip_itc false   # create records
 fastlane beta                                                       # TestFlight
 fastlane shots                                                      # screenshots
 fastlane release                                                    # submit
