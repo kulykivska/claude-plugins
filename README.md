@@ -14,6 +14,41 @@ That is the whole install. Everything here is plain files - Markdown skills,
 Markdown subagents, shell hooks - so you can read exactly what a plugin does
 before you enable it, and take one without the rest.
 
+## For lawyers and law students
+
+You do not need to be a developer. Five plugins here cover the risks that
+matter when a lawyer builds a site or a small tool with AI:
+
+| Plugin | What it does for you |
+|---|---|
+| `guardrails` + `pre-push-review` | Blocks a commit or push that carries a key, a password or personal data. A GitHub Pages site is public, so a client's email pasted by mistake would be a disclosure. |
+| `content` | `fact-checker` checks every claim against real sources and says "unverifiable" when there is none, so no invented citations. `humanizer` takes the AI tone out of a bio, a letter or a post. |
+| `brand` | `legal-reviewer` reads a draft for NDA, defamation and disclosure risk before you publish it, and returns clean / nuances / blocked with the lines at fault. |
+| `seo` | `/seo-audit` checks that your site can be found in Google, ChatGPT and Perplexity. |
+| `research` | `researcher` writes a short brief on a question, with sources. |
+
+**Let Claude set it up.** Open Claude Code in your project folder (the desktop
+app or the terminal; plugins do not load in claude.ai/code web sessions) and
+paste this:
+
+```text
+Set up the kulykivska/claude-plugins plugins for this project.
+1. Check that `claude`, `git` and `python3` are available. If python3 is missing,
+   skip guardrails and pre-push-review and tell me why.
+2. Run `claude plugin marketplace add kulykivska/claude-plugins`.
+3. Install each of these with `--scope project`:
+   content@personal, brand@personal, seo@personal, research@personal,
+   guardrails@personal, pre-push-review@personal.
+4. Run `claude plugin list` and show me what is enabled.
+5. Tell me to restart Claude Code so the plugins load, then give me three things
+   to try: humanize my bio, legal-review my site text, fact-check one claim.
+```
+
+Starting a new site? The
+[legaltech-starter](https://github.com/kulykivska/legaltech-starter) template
+comes with these plugins already turned on, a business-card page and a
+GitHub Pages deploy.
+
 ## Start with the gate
 
 `pre-push-review` reviews the diff you are about to push across five
