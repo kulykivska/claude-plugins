@@ -271,7 +271,7 @@ new machine just copy `.claude/settings.json` + `.claude/scripts/` into
 
 ```bash
 python3 scripts/validate.py         # every plugin manifest parses and matches the marketplace
-python3 scripts/test_guardrails.py  # what the blocking hooks stop, and what they must not
+python3 scripts/test_guardrails.py --app <your-app>  # what the blocking hooks stop, and what they must not
 python3 content/skills/remove-ai-marks/service/tests/test_server_security.py  # service hardening
 ```
 

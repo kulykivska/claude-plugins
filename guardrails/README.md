@@ -32,4 +32,4 @@ Known limits:
 - `git reset --hard` is not guarded: it is local and recoverable from the reflog.
 - If `python3` is missing or the parser fails, the hook allows the call.
 
-Tests: `python3 scripts/test_guardrails.py`.
+Tests: `python3 scripts/test_guardrails.py --app <your-app>` (or set `GUARDRAILS_APP`; defaults to `example-app`).
