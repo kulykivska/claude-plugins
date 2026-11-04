@@ -87,10 +87,10 @@ MUST_BLOCK = [
     "sudo rm -rf /*",
     "rm --recursive --force ${HOME}/*",
     # kubectl
-    "kubectl delete namespace shmoozer",
-    "kubectl delete ns shmoozer-dev",
+    "kubectl delete namespace myapp",
+    "kubectl delete ns myapp-dev",
     "kubectl --context prod delete deployment api",
-    "kubectl delete deploy/api -n shmoozer-prod",
+    "kubectl delete deploy/api -n myapp-prod",
     "kubectl delete statefulset redis --context arn:aws:eks:us-east-1:1:cluster/prod",
     "kubectl delete -f k8s/prod/",
 ]
@@ -122,7 +122,7 @@ MUST_ALLOW = [
     "rm -rf ./build",
     "rm -rf ~/tmp/cache",
     "rm -rf /tmp/x",
-    "kubectl delete pod api-7d9f -n shmoozer-dev",
+    "kubectl delete pod api-7d9f -n myapp-dev",
     "kubectl --context dev delete deployment api",
     "kubectl get ns",
     "truncate -s 0 app.log && psql -c 'select 1'",
