@@ -15,6 +15,8 @@ description: >-
 
 # Redesign
 
+**Product name.** `{{app}}` here and in the references stands for the user's product. Take its name from the project (README title, package.json, app.json, Info.plist) or ask once, then write every example with that name and the product's own screens.
+
 A redesign is five gated stages. Each stage ends with something the owner
 can look at, and the next stage starts only when they have answered.
 **No product code is written before a design is approved.** Not a spike,

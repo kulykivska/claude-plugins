@@ -13,6 +13,8 @@ description: >-
 
 # Conversion review
 
+**Product name.** `{{app}}` here and in the references stands for the user's product. Take its name from the project (README title, package.json, app.json, Info.plist) or ask once, then write every example with that name and the product's own screens.
+
 A page that sells answers three questions in the first five seconds: what is
 this, is it for me, what do I do next. Everything below checks whether the
 page answers them, and then whether anything between "yes" and "paid" gets in
@@ -42,7 +44,7 @@ heuristic; details and examples for each are in
 2. **One primary action per screen.** Exactly one filled button per viewport.
    Secondary actions are links or outlined. Two equal buttons split the click.
 3. **Proof.** Specific, checkable, near the claim: a public track record
-   (ExampleApp: every past prediction next to the actual result, including the
+   ({{app}}: every past prediction next to the actual result, including the
    misses), numbers with a date, named users, press. Unverifiable superlatives
    count as zero proof.
 4. **Friction to sign-up.** Count fields, screens and decisions between the

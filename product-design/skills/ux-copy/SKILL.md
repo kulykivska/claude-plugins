@@ -13,6 +13,8 @@ description: >-
 
 # UX copy
 
+**Product name.** `{{app}}` here and in the references stands for the user's product. Take its name from the project (README title, package.json, app.json, Info.plist) or ask once, then write every example with that name and the product's own screens.
+
 Interface text is part of the interface. It tells people where they are,
 what just happened and what to do next, in words they would use themselves.
 

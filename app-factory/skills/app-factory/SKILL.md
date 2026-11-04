@@ -11,6 +11,8 @@ description: >
 
 # App Factory
 
+**App name.** `{{app}}` and `{{bundle_id}}` in the references stand for the app being built: use the name and bundle id passed to `scripts/new-ios-app.sh`.
+
 A pipeline for turning an idea into a shipped iOS app. The point is that the
 owner describes what they want once, in their own words, and everything after
 that runs without them having to specify stages.

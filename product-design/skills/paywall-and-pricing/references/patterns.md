@@ -108,7 +108,7 @@ Objection lines placed next to the button:
 ## Trial reminder message
 
 ```
-Your ExampleApp Pro trial ends tomorrow, 2 Oct.
+Your {{app}} Pro trial ends tomorrow, 2 Oct.
 We will charge $39.99 for a year unless you cancel.
 Cancel in Settings, Subscriptions, or here: [Manage subscription]
 ```

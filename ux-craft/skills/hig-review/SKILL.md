@@ -14,6 +14,8 @@ description: >-
 
 # HIG review
 
+**Product name.** `{{app}}` here and in the references stands for the user's product. Take its name from the project (README title, package.json, app.json, Info.plist) or ask once, then write every example with that name and the product's own screens.
+
 Apple-grade means the user never has to learn the interface: it behaves
 like the rest of the platform, reads at every text size, and works without
 sight. This review checks a screen against that bar. The detailed checklist

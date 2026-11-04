@@ -13,6 +13,8 @@ description: >-
 
 # Habit loop
 
+**Product name.** `{{app}}` here and in the references stands for the user's product. Take its name from the project (README title, package.json, app.json, Info.plist) or ask once, then write every example with that name and the product's own screens.
+
 People come back when something they care about is about to happen or just
 happened, and the product is the fastest way to see it. The loop is built on
 the product's real calendar, not on an arbitrary daily cadence. A daily
@@ -24,7 +26,7 @@ week.
 List the moments that exist whether or not the product does, with their
 typical local time for the user and how often they occur.
 
-ExampleApp example (per race weekend, about 24 a season, some double-header
+{{app}} example (per race weekend, about 24 a season, some double-header
 weekends back to back, gaps of 1 to 4 weeks between):
 
 | Moment | When | Why users care |
@@ -71,7 +73,7 @@ Rules that hold for every product:
   never on first launch.
 - **Frequency caps**, per user and enforced server side: a default ceiling
   per calendar unit, a lower one for users who have not opened the last
-  three. ExampleApp default: at most 3 per race weekend, at most 1 in an off
+  three. {{app}} default: at most 3 per race weekend, at most 1 in an off
   week, 0 in an off week for users who opted only into session alerts.
 - **Quiet hours** in the user's local time zone: default 22:00 to 08:00. A
   session that starts inside quiet hours gets its alert in the evening
