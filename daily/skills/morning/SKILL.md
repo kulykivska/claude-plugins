@@ -54,9 +54,9 @@ what got finished, and what was explicitly left for later. Map the sanitized
 project dir names back to real projects (e.g. the `...Documents-Work-Projects...`
 dir is the Projects root).
 
-**Project memory** — check
-`~/.claude/projects/-Users-yuliia-kulykivska-Documents-Work-Projects/memory/`
-for ongoing-work notes that affect today.
+**Project memory** — check the `memory/` folder inside each touched
+`~/.claude/projects/<sanitized-project-dir>/` for ongoing-work notes that
+affect today.
 
 ## Step 3 — What to CONTINUE / do next
 
