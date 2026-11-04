@@ -4,18 +4,39 @@
 A guard that cries wolf gets turned off, and a guard that is turned off stops
 nothing. Both halves are tested here.
 
-    python3 scripts/test_guardrails.py
+    python3 scripts/test_guardrails.py [--app NAME]
+
+NAME (or $GUARDRAILS_APP) is the app the cases are written against.
 """
 
 from __future__ import annotations
 
 import json
+import os
+import re
 import subprocess
 import sys
 import tempfile
 from pathlib import Path
 
 HOOK = Path(__file__).resolve().parents[1] / "guardrails/hooks/guard-destructive-ops.sh"
+
+DEFAULT_APP = "example-app"
+
+
+def app_name(argv: list[str]) -> str:
+    name = os.environ.get("GUARDRAILS_APP") or DEFAULT_APP
+    if "--app" in argv:
+        i = argv.index("--app")
+        if i + 1 >= len(argv):
+            sys.exit("--app needs a name")
+        name = argv[i + 1]
+    if not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,40}", name):
+        sys.exit(f"app name must be lowercase letters, digits and dashes: {name!r}")
+    return name
+
+
+APP = app_name(sys.argv[1:])
 
 BLOCKED = 2
 ALLOWED = 0
@@ -31,22 +52,22 @@ def verdict(command: str, cwd: str = "") -> int:
 
 MUST_BLOCK = [
     # Fly.io
-    "fly apps destroy racemodel-api",
-    "flyctl apps destroy racemodel-api --yes",
-    "fly destroy racemodel-api",
-    "fly machines destroy 148e --force -a racemodel-api",
+    f"fly apps destroy {APP}-api",
+    f"flyctl apps destroy {APP}-api --yes",
+    f"fly destroy {APP}-api",
+    f"fly machines destroy 148e --force -a {APP}-api",
     "fly machine destroy 148e",
     "flyctl machine rm 148e",
-    "fly -a racemodel-api machines destroy 148e",
+    f"fly -a {APP}-api machines destroy 148e",
     "flyctl volumes delete vol_123",
     "fly volumes destroy vol_123",
-    "fly scale count 0 --app racemodel-api",
-    "fly secrets unset DATABASE_URL --app racemodel-api",
-    "cd infra && FLY_API_TOKEN=x fly apps destroy racemodel-api",
+    f"fly scale count 0 --app {APP}-api",
+    f"fly secrets unset DATABASE_URL --app {APP}-api",
+    f"cd infra && FLY_API_TOKEN=x fly apps destroy {APP}-api",
     # SQL through a client, any case, any delivery
     "psql $DATABASE_URL -c 'DROP TABLE predictions'",
     "psql $DATABASE_URL -c 'drop table predictions'",
-    'psql "$DATABASE_URL" -c "Drop Database racemodel"',
+    f'psql "$DATABASE_URL" -c "Drop Database {APP}"',
     "psql -c 'DROP SCHEMA public CASCADE'",
     "psql -c 'ALTER TABLE users DROP COLUMN email'",
     "sqlite3 evidence.db 'TRUNCATE mentions'",
@@ -59,7 +80,7 @@ MUST_BLOCK = [
     "echo 'DROP TABLE x' | psql",
     "psql <<< 'drop table x'",
     "mysql -e 'DROP DATABASE shop'",
-    "fly postgres connect -a racemodel-db <<'SQL'\ndrop table predictions;\nSQL",
+    f"fly postgres connect -a {APP}-db <<'SQL'\ndrop table predictions;\nSQL",
     "kubectl exec -it pg-0 -- psql -c 'DROP TABLE users'",
     "bash -c \"psql -c 'DROP TABLE users'\"",
     # git push: force in every spelling, to main/master
@@ -87,19 +108,19 @@ MUST_BLOCK = [
     "sudo rm -rf /*",
     "rm --recursive --force ${HOME}/*",
     # kubectl
-    "kubectl delete namespace myapp",
-    "kubectl delete ns myapp-dev",
+    f"kubectl delete namespace {APP}",
+    f"kubectl delete ns {APP}-dev",
     "kubectl --context prod delete deployment api",
-    "kubectl delete deploy/api -n myapp-prod",
+    f"kubectl delete deploy/api -n {APP}-prod",
     "kubectl delete statefulset redis --context arn:aws:eks:us-east-1:1:cluster/prod",
     "kubectl delete -f k8s/prod/",
 ]
 
 MUST_ALLOW = [
-    "fly status --app racemodel-api",
-    "fly logs --app racemodel-api",
-    "fly machines list -a racemodel-api",
-    "fly deploy --app racemodel-api",
+    f"fly status --app {APP}-api",
+    f"fly logs --app {APP}-api",
+    f"fly machines list -a {APP}-api",
+    f"fly deploy --app {APP}-api",
     "git push origin main",
     "git push -u origin main",
     "git push origin feature/thing",
@@ -122,7 +143,7 @@ MUST_ALLOW = [
     "rm -rf ./build",
     "rm -rf ~/tmp/cache",
     "rm -rf /tmp/x",
-    "kubectl delete pod api-7d9f -n myapp-dev",
+    f"kubectl delete pod api-7d9f -n {APP}-dev",
     "kubectl --context dev delete deployment api",
     "kubectl get ns",
     "truncate -s 0 app.log && psql -c 'select 1'",
@@ -136,7 +157,7 @@ MUST_ALLOW = [
 
 MUST_BLOCK_INSIDE_HEREDOC = [
     # A heredoc fed to a shell IS executed, so its body still counts.
-    "bash <<'EOF'\nfly apps destroy racemodel-api\nEOF",
+    f"bash <<'EOF'\nfly apps destroy {APP}-api\nEOF",
     "ssh box <<'EOF'\nfly machines destroy 148e\nEOF",
     "sh <<'EOF'\necho hi\ngit push -f origin main\nEOF",
 ]
