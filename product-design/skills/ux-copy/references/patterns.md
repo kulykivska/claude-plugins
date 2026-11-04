@@ -1,6 +1,6 @@
 # Microcopy patterns
 
-Before and after examples per state. RaceModel strings are examples; the
+Before and after examples per state. ExampleApp strings are examples; the
 structure is what carries over.
 
 ## Empty states
@@ -23,11 +23,11 @@ Structure: what happened, what is safe, what to do.
 
 | Cause | Before | After |
 |-------|--------|-------|
-| Network | "Error 503" | "We could not reach RaceModel. Check your connection and try again. [Try again]" |
+| Network | "Error 503" | "We could not reach ExampleApp. Check your connection and try again. [Try again]" |
 | Server | "Something went wrong" | "Predictions are taking longer than usual to load. We are on it. Your saved picks are safe." |
 | Validation | "Invalid input" | "Enter an email like name@example.com." |
 | Payment | "Transaction declined" | "Your bank declined the payment. Try another card or contact your bank. You have not been charged." |
-| Permission | "Notifications disabled" | "Notifications are off for RaceModel. Turn them on in Settings to get alerts before sessions. [Open Settings]" |
+| Permission | "Notifications disabled" | "Notifications are off for ExampleApp. Turn them on in Settings to get alerts before sessions. [Open Settings]" |
 | Offline, cached data | "Offline" | "You are offline. Showing predictions from Saturday 14:02." |
 
 Rules: never blame ("You entered an invalid..."), keep the user's input,

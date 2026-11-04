@@ -49,7 +49,7 @@ Vary at least three of these axes between any two directions:
 
 Two directions that differ only in accent colour count as one.
 
-## RaceModel example set (illustration only)
+## ExampleApp example set (illustration only)
 
 1. **Pit Wall**: dark, monospace data, one signal colour, dense tables.
 2. **Paddock Club**: light, warm serif display, generous white space.

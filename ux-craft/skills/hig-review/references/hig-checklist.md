@@ -16,7 +16,7 @@ is common practice rather than Apple's text, it is marked "practice".
 - Back button shows the previous screen's title (or "Back" when long).
 - Deep links land on a screen with a working back path.
 
-RaceModel example: Home, Races, Drivers, Leagues, Settings is five tabs.
+ExampleApp example: Home, Races, Drivers, Leagues, Settings is five tabs.
 Adding "Pro" as a sixth tab is a finding; Pro belongs in the screens it
 unlocks and in Settings.
 
@@ -97,7 +97,7 @@ unlocks and in Settings.
   replaced by surface contrast, vivid colours desaturated slightly.
 - Increase Contrast variants for custom colours.
 - Meaning never carried by colour alone: add a symbol, label or shape
-  (RaceModel: gains and losses in places use an arrow as well as green and
+  (ExampleApp: gains and losses in places use an arrow as well as green and
   red).
 
 ## Contrast (WCAG 2.x AA)

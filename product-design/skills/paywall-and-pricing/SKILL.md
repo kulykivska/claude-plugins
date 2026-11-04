@@ -23,7 +23,7 @@ Write down, for the product, three lists. Nothing else in this skill works
 without them.
 
 - **Free forever**: what a free user gets. It must be good enough to come
-  back for. (RaceModel: the race winner prediction and the public track
+  back for. (ExampleApp: the race winner prediction and the public track
   record.)
 - **Pro**: what paying adds, as outcomes. (Full finishing order, qualifying
   and sprint predictions, per-driver probabilities, alerts before lights

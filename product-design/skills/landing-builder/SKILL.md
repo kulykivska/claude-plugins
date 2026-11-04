@@ -47,7 +47,7 @@ objection.
 Same product, different job to be done. Change the headline, proof, outcomes
 and primary action; keep the design system and pricing logic.
 
-RaceModel example (full copy in `references/section-templates.md`):
+ExampleApp example (full copy in `references/section-templates.md`):
 
 | | Fans | Teams and analysts | Bookmakers and media |
 |---|------|--------------------|----------------------|
