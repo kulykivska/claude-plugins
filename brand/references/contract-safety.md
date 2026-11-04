@@ -38,12 +38,12 @@ the company, or against me, by someone who wants it to be".
 
 When an idea is interesting but unsafe, do not drop it. Lift it one level:
 
-- "Our payout service double-charged" → "Idempotency in payout flows: the two
-  traps that survive a code review."
-- "Our staging DB passwords were shared" → "Rotating every database password
-  without downtime: the ordering that matters."
-- "The iOS call feature is broken in prod" → "Debugging a call failure you
-  cannot reproduce: what the client logs have to carry."
+- "Our checkout charged a customer twice" → "Idempotent payment handlers: the
+  two traps that survive a code review."
+- "Our API keys leaked in a config file" → "Rotating credentials without
+  downtime: the ordering that matters."
+- "Search is broken in prod" → "Debugging a failure you cannot reproduce: what
+  the logs have to carry."
 
 The technique is publishable. The incident is not.
 
