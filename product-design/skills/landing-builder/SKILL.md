@@ -11,6 +11,8 @@ description: >-
 
 # Landing builder
 
+**Product name.** `{{app}}` here and in the references stands for the user's product. Take its name from the project (README title, package.json, app.json, Info.plist) or ask once, then write every example with that name and the product's own screens.
+
 A landing page is an argument with one conclusion: the primary action. Each
 section answers the next objection a visitor would raise. Write it in that
 order, not in the order the product was built.
@@ -47,7 +49,7 @@ objection.
 Same product, different job to be done. Change the headline, proof, outcomes
 and primary action; keep the design system and pricing logic.
 
-ExampleApp example (full copy in `references/section-templates.md`):
+{{app}} example (full copy in `references/section-templates.md`):
 
 | | Fans | Teams and analysts | Bookmakers and media |
 |---|------|--------------------|----------------------|

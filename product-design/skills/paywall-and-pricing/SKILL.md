@@ -13,6 +13,8 @@ description: >-
 
 # Paywall and pricing
 
+**Product name.** `{{app}}` here and in the references stands for the user's product. Take its name from the project (README title, package.json, app.json, Info.plist) or ask once, then write every example with that name and the product's own screens.
+
 A good gate shows the value, names the price, and lets the user say no
 without punishment. People pay when they have just seen what they would get,
 at a moment when they want more of it. Everything here serves that.
@@ -23,7 +25,7 @@ Write down, for the product, three lists. Nothing else in this skill works
 without them.
 
 - **Free forever**: what a free user gets. It must be good enough to come
-  back for. (ExampleApp: the race winner prediction and the public track
+  back for. ({{app}}: the race winner prediction and the public track
   record.)
 - **Pro**: what paying adds, as outcomes. (Full finishing order, qualifying
   and sprint predictions, per-driver probabilities, alerts before lights

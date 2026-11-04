@@ -1,6 +1,6 @@
 # Notification plan template
 
-Fill one table per product. The ExampleApp values are an example of a
+Fill one table per product. The {{app}} values are an example of a
 calendar-driven product; replace them with the product's own moments.
 
 ## Types

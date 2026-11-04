@@ -1,8 +1,8 @@
 # Conversion heuristics in detail
 
 Each heuristic: what to check, what good looks like, the usual failure, and
-the event that proves a fix. ExampleApp (a fictional F1 prediction site with a free
-tier, a Pro tier and an iOS app) is the running example.
+the event that proves a fix. The running example, {{app}}, is an F1 prediction
+site with a free tier, a Pro tier and an iOS app.
 
 ## 1. Value proposition on the first screen
 
