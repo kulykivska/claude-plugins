@@ -7,9 +7,28 @@ so the secret isn't echoed into logs/transcripts.
 
 Usage: git diff <range> --unified=0 | secrets_scan.py [allowlist.txt]
 """
-import sys, re, os
+import sys, re, os, subprocess
 
 allow = []
+
+# SCAN_SKIP_REF names a ref already on the remote (its default branch). An added
+# line that the same file already has there came in through a merge: not new.
+SKIP_REF = os.environ.get("SCAN_SKIP_REF", "").strip()
+_known = {}
+
+
+def on_skip_ref(path, line):
+    if not SKIP_REF or path == "?":
+        return False
+    if path not in _known:
+        try:
+            out = subprocess.run(["git", "show", f"{SKIP_REF}:{path}"], capture_output=True,
+                                 text=True, errors="ignore", timeout=10)
+            _known[path] = set(out.stdout.splitlines()) if out.returncode == 0 else set()
+        except Exception:
+            _known[path] = set()
+    return line in _known[path]
+
 if len(sys.argv) > 1 and os.path.isfile(sys.argv[1]):
     for ln in open(sys.argv[1], encoding="utf-8", errors="ignore"):
         s = ln.strip()
@@ -70,7 +89,7 @@ for raw in sys.stdin:
     if not raw.startswith("+"):
         continue
     line = raw[1:].rstrip("\n")
-    if not line.strip() or allowed(line):
+    if not line.strip() or allowed(line) or on_skip_ref(cur, line):
         continue
     for rx, label in HIGH:
         if rx.search(line):

@@ -27,7 +27,14 @@ else
 fi
 range="${base}..HEAD"
 
+# Lines already on the remote default branch (brought in by merging it) are not
+# new to the remote, so the scanner skips them.
+skip_ref=""
+for ref in origin/main origin/master; do
+  if git rev-parse --verify --quiet "$ref" >/dev/null 2>&1; then skip_ref="$ref"; break; fi
+done
+
 root="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "$0")/.." && pwd)}"
 git diff "$range" --unified=0 --no-color 2>/dev/null \
-  | python3 "$root/hooks/secrets_scan.py" "$root/hooks/secrets-allowlist.txt"
+  | SCAN_SKIP_REF="$skip_ref" python3 "$root/hooks/secrets_scan.py" "$root/hooks/secrets-allowlist.txt"
 exit $?
