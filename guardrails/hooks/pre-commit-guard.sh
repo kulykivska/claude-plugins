@@ -27,9 +27,14 @@ if printf '%s' "$cmd" | grep -qiE '\b(CTO|CEO|COO|CFO|CPO|VP of|head of|team lea
 fi
 
 # 2) secrets/PII in the staged changes (catch them before they enter history)
+# Lines the remote default branch already has (staged by merging it) are not new.
+skip_ref=""
+for ref in origin/main origin/master; do
+  if git rev-parse --verify --quiet "$ref" >/dev/null 2>&1; then skip_ref="$ref"; break; fi
+done
 staged="$(git diff --cached --unified=0 --no-color 2>/dev/null)"
 if [ -n "$staged" ]; then
-  printf '%s' "$staged" | SCAN_CONTEXT="staged changes" \
+  printf '%s' "$staged" | SCAN_CONTEXT="staged changes" SCAN_SKIP_REF="$skip_ref" \
     python3 "$root/hooks/secrets_scan.py" "$root/hooks/secrets-allowlist.txt" || exit 2
 fi
 exit 0
